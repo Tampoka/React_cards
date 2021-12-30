@@ -1,0 +1,39 @@
+.radioContainer {
+    margin: 10px 0;
+    display: flex;
+}
+
+.radio {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 3px solid #e7dfdc;
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+    margin-left: 10px;
+    margin-right: 5px;
+    color: #99ff99;
+}
+
+.radioSelected {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: #3928b4;
+    border-radius: 50%;
+    border: 3px solid #e7dfdc;
+    user-select: none;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+label {
+    color: #99ff99;
+    font-size: larger;
+}
+

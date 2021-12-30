@@ -1,0 +1,47 @@
+.selectContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.selectLabel {
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: larger;
+}
+
+.select {
+    appearance: none;
+
+    cursor: pointer;
+    min-width: 200px;
+    height: 40px;
+    background-color: #3928b4;
+    padding: 8px;
+    padding-right: 20px;
+    color: #99ff99;
+    font-size: larger;
+    border-radius: 6px;
+    line-height: 21px;
+    border: 1px solid #fff;
+}
+
+.select:focus {
+    outline: none;
+    border: 2px solid grey;
+}
+
+.option {
+    color: black;
+    background: #3928b4;
+}
+
+
+.option:hover {
+    transition: all .2s ease-in-out;
+}
+
+.option:checked {
+    background: #3928b4;
+}
+
