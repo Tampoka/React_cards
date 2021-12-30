@@ -39,6 +39,8 @@ const SuperRadio: React.FC<SuperRadioPropsType> = (
         ))
         : []
 
+    debugger;
+
     return (
         <div className={s.radioContainer}>
             {mappedOptions}

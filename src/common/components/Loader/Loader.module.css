@@ -37,8 +37,8 @@
     width: inherit;
     height: inherit;
     text-align: center;
-    line-height: 7em;
-    font-size: 30px;
+    line-height: 8em;
+    font-size: 26px;
     font-family:"Font Awesome 6 Free", serif;
     animation: rotating 2s linear infinite;
     --direction: -1;

@@ -1,5 +1,5 @@
 import React, {DetailedHTMLProps, InputHTMLAttributes, HTMLAttributes, useState} from 'react'
-import SuperInputText from '../c1-SuperInputText/SuperInputText'
+import SuperInputText from '../SuperInputText/SuperInputText'
 import s from './SuperEditableSpan.module.css'
 
 // тип пропсов обычного инпута
