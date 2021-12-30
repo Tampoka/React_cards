@@ -13,7 +13,6 @@ function App() {
         <div>
             <Header/>
             <AppRoutes/>
-
         </div>
     );
 }

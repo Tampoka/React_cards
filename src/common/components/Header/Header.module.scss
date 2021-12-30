@@ -1,0 +1,27 @@
+@import '../../styles/saas/variables';
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px;
+  min-height: 80px;
+  background-color: $bgColor;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navLinks a {
+  display: inline-block;
+  color:black;
+  font-size: 22px;
+  text-decoration: none;
+  margin-right: 20px;
+  border: 2px solid #a3ece5;
+  padding: 10px;
+}
+
+
