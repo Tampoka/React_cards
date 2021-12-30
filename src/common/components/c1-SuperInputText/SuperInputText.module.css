@@ -1,0 +1,35 @@
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    margin: 10px;
+    padding: 5px 5px;
+
+    background: #82dada;
+    color: #073807;
+    font-size: larger;
+}
+
+.input:focus {
+    outline: none;
+    border: 3px solid #556060;
+}
+
+.superInput {
+
+}
+
+.errorInput {
+    border: 3px solid #dd3355;
+
+    background: #d57689;
+    color: #99ff99;
+}
+
+.error {
+    color: #dd3355;
+    height: 21px;
+    margin-left: 10px;
+}
