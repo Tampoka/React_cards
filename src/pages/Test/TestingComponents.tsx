@@ -8,7 +8,7 @@ const TestingComponents = () => {
         <>
             <SuperInputText/>
             <SuperButton>Submit</SuperButton>
-            {/*<SuperCheckbox/>*/}
+            <SuperCheckbox/>
         </>
     );
 };
