@@ -1,10 +1,11 @@
 @import "../common/styles/saas/variables";
+@import "../common/styles/saas/mixins";
 
 .content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   padding: 100px;
   width: 80%;
