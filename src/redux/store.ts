@@ -3,10 +3,12 @@ import {authReducer} from "./auth-reducer";
 import {appReducer} from "./app-reducer";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
+import {profileReducer} from "./profile-reducer";
 
 const rootReducer = combineReducers({
     app:appReducer,
     auth:authReducer,
+    profile:profileReducer,
 })
 
 const middlewareEnhancer = applyMiddleware(thunk)
