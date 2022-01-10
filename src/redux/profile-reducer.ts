@@ -8,6 +8,8 @@ export const profileReducer = (state: initialStateType = initialState, action: P
             return {
                 ...state, profile: action.profile
             }
+        default:
+            return state
     }
 }
 
