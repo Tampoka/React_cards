@@ -5,12 +5,18 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {profileReducer} from "./profile-reducer";
 import {newPasswordReducer} from "./newPassword-reducer";
+import {restorePasswordReducer} from "./restorePassword-reducer";
+import {signUpReducer} from "./signUp-reducer";
+import {signInReducer} from "./signIn-reducer";
 
 const rootReducer = combineReducers({
     app: appReducer,
     auth: authReducer,
     profile: profileReducer,
     newPassword: newPasswordReducer,
+    restorePassword: restorePasswordReducer,
+    signIn: signInReducer,
+    signUp: signUpReducer,
 })
 
 const middlewareEnhancer = applyMiddleware(thunk)

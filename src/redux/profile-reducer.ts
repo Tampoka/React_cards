@@ -13,16 +13,20 @@ export const profileReducer = (state: initialStateType = initialState, action: P
     }
 }
 
-export const setProfile = (profile: ProfileType) => ({
+//ACTION CREATORS
+export const setProfileAC = (profile: ProfileType) => ({
     type: 'PROFILE/SET-USER-PROFILE',
     profile
 } as const)
+
+//THUNK CREATORS
 
 //TYPES
 export type initialStateType = typeof initialState
 export type ProfileType = {
     id: string
 }
-export type SetProfileActionType = ReturnType<typeof setProfile>
+
+export type SetProfileActionType = ReturnType<typeof setProfileAC>
 export type ProfileActionsType =
     |SetProfileActionType

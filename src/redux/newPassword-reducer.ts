@@ -6,21 +6,24 @@ export const newPasswordReducer = (state: initialStateType = initialState, actio
     switch (action.type) {
         case 'NEW-PASSWORD/SET-NEW-PASSWORD':
             return {
-                ...state, password: action.password
+                ...state, password: action.payload
             }
         default:
             return state
     }
 }
 
-export const setNewPassword = (password: string) => ({
+//ACTION CREATORS
+export const setNewPasswordAC = (payload: string) => ({
     type: 'NEW-PASSWORD/SET-NEW-PASSWORD',
-    password
+    payload
 } as const)
+
+//THUNK CREATORS
 
 //TYPES
 export type initialStateType = typeof initialState
 
-export type SetNewPasswordActionType = ReturnType<typeof setNewPassword>
+export type SetNewPasswordActionType = ReturnType<typeof setNewPasswordAC>
 export type NewPasswordActionsType =
     |SetNewPasswordActionType
