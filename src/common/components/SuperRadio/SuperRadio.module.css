@@ -32,7 +32,7 @@
     margin-right: 5px;
 }
 
-label {
+.radioContainer label {
     color: #99ff99;
     font-size: larger;
 }
