@@ -1,5 +1,5 @@
 const initialState = {
-    status: 'loading' as RequestStatusType,
+    status: 'idle' as RequestStatusType,
     error: null as null | string,
     //true if app already/successfully initialized (user authentication, settings etc.)
     isInitialized: false,

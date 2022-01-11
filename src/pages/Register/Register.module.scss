@@ -4,21 +4,27 @@
   align-items: center;
   justify-content: space-evenly;
 
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 
   width: 400px;
-  min-height: 500px;
+  min-height: 550px;
+  padding: 10px;
 }
 
 .formContainer input {
   padding: 7px;
-  margin: 20px 0;
+  margin: 5px 0 20px;
 }
 
 .btnBlock {
   display: flex;
   justify-content: center;
 }
+
 .btnBlock button {
   padding: 10px 20px;
+}
+
+.loginLink {
+  align-self: flex-end;
 }
