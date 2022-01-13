@@ -1,4 +1,4 @@
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import TestingComponents from "../pages/Test/TestingComponents";
 import Login from "../pages/Login/Login";
 import Profile from "../pages/Profile/Profile";
@@ -8,30 +8,23 @@ import RestorePassword from "../pages/RestorePassword/RestorePassword";
 import NewPassword from "../pages/NewPassword/NewPassword";
 import RegisterContainer from "../pages/Register/RegisterContainer";
 
-export const Path = {
-    home: '/',
-    test: 'test',
-    profile: 'profile',
-    login: 'login',
-    register: 'register',
-    error: '404',
-    restorePassword: 'restore-password',
-    newPassword: 'new-password',
-}
+export const routes = [
+    {path: '/home', component: <TestingComponents/>, title: 'Home'},
+    {path: '/test', component: <TestingComponents/>, title: 'TestingComponents'},
+    {path: '/profile', component: <Profile/>, title: 'Profile'},
+    {path: '/login', component: <Login/>, title: 'Login'},
+    {path: '/register', component: <RegisterContainer/>, title: 'RegisterContainer'},
+    {path: '/404', component: <Error404/>, title: 'Error404'},
+    {path: 'restore-password', component: <RestorePassword/>, title: 'RestorePassword'},
+    {path: 'new-password', component: <NewPassword/>, title: 'NewPassword'},
+]
 
 function AppRoutes() {
+    const routeComponents = routes.map(({path, component}) => <Route path={path} element={component} key={path}/>)
     return (
         <div className={s.content}>
             <Routes>
-                <Route path={Path.home} element={<TestingComponents/>}/>
-                <Route path={Path.test} element={<TestingComponents/>}/>
-                <Route path={Path.profile} element={<Profile/>}/>
-                <Route path={Path.login} element={<Login/>}/>
-                <Route path={Path.register} element={<RegisterContainer/>}/>
-                <Route path={Path.error} element={<Error404/>}/>
-                <Route path={Path.restorePassword} element={<RestorePassword/>}/>
-                <Route path={Path.newPassword} element={<NewPassword/>}/>
-                <Route path="*" element={<Navigate to="/404"/>}/>
+                {routeComponents}
             </Routes>
         </div>
     )
