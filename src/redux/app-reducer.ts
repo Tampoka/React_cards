@@ -1,40 +1,51 @@
+import {ThunkType} from "./store"
+
 const initialState = {
-    status: 'idle' as RequestStatusType,
+    isLoading: false,
     error: null as null | string,
     //true if app already/successfully initialized (user authentication, settings etc.)
     isInitialized: false,
 }
 
-export const appReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const appReducer = (state: InitialStateType = initialState, action: AppActionsType): InitialStateType => {
     switch (action.type) {
-        case 'APP/SET-STATUS':
-            return {...state, status: action.status}
+        case 'APP/SET-IS-LOADING':
+            return {...state, isLoading: action.payload.isLoading}
         case 'APP/SET-ERROR':
-            return {...state, error: action.error}
+            return {...state, error: action.payload.error}
         case 'APP/SET-IS-INITIALIZED':
-            return {...state, isInitialized: action.value}
+            return {...state, isInitialized: action.payload.value}
         default:
             return {...state}
     }
 }
 
 //Action Creators
-export const setAppErrorAC = (error: string | null) => ({type: 'APP/SET-ERROR', error} as const)
-export const setAppStatusAC = (status: RequestStatusType) => ({type: 'APP/SET-STATUS', status} as const)
-export const setAppInitializedAC = (value: boolean) => ({type: 'APP/SET-IS-INITIALIZED', value} as const)
+export const setAppError = (error: string | null) => ({type: 'APP/SET-ERROR', payload: {error}} as const)
+export const setAppIsLoading = (isLoading: boolean) => ({type: 'APP/SET-IS-LOADING', payload: {isLoading}} as const)
+export const setAppInitialized = (value: boolean) => ({type: 'APP/SET-IS-INITIALIZED', payload: {value}} as const)
 
 //Thunk Creators
+export const initializeApp = (): ThunkType => async dispatch => {
+    try {
+        // await authAPI.authMe();
+        // dispatch(setLoggedIn(true));
+    } catch (e) {
+        console.log((e as Error).message);
+    } finally {
+        dispatch(setAppInitialized(true));
+    }
+};
 
 //Types
-export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type InitialStateType = typeof initialState
 
-export type SetAppErrorActionType = ReturnType<typeof setAppErrorAC>
-export type SetAppStatusActionType = ReturnType<typeof setAppStatusAC>
-export type SetAppInitializedActionType = ReturnType<typeof setAppInitializedAC>
+export type SetAppErrorActionType = ReturnType<typeof setAppError>
+export type SetAppIsLoadingActionType = ReturnType<typeof setAppIsLoading>
+export type SetAppInitializedActionType = ReturnType<typeof setAppInitialized>
 
-export type ActionsType =
+export type AppActionsType =
     | SetAppInitializedActionType
-    | SetAppStatusActionType
+    | SetAppIsLoadingActionType
     | SetAppErrorActionType
 
