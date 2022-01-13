@@ -3,7 +3,7 @@ const initialState = {
     isLoggedIn: false
 }
 
-export const authReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const authReducer = (state: InitialStateType = initialState, action: AuthActionsType): InitialStateType => {
     switch (action.type) {
         case "auth/SET-IS-LOGGED-IN":
             return {...state, isLoggedIn: action.value}
@@ -13,7 +13,7 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
 }
 
 //Action Creators
-export const setIsLoggedInAC = (value: boolean) => ({
+export const setIsLoggedIn = (value: boolean) => ({
     type: 'auth/SET-IS-LOGGED-IN', value
 } as const)
 
@@ -24,7 +24,7 @@ export const setIsLoggedInAC = (value: boolean) => ({
 // Types
 export type InitialStateType = typeof initialState
 
-export type SetIsLoggedInActionType = ReturnType<typeof setIsLoggedInAC>
+export type SetIsLoggedInActionType = ReturnType<typeof setIsLoggedIn>
 
-type ActionsType = |SetIsLoggedInActionType
+export type AuthActionsType = |SetIsLoggedInActionType
 

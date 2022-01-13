@@ -14,7 +14,7 @@ export const profileReducer = (state: initialStateType = initialState, action: P
 }
 
 //ACTION CREATORS
-export const setProfileAC = (profile: ProfileType) => ({
+export const setProfile = (profile: ProfileType) => ({
     type: 'PROFILE/SET-USER-PROFILE',
     profile
 } as const)
@@ -24,9 +24,10 @@ export const setProfileAC = (profile: ProfileType) => ({
 //TYPES
 export type initialStateType = typeof initialState
 export type ProfileType = {
-    id: string
+    id: number,
+    name: string,
 }
 
-export type SetProfileActionType = ReturnType<typeof setProfileAC>
+export type SetProfileActionType = ReturnType<typeof setProfile>
 export type ProfileActionsType =
     |SetProfileActionType

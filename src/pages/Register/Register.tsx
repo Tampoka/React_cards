@@ -1,48 +1,78 @@
-import React from 'react';
-import s from './Register.module.scss'
-import SuperInputText from '../../common/components/SuperInputText/SuperInputText';
-import SuperButton from '../../common/components/SuperButton/SuperButton';
-import {NavLink} from 'react-router-dom';
-import Spinner from "../../common/components/Spinner/Spinner";
+import React, {ChangeEvent, FormEvent} from 'react';
+import s from './Register.module.scss';
+import {SignUpData} from "../../api/cards-api";
+import {Navigate, NavLink} from 'react-router-dom';
+import Loader from "../../common/components/Loader/Loader";
+import SuperInputText from "../../common/components/SuperInputText/SuperInputText";
+import SuperButton from "../../common/components/SuperButton/SuperButton";
+
 
 type PropsType = {
-    disabled: boolean
-    email: string
-    password: string
-    setPassword: (value: string) => void
-    setEmail: (value: string) => void
-    onSubmitHandler: (e:any) => void
-}
-const Register = ({disabled, email, password, setPassword, setEmail, onSubmitHandler}: PropsType) => {
+    isLoading: boolean
+    values: { email: string, password: string, confirmPassword: string }
+    setValues: (values: SignUpData) => void
+    onSubmitHandler: (e: FormEvent) => void
+    errorMsg: string | null
+    registrationSuccess: boolean
+};
+
+export const Register = React.memo(({
+                                        values,
+                                        setValues,
+                                        isLoading,
+                                        onSubmitHandler,
+                                        errorMsg,
+                                        registrationSuccess,
+                                    }: PropsType) => {
+
+    if (registrationSuccess) {
+        return <Navigate to='/login'/>;
+    }
 
     return (
         <div className={s.register}>
             <h2>Learning Cards</h2>
-            {disabled && <Spinner/>}
+            {isLoading && <Loader/>}
             <p className={s.sectionTitle}>Sign Up</p>
+            <p className={s.errorMsg}>{errorMsg}</p>
             <div className={s.formContainer}>
-                <form onSubmit={onSubmitHandler}>
-                    <label htmlFor="name">Email</label>
-                    <SuperInputText name="email" autoFocus
+                <form onSubmit={onSubmitHandler} className={s.form}>
+                    <label htmlFor='name'>Email</label>
+                    <SuperInputText type={'email'}
+                                    name='email' autoFocus
                                     required
-                                    value={email}
-                                    onChange={(e: any) => setEmail(e.currentTarget.value)}/>
-                    <label htmlFor="password">Password</label>
-                    <SuperInputText name="password"
-                                    type="password"
+                                    value={values.email}
+                                    autoComplete='user-email'
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => setValues({
+                                        ...values,
+                                        email: e.currentTarget.value,
+                                    })}/>
+                    <label htmlFor='password'>Password</label>
+                    <SuperInputText name='password'
+                                    type='password'
                                     required
-                                    value={password}
-                                    onChange={(e: any) => setPassword(e.currentTarget.value)}/>
-                    <label htmlFor="password">Confirm password</label>
-                    <SuperInputText name="password" type="password" required/>
+                                    value={values.password}
+                                    autoComplete='new-password'
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => setValues({
+                                        ...values,
+                                        password: e.currentTarget.value,
+                                    })}/>
+                    <label htmlFor='password'>Confirm password</label>
+                    <SuperInputText name='confirmPassword' type='password' value={values.confirmPassword} required
+                                    autoComplete='new-password'
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => setValues({
+                                        ...values,
+                                        confirmPassword: e.currentTarget.value,
+                                    })}/>
                     <div className={s.btnBlock}>
-                        <SuperButton type="submit" disabled={disabled}>Register</SuperButton>
+                        <SuperButton type='submit' disabled={isLoading}>Register</SuperButton>
                     </div>
                 </form>
             </div>
-            <p className={s.loginLink}>Already a member? <NavLink to="/login">Sign In</NavLink></p>
+            <p className={s.loginLink}>Already a member? <NavLink to='/login'>Sign In</NavLink></p>
+
         </div>
     );
-};
+});
 
-export default Register;
+
