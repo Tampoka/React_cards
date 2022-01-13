@@ -14,6 +14,8 @@ type PropsType = {
     onSubmitHandler: (e: FormEvent) => void
     errorMsg: string | null
     registrationSuccess: boolean
+    toggleShowPassword: () => void
+    showPassword: boolean
 };
 
 export const Register = React.memo(({
@@ -23,6 +25,8 @@ export const Register = React.memo(({
                                         onSubmitHandler,
                                         errorMsg,
                                         registrationSuccess,
+                                        toggleShowPassword,
+                                        showPassword
                                     }: PropsType) => {
 
     if (registrationSuccess) {
@@ -32,7 +36,7 @@ export const Register = React.memo(({
     return (
         <div className={s.register}>
             <h2>Learning Cards</h2>
-            {isLoading && <Loader/>}
+            {/*{isLoading && <Loader/>}*/}
             <p className={s.sectionTitle}>Sign Up</p>
             <p className={s.errorMsg}>{errorMsg}</p>
             <div className={s.formContainer}>
@@ -48,22 +52,30 @@ export const Register = React.memo(({
                                         email: e.currentTarget.value,
                                     })}/>
                     <label htmlFor='password'>Password</label>
-                    <SuperInputText name='password'
-                                    type='password'
-                                    required
-                                    value={values.password}
-                                    autoComplete='new-password'
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) => setValues({
-                                        ...values,
-                                        password: e.currentTarget.value,
-                                    })}/>
+                    <div className={s.inputWithIcons}>
+                        <SuperInputText name='password'
+                                        type={showPassword ? 'text' : 'password'}
+                                        required
+                                        value={values.password}
+                                        autoComplete='new-password'
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setValues({
+                                            ...values,
+                                            password: e.currentTarget.value,
+                                        })}/>
+                        <span className={s.eye} onClick={toggleShowPassword}></span>
+                    </div>
                     <label htmlFor='password'>Confirm password</label>
-                    <SuperInputText name='confirmPassword' type='password' value={values.confirmPassword} required
-                                    autoComplete='new-password'
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) => setValues({
-                                        ...values,
-                                        confirmPassword: e.currentTarget.value,
-                                    })}/>
+                    <div className={s.inputWithIcons}>
+                        <SuperInputText name='confirmPassword'
+                                        type={showPassword ? 'text' : 'password'}
+                                        value={values.confirmPassword} required
+                                        autoComplete='new-password'
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setValues({
+                                            ...values,
+                                            confirmPassword: e.currentTarget.value,
+                                        })}/>
+                        <span className={s.eye} onClick={toggleShowPassword}></span>
+                    </div>
                     <div className={s.btnBlock}>
                         <SuperButton type='submit' disabled={isLoading}>Register</SuperButton>
                     </div>

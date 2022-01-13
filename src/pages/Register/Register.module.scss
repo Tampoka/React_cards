@@ -16,6 +16,11 @@
   margin: 5px 0 20px;
 }
 
+.errorMsg {
+  color: red;
+  font-weight: bold;
+}
+
 .btnBlock {
   display: flex;
   justify-content: center;
@@ -27,4 +32,25 @@
 
 .loginLink {
   align-self: flex-end;
+}
+
+.inputWithIcons {
+  position: relative;
+}
+
+.eye {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("../../assets/icons/icons8-eye-24.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 16px;
+  right: 40px;
+}
+
+.eye:hover {
+  cursor: pointer;
 }
