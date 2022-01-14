@@ -1,10 +1,15 @@
 import React from 'react';
 import SuperInputText from '../../common/components/SuperInputText/SuperInputText';
 import SuperButton from '../../common/components/SuperButton/SuperButton';
-import {NavLink} from 'react-router-dom';
+import {Navigate, NavLink} from 'react-router-dom';
 import s from '../SignUp/SignUp.module.scss'
 import * as Yup from "yup";
 import {useFormik} from "formik";
+import Loader from "../../common/components/Loader/Loader";
+import {useDispatch} from "react-redux";
+import {login} from "../../redux/auth-reducer";
+import SuperCheckbox from "../../common/components/SuperCheckbox/SuperCheckbox";
+import {useAppSelector} from "../../redux/store";
 
 
 type PropsType = {
@@ -20,6 +25,8 @@ export const LoginForm = React.memo(({
                                          toggleShowPassword,
                                          showPassword
                                      }: PropsType) => {
+    const dispatch = useDispatch()
+    const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
 
     const formik = useFormik({
         initialValues: {
@@ -32,47 +39,43 @@ export const LoginForm = React.memo(({
             password: Yup.string()
                 .min(8, 'Must be at least 8 characters long')
                 .required('Please Enter your password')
-                .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                    'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character')
+            // .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+            //     'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character')
         }),
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            dispatch(login(values))
+            formik.resetForm()
         },
     });
 
-
+    if (isLoggedIn) return <Navigate to='/profile'/>
     return (
         <div className={s.register}>
             <h2>Learning Cards</h2>
-            {/*{isLoading && <Loader/>}*/}
+            {isLoading && <Loader/>}
             <p className={s.sectionTitle}>Sign In</p>
             <p className={s.errorMsg}>{errorMsg}</p>
             <div className={s.formContainer}>
                 <form onSubmit={formik.handleSubmit} className={s.form}>
                     <label htmlFor='name'>Email</label>
-                    <SuperInputText type={'email'}
-                                    name='email' autoFocus
+                    <SuperInputText type='email'
+                                    autoFocus
                                     error={formik.touched.email && formik.errors.email
                                         ? formik.errors.email
                                         : ''}
-                                    value={formik.values.email}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
+                                    {...formik.getFieldProps('email')}
                                     autoComplete='user-email'/>
                     <label htmlFor='password'>Password</label>
                     <div className={s.inputWithIcons}>
-                        <SuperInputText name='password'
-                                        type={showPassword ? 'text' : 'password'}
+                        <SuperInputText type={showPassword ? 'text' : 'password'}
                                         error={formik.touched.password && formik.errors.password
                                             ? formik.errors.password
                                             : ''}
-                                        value={formik.values.password}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
+                                        {...formik.getFieldProps('password')}
                                         autoComplete='new-password'/>
                         <span className={s.eye} onClick={toggleShowPassword}></span>
                     </div>
-
+                    <SuperCheckbox{...formik.getFieldProps('rememberMe')}>Remember Me</SuperCheckbox>
                     <div className={s.btnBlock}>
                         <SuperButton type='submit' disabled={isLoading}>Sign In</SuperButton>
                     </div>

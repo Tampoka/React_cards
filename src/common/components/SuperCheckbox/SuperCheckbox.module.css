@@ -1,6 +1,11 @@
 .labelContainer {
+    align-self: flex-start;
     display: flex;
     align-items: center;
+}
+
+.labelContainer span {
+    display: inline-block;
     margin-left: 10px;
 }
 
@@ -21,7 +26,7 @@
 
 .checkbox:checked {
     background-color: #fff;
-    background-image: url('../../../assets/images/check.png');
+    background-image: url('../../../assets/icons/check.png');
     background-size: cover;
     border: 2px solid #00b100;
 }

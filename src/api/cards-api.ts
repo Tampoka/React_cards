@@ -15,6 +15,9 @@ const herokuInstance = axios.create({
 export const authApi = {
     signUp(payload: SignUpData) {
         return instance.post<SignUpData, AxiosResponse<{ error?: string }>>('/auth/register', payload)
+    },
+    signIn(payload: SignInData) {
+        return instance.post<SignInData, AxiosResponse<AuthResponseType>>('/auth/login', payload)
     }
 }
 
@@ -29,7 +32,20 @@ export type SignUpData = LoginData & {
     confirmPassword: string
 }
 
-export type dfdfd = {
-    email: string
-    password: string
+export type SignInData = LoginData & {
+    rememberMe: boolean
+}
+
+export type AuthResponseType = {
+    _id: string;
+    email: string;
+    name: string;
+    avatar?: string;
+    publicCardPacksCount: number;
+    created: Date;
+    updated: Date;
+    isAdmin: boolean;
+    verified: boolean;
+    rememberMe: boolean;
+    error?: string;
 }

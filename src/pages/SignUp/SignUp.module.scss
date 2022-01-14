@@ -16,8 +16,8 @@
   margin: 5px 0 20px;
 }
 
-.formContainer label {
-display: inline-block;
+label {
+  display: inline-block;
   align-self: flex-start;
 }
 
@@ -65,7 +65,7 @@ display: inline-block;
 }
 
 //for disabling browser eye icon
-.form input {
+.form input[type="password"] {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
@@ -73,4 +73,11 @@ display: inline-block;
 .form input[type="password"]::-ms-reveal,
 .form input[type="password"]::-ms-clear {
   display: none;
+}
+
+.rememberMe {
+  align-self: flex-start;
+  //display: flex;
+  //align-items: center;
+  border: 1px solid green;
 }
