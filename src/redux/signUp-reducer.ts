@@ -27,7 +27,7 @@ export const setSignedUpSuccess = (value: boolean) => ({
 export const signUp = (signUpData: SignUpData): ThunkType => async dispatch => {
     try {
         dispatch(setAppIsLoading(true))
-        const res = await authApi.signUp(signUpData)
+        const res = await authApi.signUp(signUpData) //1234567
         console.log(res.data)
         dispatch(setSignedUpSuccess(true))
         dispatch(setAppInfo('Congratulations! Your registration is confirmed.'))

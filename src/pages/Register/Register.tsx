@@ -2,7 +2,6 @@ import React, {ChangeEvent, FormEvent} from 'react';
 import s from './Register.module.scss';
 import {SignUpData} from "../../api/cards-api";
 import {Navigate, NavLink} from 'react-router-dom';
-import Loader from "../../common/components/Loader/Loader";
 import SuperInputText from "../../common/components/SuperInputText/SuperInputText";
 import SuperButton from "../../common/components/SuperButton/SuperButton";
 

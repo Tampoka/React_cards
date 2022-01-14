@@ -58,3 +58,14 @@
 .eye:hover {
   cursor: pointer;
 }
+
+//for disabling browser eye icon
+.form input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.form input[type="password"]::-ms-reveal,
+.form input[type="password"]::-ms-clear {
+  display: none;
+}
