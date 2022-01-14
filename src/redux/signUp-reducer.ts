@@ -33,7 +33,7 @@ export const signUp = (signUpData: SignUpData): ThunkType => async dispatch => {
         dispatch(setAppInfo('Congratulations! Your registration is confirmed.'))
     } catch (e: any) {
         console.log(e as Error)
-        // dispatch(setAppError(e.response ? e.response.data.error : e));
+        dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
     } finally {
         dispatch(setAppIsLoading(false))
         dispatch(setSignedUpSuccess(false));
