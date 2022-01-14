@@ -1,4 +1,5 @@
 import axios, {AxiosResponse} from "axios";
+import {ProfileType} from "../redux/profile-reducer";
 
 const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
@@ -17,10 +18,13 @@ export const authApi = {
         return instance.post<SignUpData, AxiosResponse<{ error?: string }>>('/auth/register', payload)
     },
     signIn(payload: SignInData) {
-        return instance.post<SignInData, AxiosResponse<AuthResponseType>>('/auth/login', payload)
+        return instance.post<SignInData, AxiosResponse<{ error?: string }>>('/auth/login', payload)
     },
     signOut() {
-        return instance.delete<AxiosResponse>('/auth/me')
+        return instance.delete<CommonResponseType>('/auth/me')
+    },
+    authMe() {
+        return instance.post<ProfileType>('/auth/me')
     }
 }
 
@@ -39,16 +43,7 @@ export type SignInData = LoginData & {
     rememberMe: boolean
 }
 
-export type AuthResponseType = {
-    _id: string;
-    email: string;
-    name: string;
-    avatar?: string;
-    publicCardPacksCount: number;
-    created: Date;
-    updated: Date;
-    isAdmin: boolean;
-    verified: boolean;
-    rememberMe: boolean;
-    error?: string;
+export type CommonResponseType = {
+    info: string
+    error?: string
 }
