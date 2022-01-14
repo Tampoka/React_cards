@@ -25,7 +25,7 @@ export const setProfile = (profileData: ProfileType) => ({
 } as const)
 
 //THUNK CREATORS
-export const fetchProfileData = (profileData: ProfileType): ThunkType => async dispatch => {
+export const fetchProfileData = (): ThunkType => async dispatch => {
     try {
         dispatch(setAppIsLoading(true))
         let res = await authApi.authMe()

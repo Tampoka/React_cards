@@ -1,5 +1,4 @@
 import {Route, Routes} from "react-router-dom";
-import TestingComponents from "../pages/Test/TestingComponents";
 import Profile from "../pages/Profile/Profile";
 import Error404 from "../pages/Error404/Error404";
 import s from "./AppRoutes.module.scss"
@@ -7,10 +6,10 @@ import RestorePassword from "../pages/RestorePassword/RestorePassword";
 import NewPassword from "../pages/NewPassword/NewPassword";
 import {SignUp} from "../pages/SignUp/SignUp";
 import {Login} from "../pages/Login/Login";
+import TestingComponents from "../pages/Test/TestingComponents";
 
 export const routes = [
-    {path: '/home', component: <TestingComponents/>, title: 'Home'},
-    {path: '/test', component: <TestingComponents/>, title: 'Test'},
+    {path: '/', component: <TestingComponents/>, title: 'Home'},
     {path: '/profile', component: <Profile/>, title: 'Profile'},
     {path: '/login', component: <Login/>, title: 'Login'},
     {path: '/register', component: <SignUp/>, title: 'Sign Up'},

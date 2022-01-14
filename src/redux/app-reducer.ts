@@ -1,4 +1,6 @@
 import {ThunkType} from "./store"
+import {authApi} from "../api/cards-api";
+import {setIsLoggedIn} from "./auth-reducer";
 
 const initialState = {
     isLoading: false,
@@ -32,14 +34,18 @@ export const setAppInfo = (message: string) => ({type: 'APP/SET-APP-INFO', paylo
 //Thunk Creators
 export const initializeApp = (): ThunkType => async dispatch => {
     try {
-        // await authAPI.authMe();
-        // dispatch(setLoggedIn(true));
+        dispatch(setAppIsLoading(true))
+        await authApi.authMe();
+        dispatch(setIsLoggedIn(true));
     } catch (e) {
         console.log((e as Error).message);
+        dispatch(setAppIsLoading(true))
     } finally {
         dispatch(setAppInitialized(true));
+        dispatch(setAppIsLoading(false))
     }
 };
+
 
 //Types
 export type InitialStateType = typeof initialState
