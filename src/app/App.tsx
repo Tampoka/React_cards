@@ -4,8 +4,8 @@ import {useDispatch} from "react-redux";
 import {useAppSelector} from "../redux/store";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import Spinner from "../common/components/Spinner/Spinner";
 import {initializeApp} from "../redux/app-reducer";
+import BgLoader from "../common/components/BgLoader/BgLoader";
 
 function App() {
     const dispatch = useDispatch()
@@ -15,14 +15,14 @@ function App() {
 
     useEffect(() => {
         dispatch(initializeApp())
-    }, [dispatch, isLoggedIn, navigate])
+    }, [dispatch])
 
-    // if (!isLoggedIn) navigate('./login', {replace: true})
     return (
         <div>
             <Header/>
-            {isLoading && <h1>Is Loading</h1>}
-            <Main/>
+            {isLoading
+                ? <BgLoader/>
+                : <Main/>}
         </div>
     );
 }

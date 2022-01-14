@@ -1,6 +1,7 @@
 import {ThunkType} from "./store"
 import {authApi} from "../api/cards-api";
 import {setIsLoggedIn} from "./auth-reducer";
+import {setProfile} from "./profile-reducer";
 
 const initialState = {
     isLoading: false,
@@ -35,11 +36,14 @@ export const setAppInfo = (message: string) => ({type: 'APP/SET-APP-INFO', paylo
 export const initializeApp = (): ThunkType => async dispatch => {
     try {
         dispatch(setAppIsLoading(true))
-        await authApi.authMe();
+        let res=await authApi.authMe();
         dispatch(setIsLoggedIn(true));
-    } catch (e) {
+        dispatch(setAppInitialized(true))
+        dispatch(setProfile(res.data))
+        dispatch(setAppIsLoading(false))
+    } catch (e:any) {
         console.log((e as Error).message);
-        dispatch(setAppIsLoading(true))
+        dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
     } finally {
         dispatch(setAppInitialized(true));
         dispatch(setAppIsLoading(false))
