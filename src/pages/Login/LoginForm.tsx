@@ -5,11 +5,11 @@ import {Navigate, NavLink} from 'react-router-dom';
 import s from '../SignUp/SignUp.module.scss'
 import * as Yup from "yup";
 import {useFormik} from "formik";
-import Loader from "../../common/components/Loader/Loader";
 import {useDispatch} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import SuperCheckbox from "../../common/components/SuperCheckbox/SuperCheckbox";
 import {useAppSelector} from "../../redux/store";
+import Spinner from "../../common/components/Spinner/Spinner";
 
 
 type PropsType = {
@@ -52,7 +52,7 @@ export const LoginForm = React.memo(({
     return (
         <div className={s.register}>
             <h2>Learning Cards</h2>
-            {isLoading && <Loader/>}
+            {isLoading && <Spinner/>}
             <p className={s.sectionTitle}>Sign In</p>
             <p className={s.errorMsg}>{errorMsg}</p>
             <div className={s.formContainer}>

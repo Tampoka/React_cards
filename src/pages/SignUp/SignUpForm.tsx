@@ -4,7 +4,7 @@ import {SignUpData} from "../../api/cards-api";
 import {Navigate, NavLink} from 'react-router-dom';
 import SuperInputText from "../../common/components/SuperInputText/SuperInputText";
 import SuperButton from "../../common/components/SuperButton/SuperButton";
-import Loader from "../../common/components/Loader/Loader";
+import Spinner from "../../common/components/Spinner/Spinner";
 
 
 type PropsType = {
@@ -19,15 +19,15 @@ type PropsType = {
 };
 
 export const SignUpForm = React.memo(({
-                                        values,
-                                        setValues,
-                                        isLoading,
-                                        onSubmitHandler,
-                                        errorMsg,
-                                        registrationSuccess,
-                                        toggleShowPassword,
-                                        showPassword
-                                    }: PropsType) => {
+                                          values,
+                                          setValues,
+                                          isLoading,
+                                          onSubmitHandler,
+                                          errorMsg,
+                                          registrationSuccess,
+                                          toggleShowPassword,
+                                          showPassword
+                                      }: PropsType) => {
 
     if (registrationSuccess) {
         return <Navigate to='/login'/>;
@@ -36,7 +36,7 @@ export const SignUpForm = React.memo(({
     return (
         <div className={s.register}>
             <h2>Learning Cards</h2>
-            {isLoading && <Loader/>}
+            {isLoading && <Spinner/>}
             <p className={s.sectionTitle}>Sign Up</p>
             <p className={s.errorMsg}>{errorMsg}</p>
             <div className={s.formContainer}>
