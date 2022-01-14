@@ -4,13 +4,18 @@ import {ProfileType} from "../../redux/profile-reducer";
 
 const Profile = () => {
     const profile = useAppSelector<ProfileType | null>(state => state.profile.profile)
-//     profile !== null
-//         ? navigate('/profile', {replace: true})
-//         : navigate('/login', {replace: true})
-// }, [dispatch,profile])
+    const error = useAppSelector<string | null>(state => state.app.error)
+    // const dispatch = useDispatch()
+
+    if (profile === null) return <div>{error}</div>
     return (
         <div>
-            Profile
+            <p>{error}</p>
+            <h1>Welcome back, {profile.name}</h1>
+            <div>
+                <img src={profile.avatar} alt="avatar"/>
+                <p>Email: {profile.email}</p>
+            </div>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import {authApi} from "../api/cards-api";
 import {ThunkType} from "./store";
-import {setAppError, setAppIsLoading} from "./app-reducer";
+import {setAppError, setAppInitialized, setAppIsLoading} from "./app-reducer";
 
 const initialState = {
     profile: null as null | ProfileType,
@@ -30,6 +30,7 @@ export const fetchProfileData = (): ThunkType => async dispatch => {
         dispatch(setAppIsLoading(true))
         let res = await authApi.authMe()
         console.log(res.data)
+        dispatch(setAppInitialized(true))
         dispatch(setProfile(res.data))
         dispatch(setAppIsLoading(false))
     } catch (e: any) {
@@ -37,6 +38,7 @@ export const fetchProfileData = (): ThunkType => async dispatch => {
         dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
     } finally {
         dispatch(setAppIsLoading(false))
+        dispatch(setAppInitialized(true))
     }
 }
 //TYPES
