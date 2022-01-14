@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FormEvent} from 'react';
-import s from './Register.module.scss';
+import s from './SignUp.module.scss';
 import {SignUpData} from "../../api/cards-api";
 import {Navigate, NavLink} from 'react-router-dom';
 import SuperInputText from "../../common/components/SuperInputText/SuperInputText";
@@ -17,7 +17,7 @@ type PropsType = {
     showPassword: boolean
 };
 
-export const Register = React.memo(({
+export const SignUpForm = React.memo(({
                                         values,
                                         setValues,
                                         isLoading,

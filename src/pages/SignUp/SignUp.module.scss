@@ -16,6 +16,11 @@
   margin: 5px 0 20px;
 }
 
+.formContainer label {
+display: inline-block;
+  align-self: flex-start;
+}
+
 .errorMsg {
   color: red;
   font-weight: bold;

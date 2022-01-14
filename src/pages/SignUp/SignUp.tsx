@@ -3,10 +3,10 @@ import {useDispatch} from 'react-redux';
 import {SignUpData} from "../../api/cards-api";
 import {useAppSelector} from "../../redux/store";
 import {setAppError} from "../../redux/app-reducer";
-import {Register} from "./Register";
+import {SignUpForm} from "./SignUpForm";
 import {signUp} from "../../redux/signUp-reducer";
 
-export const RegisterContainer = () => {
+export const SignUp = () => {
         const [values, setValues] = useState<SignUpData>({email: '', password: '', confirmPassword: ''});
         const [showPassword, setShowPassword] = useState(false)
 
@@ -41,14 +41,14 @@ export const RegisterContainer = () => {
             }
         }
 
-        return <Register isLoading={isLoading}
-                         errorMsg={error}
-                         values={values}
-                         setValues={setValues}
-                         onSubmitHandler={onSubmitHandler}
-                         registrationSuccess={signUpSuccess}
-                         showPassword={showPassword}
-                         toggleShowPassword={toggleShowPassword}
+        return <SignUpForm isLoading={isLoading}
+                           errorMsg={error}
+                           values={values}
+                           setValues={setValues}
+                           onSubmitHandler={onSubmitHandler}
+                           registrationSuccess={signUpSuccess}
+                           showPassword={showPassword}
+                           toggleShowPassword={toggleShowPassword}
         />;
     }
 ;
