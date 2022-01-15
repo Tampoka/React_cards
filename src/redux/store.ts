@@ -8,6 +8,7 @@ import {newPasswordReducer} from "./newPassword-reducer";
 import {restorePasswordReducer} from "./restorePassword-reducer";
 import {SignUpActionsType, signUpReducer} from "./signUp-reducer";
 import {TypedUseSelectorHook, useSelector} from "react-redux";
+import {DecksActionsType, decksReducer} from "./decks-reducer";
 
 const rootReducer = combineReducers({
     app: appReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     newPassword: newPasswordReducer,
     restorePassword: restorePasswordReducer,
     signUp: signUpReducer,
+    decks:decksReducer
 })
 
 const middlewareEnhancer = applyMiddleware(thunk)
@@ -29,7 +31,8 @@ export type RootActionsType =
     SignUpActionsType
     | ProfileActionsType
     | AppActionsType
-    | AuthActionsType;
+    | AuthActionsType
+    |DecksActionsType;
 
 export type ThunkType = ThunkAction<void, AppRootStateType, unknown, RootActionsType>;
 

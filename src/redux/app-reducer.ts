@@ -22,7 +22,7 @@ export const appReducer = (state: InitialStateType = initialState, action: AppAc
         case 'APP/SET-APP-INFO':
             return {...state, appInfo: action.payload.message}
         default:
-            return {...state}
+            return state
     }
 }
 
