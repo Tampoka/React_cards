@@ -1,12 +1,12 @@
 import axios, {AxiosResponse} from "axios";
 import {ProfileType} from "../redux/profile-reducer";
 
-const instance = axios.create({
+export const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
     withCredentials: true,
 })
 
-const herokuInstance = axios.create({
+export const herokuInstance = axios.create({
     baseURL: 'https://neko-back.herokuapp.com/2.0',
     withCredentials: true,
 })
