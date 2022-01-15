@@ -32,7 +32,6 @@ export const SignUpForm2 = React.memo(({
     if (registrationSuccess) {
         return <Navigate to='/login'/>;
     }
-    console.log(errorMsg, isLoading)
     return (
         <div className={s.register}>
             <h2>Learning Cards</h2>

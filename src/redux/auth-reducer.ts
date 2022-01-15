@@ -1,7 +1,7 @@
 import {authApi, SignInData} from "../api/cards-api";
 import {ThunkType} from "./store";
 import {setAppError, setAppIsLoading} from "./app-reducer";
-import {setProfile} from "./profile-reducer";
+import {ProfileInitialState, setProfile} from "./profile-reducer";
 
 const initialState = {
     isLoggedIn: false
@@ -26,14 +26,15 @@ export const setIsLoggedIn = (value: boolean) => ({
 export const login = (signInData: SignInData): ThunkType => async dispatch => {
     try {
         dispatch(setAppIsLoading(true))
-       let res= await authApi.signIn(signInData);
+        let res = await authApi.signIn(signInData);
         dispatch(setIsLoggedIn(true))
-        // dispatch(setProfile(res.data))
+        dispatch(setProfile(res.data))
     } catch (e: any) {
         console.log(e as Error)
         dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
     } finally {
         dispatch(setAppIsLoading(false))
+        setAppError('')
     }
 }
 
@@ -42,6 +43,7 @@ export const logOut = (): ThunkType => async dispatch => {
         dispatch(setAppIsLoading(true))
         await authApi.signOut();
         dispatch(setIsLoggedIn(false))
+        dispatch(setProfile(ProfileInitialState.profile))
     } catch (e: any) {
         console.log(e as Error)
         dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));

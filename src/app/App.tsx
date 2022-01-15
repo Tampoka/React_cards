@@ -3,7 +3,7 @@ import Main from '../common/components/Main/Main';
 import {useDispatch} from "react-redux";
 import {useAppSelector} from "../redux/store";
 import {useEffect} from "react";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {initializeApp} from "../redux/app-reducer";
 import BgLoader from "../common/components/BgLoader/BgLoader";
 
@@ -15,12 +15,9 @@ function App() {
     const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
 
     useEffect(() => {
-        dispatch(initializeApp())
+        dispatch((initializeApp()))
     }, [dispatch])
 
-    // if (!isLoggedIn) {
-    //     return <Navigate to="/login"/>
-    // }
 
     return (
         <div>

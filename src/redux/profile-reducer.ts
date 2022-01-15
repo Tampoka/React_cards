@@ -1,13 +1,21 @@
-import {authApi} from "../api/cards-api";
-import {ThunkType} from "./store";
-import {setAppError, setAppInitialized, setAppIsLoading} from "./app-reducer";
-
-const initialState = {
-    profile: null as null | ProfileType,
+export const ProfileInitialState = {
+    profile: {
+        _id: '',
+        email: '',
+        name: '',
+        avatar: '',
+        publicCardPacksCount: 0, // количество колод
+        created: '',
+        updated: '',
+        isAdmin: false,
+        verified: false, // подтвердил ли почту
+        rememberMe: false,
+        error: '',
+    },
     profileError: false
 }
 
-export const profileReducer = (state: initialStateType = initialState, action: ProfileActionsType) => {
+export const profileReducer = (state: initialStateType = ProfileInitialState, action: ProfileActionsType) => {
     switch (action.type) {
         case 'PROFILE/SET-USER-PROFILE':
             return {
@@ -42,15 +50,18 @@ export const setProfile = (profileData: ProfileType) => ({
 //     }
 // }
 //TYPES
-export type initialStateType = typeof initialState
+export type initialStateType = {
+    profile: ProfileType
+    profileError: boolean
+}
 export type ProfileType = {
     _id: string;
     email: string;
     name: string;
     avatar?: string;
     publicCardPacksCount: number; // количество колод
-    created: Date;
-    updated: Date;
+    created: string;   //Date
+    updated: string   //Date;
     isAdmin: boolean;
     verified: boolean; // подтвердил ли почту
     rememberMe: boolean;

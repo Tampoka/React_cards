@@ -81,3 +81,14 @@ label {
   //align-items: center;
   border: 1px solid green;
 }
+
+.linksBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.linksBlock a {
+  display: inline-block;
+  margin-bottom: 10px;
+}

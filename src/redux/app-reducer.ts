@@ -36,13 +36,10 @@ export const setAppInfo = (message: string) => ({type: 'APP/SET-APP-INFO', paylo
 export const initializeApp = (): ThunkType => async dispatch => {
     try {
         dispatch(setAppIsLoading(true))
-        let res=await authApi.authMe();
+        let res = await authApi.authMe();
         dispatch(setIsLoggedIn(true));
-        dispatch(setAppInitialized(true))
         dispatch(setProfile(res.data))
-        dispatch(setAppIsLoading(false))
-    } catch (e:any) {
-        console.log((e as Error).message);
+    } catch (e: any) {
         dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
     } finally {
         dispatch(setAppInitialized(true));

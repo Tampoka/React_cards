@@ -48,7 +48,10 @@ export const LoginForm = React.memo(({
         },
     });
 
-    if (isLoggedIn) return <Navigate to='/profile'/>
+    if (isLoggedIn) {
+        return <Navigate to={'/profile'}/>;
+    }
+
     return (
         <div className={s.register}>
             <h2>Learning Cards</h2>
@@ -59,7 +62,6 @@ export const LoginForm = React.memo(({
                 <form onSubmit={formik.handleSubmit} className={s.form}>
                     <label htmlFor='name'>Email</label>
                     <SuperInputText type='email'
-                                    autoFocus
                                     error={formik.touched.email && formik.errors.email
                                         ? formik.errors.email
                                         : ''}
@@ -81,7 +83,10 @@ export const LoginForm = React.memo(({
                     </div>
                 </form>
             </div>
-            <p className={s.loginLink}>Not registered yet? <NavLink to='/register'>Sign Up</NavLink></p>
+            <div className={s.linksBlock}>
+                <p className={s.loginLink}><NavLink to='/recover'>Forgot password? </NavLink></p>
+                <p className={s.loginLink}><NavLink to='/register'>Not registered yet?</NavLink></p>
+            </div>
         </div>
     );
 })
