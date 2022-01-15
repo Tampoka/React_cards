@@ -25,22 +25,22 @@ export const setProfile = (profileData: ProfileType) => ({
 } as const)
 
 //THUNK CREATORS
-export const fetchProfileData = (): ThunkType => async dispatch => {
-    try {
-        dispatch(setAppIsLoading(true))
-        let res = await authApi.authMe()
-        console.log(res.data)
-        dispatch(setAppInitialized(true))
-        dispatch(setProfile(res.data))
-        dispatch(setAppIsLoading(false))
-    } catch (e: any) {
-        console.log(e as Error)
-        dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
-    } finally {
-        dispatch(setAppIsLoading(false))
-        dispatch(setAppInitialized(true))
-    }
-}
+// export const fetchProfileData = (): ThunkType => async dispatch => {
+//     try {
+//         dispatch(setAppIsLoading(true))
+//         let res = await authApi.authMe()
+//         console.log(res.data)
+//         dispatch(setAppInitialized(true))
+//         dispatch(setProfile(res.data))
+//         dispatch(setAppIsLoading(false))
+//     } catch (e: any) {
+//         console.log(e as Error)
+//         dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
+//     } finally {
+//         dispatch(setAppIsLoading(false))
+//         dispatch(setAppInitialized(true))
+//     }
+// }
 //TYPES
 export type initialStateType = typeof initialState
 export type ProfileType = {

@@ -18,7 +18,7 @@ export const authApi = {
         return instance.post<SignUpData, AxiosResponse<{ error?: string }>>('/auth/register', payload)
     },
     signIn(payload: SignInData) {
-        return instance.post<SignInData, AxiosResponse<{ error?: string }>>('/auth/login', payload)
+        return instance.post<SignInData, AxiosResponse<ProfileType>>('/auth/login', payload)
     },
     signOut() {
         return instance.delete<CommonResponseType>('/auth/me')
