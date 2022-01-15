@@ -1,4 +1,4 @@
-import {authApi, SignInData} from "../api/cards-api";
+import {authApi, SignInData} from "../api/auth-api";
 import {ThunkType} from "./store";
 import {setAppError, setAppIsLoading} from "./app-reducer";
 import {ProfileInitialState, setProfile} from "./profile-reducer";

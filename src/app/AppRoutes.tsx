@@ -7,6 +7,8 @@ import NewPassword from "../pages/NewPassword/NewPassword";
 import {SignUp2} from "../pages/SignUp/SignUp2";
 import {Login} from "../pages/Login/Login";
 import TestingComponents from "../pages/Test/TestingComponents";
+import {Decks} from "../pages/Decks/Decks";
+import Cards from "../pages/Cards/Cards";
 
 export const routes = [
     {path: '/', component: <TestingComponents/>, title: 'Home'},
@@ -14,8 +16,10 @@ export const routes = [
     {path: '/login', component: <Login/>, title: 'Login'},
     {path: '/register', component: <SignUp2/>, title: 'Sign Up'},
     {path: '/404', component: <Error404/>, title: 'Error404'},
-    {path: 'restore-password', component: <RestorePassword/>, title: 'Forgot'},
-    {path: 'new-password', component: <NewPassword/>, title: 'New Password'},
+    {path: '/restore-password', component: <RestorePassword/>, title: 'Forgot'},
+    {path: '/new-password', component: <NewPassword/>, title: 'New Password'},
+    {path: '/decks', component: <Decks/>, title: 'Decks'},
+    {path: '/cards', component: <Cards/>, title: 'Cards'},
 ]
 
 function AppRoutes() {

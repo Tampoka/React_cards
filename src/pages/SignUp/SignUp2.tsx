@@ -1,6 +1,6 @@
 import {FormEvent, useCallback, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {SignUpData} from "../../api/cards-api";
+import {SignUpData} from "../../api/auth-api";
 import {useAppSelector} from "../../redux/store";
 import {setAppError} from "../../redux/app-reducer";
 import {SignUpForm2} from "./SignUpForm2";

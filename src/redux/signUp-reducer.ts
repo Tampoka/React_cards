@@ -1,4 +1,4 @@
-import {authApi, SignUpData} from "../api/cards-api"
+import {authApi, SignUpData} from "../api/auth-api"
 import {ThunkType} from "./store";
 import {setAppError, setAppInfo, setAppIsLoading} from "./app-reducer";
 

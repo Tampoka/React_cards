@@ -1,6 +1,6 @@
 import React, {ChangeEvent, FormEvent} from 'react';
 import s from './SignUp.module.scss';
-import {SignUpData} from "../../api/cards-api";
+import {SignUpData} from "../../api/auth-api";
 import {Navigate, NavLink} from 'react-router-dom';
 import SuperInputText from "../../common/components/SuperInputText/SuperInputText";
 import SuperButton from "../../common/components/SuperButton/SuperButton";

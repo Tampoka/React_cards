@@ -1,5 +1,5 @@
 import {ThunkType} from "./store"
-import {authApi} from "../api/cards-api";
+import {authApi} from "../api/auth-api";
 import {setIsLoggedIn} from "./auth-reducer";
 import {setProfile} from "./profile-reducer";
 
