@@ -20,7 +20,7 @@ export const packsAPI = {
 
 export type CardsPackType = {
     cardsCount: number
-    created: string
+    created: Date
     grade: number
     more_id: string
     name: string
@@ -29,7 +29,7 @@ export type CardsPackType = {
     rating: number
     shots: number
     type: string
-    updated: string
+    updated: Date
     user_id: string
     user_name: string
     __v: number
