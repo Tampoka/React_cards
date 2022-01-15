@@ -1,49 +1,98 @@
 import axios, {AxiosResponse} from "axios";
-import {ProfileType} from "../redux/profile-reducer";
+import {instance} from "./auth-api";
 
-const instance = axios.create({
-    baseURL: 'http://localhost:7542/2.0/',
-    withCredentials: true,
-})
+export const cardsAPI = {
+    getCards: (payload?: GetCardsQueryParams) => instance
+        .get<CardsResponse>('/cards/card', {params: payload}),
 
-const herokuInstance = axios.create({
-    baseURL: 'https://neko-back.herokuapp.com/2.0',
-    withCredentials: true,
-})
+    createCard: (payload?: NewCardData) => instance
+        .post<NewCardData, AxiosResponse<CardType>>('/cards/card', payload),
 
-// const messageForRecoverPW = `\n<div style='background-color: lime; padding: 15px'>\n password recovery link: \n<a href='http://localhost:3000/react-project#/pass-recovery/$token$'>link</a>\n</div>\n`;
+    deleteCard: (payload: DeleteCardData) => instance
+        .delete<CardType>(`/cards/card`, {params: payload}),
 
-export const authApi = {
-    signUp(payload: SignUpData) {
-        return instance.post<SignUpData, AxiosResponse<{ error?: string }>>('/auth/register', payload)
-    },
-    signIn(payload: SignInData) {
-        return instance.post<SignInData, AxiosResponse<ProfileType>>('/auth/login', payload)
-    },
-    signOut() {
-        return instance.delete<CommonResponseType>('/auth/me')
-    },
-    authMe() {
-        return instance.post<ProfileType>('/auth/me')
+    updateCard: (payload: UpdateCardData) => instance
+        .put<UpdateCardData, AxiosResponse<CardType>>('/cards/card', payload),
+
+    grade: (payload: GradeData) => instance
+        .put<GradeData, AxiosResponse<GradeResponse>>('/cards/grade', payload)
+}
+
+export type CardType = {
+    answer: string
+    question: string
+    cardsPack_id: string
+    grade: number
+    rating: number
+    shots: number
+    type: string
+    user_id: string
+    created: string
+    updated: string
+    __v: number
+    _id: string
+}
+
+export type CardsResponse = {
+    cards: CardType[]
+    cardsTotalCount: number
+    maxGrade: number
+    minGrade: number
+    page: number
+    pageCount: number
+    packUserId: string
+}
+
+export type GetCardsQueryParams = {
+    cardsPack_id?: string
+    cardAnswer?: string
+    cardQuestion?: string
+    min?: number
+    max?: number
+    sortCards?: string
+    page?: number
+    pageCount?: number
+}
+
+export type NewCardData = {
+    card: {
+        cardsPack_id: string
+        question?: string
+        answer?: string
+        grade?: number
+        shots?: number
+        rating?: number
+        answerImg?: string
+        questionImg?: string
+        questionVideo?: string
+        answerVideo?: string
+        type?: string
     }
 }
 
-
-//TYPES
-export type LoginData = {
-    email: string
-    password: string
+export type UpdateCardData = {
+    card: {
+        _id: string
+        question?: string
+        answer?: string
+    }
 }
 
-export type SignUpData = LoginData & {
-    confirmPassword: string
+export type DeleteCardData = {
+    id: string
 }
 
-export type SignInData = LoginData & {
-    rememberMe: boolean
+export type GradeData = {
+    card_id: string
+    grade: number
 }
 
-export type CommonResponseType = {
-    info: string
-    error?: string
+export type GradeResponse = {
+    _id: string
+    cardsPack_id: string
+    card_id: string
+    user_id: string
+    grade: number
+    shots: number
 }
+
