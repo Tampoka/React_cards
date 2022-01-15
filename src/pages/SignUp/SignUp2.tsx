@@ -3,10 +3,10 @@ import {useDispatch} from 'react-redux';
 import {SignUpData} from "../../api/cards-api";
 import {useAppSelector} from "../../redux/store";
 import {setAppError} from "../../redux/app-reducer";
-import {SignUpForm} from "./SignUpForm";
+import {SignUpForm2} from "./SignUpForm2";
 import {signUp} from "../../redux/signUp-reducer";
 
-export const SignUp = () => {
+export const SignUp2 = () => {
         const [values, setValues] = useState<SignUpData>({email: '', password: '', confirmPassword: ''});
         const [showPassword, setShowPassword] = useState(false)
 
@@ -36,19 +36,19 @@ export const SignUp = () => {
         const onSubmitHandler = (e: FormEvent) => {
             e.preventDefault();
             if (validate() === 1) {
-                setValues({email: '', password: '', confirmPassword: ''});
                 dispatch(signUp(values));
+                setValues({email: '', password: '', confirmPassword: ''});
             }
         }
 
-        return <SignUpForm isLoading={isLoading}
-                           errorMsg={error}
-                           values={values}
-                           setValues={setValues}
-                           onSubmitHandler={onSubmitHandler}
-                           registrationSuccess={signUpSuccess}
-                           showPassword={showPassword}
-                           toggleShowPassword={toggleShowPassword}
+        return <SignUpForm2 isLoading={isLoading}
+                            errorMsg={error}
+                            values={values}
+                            setValues={setValues}
+                            onSubmitHandler={onSubmitHandler}
+                            registrationSuccess={signUpSuccess}
+                            showPassword={showPassword}
+                            toggleShowPassword={toggleShowPassword}
         />;
     }
 ;

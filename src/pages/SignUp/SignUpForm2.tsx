@@ -18,7 +18,7 @@ type PropsType = {
     showPassword: boolean
 };
 
-export const SignUpForm = React.memo(({
+export const SignUpForm2 = React.memo(({
                                           values,
                                           setValues,
                                           isLoading,
