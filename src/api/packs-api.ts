@@ -1,4 +1,4 @@
-import axios, {AxiosResponse} from "axios";
+import {AxiosResponse} from "axios";
 import {instance} from "./auth-api";
 
 
@@ -16,7 +16,14 @@ export const packsAPI = {
         .put<UpdateCardsPackData, AxiosResponse<CardsPackType>>('/cards/pack', payload),
 }
 
-
+export type CardsPackResponse = {
+    cardPacks: CardsPackType[]
+    cardPacksTotalCount: number
+    maxCardsCount: number
+    minCardsCount: number
+    page: number
+    pageCount: number
+}
 
 export type CardsPackType = {
     cardsCount: number
@@ -36,14 +43,6 @@ export type CardsPackType = {
     _id: string
 }
 
-export type CardsPackResponse = {
-    cardPacks: CardsPackType[]
-    cardPacksTotalCount: number
-    maxCardsCount: number
-    minCardsCount: number
-    page: number
-    pageCount: number
-}
 
 export type GetCardPacksQueryParams = {
     min?: number

@@ -13,7 +13,7 @@ const TestingComponents = () => {
             <SuperInputText/>
             <SuperButton>Submit</SuperButton>
             <SuperCheckbox/>
-            <SuperEditableSpan value="enter text"/>
+            <SuperEditableSpan defaultValue="enter text"/>
             <SuperSelect options={['1', '2', '3']} value={'1'}/>
             <SuperRadio options={['1', '2', '3']} name="radio" value={'2'}/>
             <Loader/>

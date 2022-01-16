@@ -1,7 +1,33 @@
-.paginationContainer {
+.container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
-  margin-top: 40px;
+  gap: 8px;
+}
+
+.container span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container span.active {
+  background: red;
+  cursor: default;
+}
+
+.container span:hover {
+  opacity: 0.5;
+}
+
+.container span.active:hover {
+  opacity: 1;
+}
+
+.container span.hidden {
+  display: none;
 }

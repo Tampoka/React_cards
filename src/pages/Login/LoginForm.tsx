@@ -30,8 +30,8 @@ export const LoginForm = React.memo(({
 
     const formik = useFormik({
         initialValues: {
-            email: '',
-            password: '',
+            email: 'goal.thanks@gmail.com',
+            password: '12345678',
             rememberMe: false,
         },
         validationSchema: Yup.object({

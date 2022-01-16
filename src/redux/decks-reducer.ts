@@ -1,13 +1,20 @@
 import {AppRootStateType, ThunkType} from "./store"
-import {CardsPackResponse, GetCardPacksQueryParams, packsAPI} from "../api/packs-api";
-import {setAppError, setAppIsLoading} from "./app-reducer";
+import {
+    CardsPackResponse,
+    DeleteCardsPackData,
+    GetCardPacksQueryParams,
+    NewCardsPackData,
+    packsAPI,
+    UpdateCardsPackData
+} from "../api/packs-api";
+import {setAppIsLoading} from "./app-reducer";
 
 export const initialState: PacksInitialState = {
     cardPacks: [],
     cardPacksTotalCount: 0,
     minCardsCount: 0,
     maxCardsCount: 0,
-    page: 1,
+    page: 5,
     pageCount: 10,
     privatePacks: false,
     sortBy: undefined,
@@ -19,30 +26,53 @@ export const decksReducer = (state: PacksInitialState = initialState, action: De
     switch (action.type) {
         case 'DECKS/SET-DECKS':
             return {...state, ...action.payload}
-        case 'Decks/SET-CURRENT-PAGE':
+        case 'DECKS/SET-CURRENT-PAGE':
             return {...state, page: action.payload.pageNum}
-        case 'Decks/SET-DECKS-PER-PAGE':
+        case 'DECKS/SET-DECKS-PER-PAGE':
             return {...state, pageCount: action.payload.count}
-        case 'Decks/SET-DECKS-TOTAL-COUNT':
+        case 'DECKS/SET-DECKS-TOTAL-COUNT':
             return {...state, cardPacksTotalCount: action.payload.count}
+        case 'DECKS/SET-DECKS-MIN-MAX-COUNT':
+            return {
+                ...state, minCardsCount: action.payload.values[0],
+                maxCardsCount: action.payload.values[1],
+            }
+        case 'DECKS/SET-DECKS-SORTING-METHOD':
+            return {...state, sortBy: action.payload.method, page: 1}
+        case'DECKS/SET-PRIVATE-DECKS':
+            return {...state, privatePacks: action.payload.value}
+        case 'DECKS/SET-CURRENT-CARDS-COUNT':
+            return {...state, currentCardsCount: [...action.payload.values]}
         default:
             return state
     }
 }
 
 //Action Creators
-export const setDecks = (decks: CardsPackResponse) => ({type: 'DECKS/SET-DECKS', payload: {decks}} as const)
-export const setDecksCurrentPage = (pageNum: number) => ({type: 'Decks/SET-CURRENT-PAGE', payload: {pageNum}} as const)
-export const setDecksPerPage = (count: number) => ({type: 'Decks/SET-DECKS-PER-PAGE', payload: {count}} as const)
-export const setDecksTotalCount = (count: number) => ({type: 'Decks/SET-DECKS-TOTAL-COUNT', payload: {count}} as const)
+export const setDecks = (payload: CardsPackResponse) => ({type: 'DECKS/SET-DECKS', payload} as const)
+export const setDecksCurrentPage = (pageNum: number) => ({type: 'DECKS/SET-CURRENT-PAGE', payload: {pageNum}} as const)
+export const setDecksPerPage = (count: number) => ({type: 'DECKS/SET-DECKS-PER-PAGE', payload: {count}} as const)
+export const setDecksTotalCount = (count: number) => ({type: 'DECKS/SET-DECKS-TOTAL-COUNT', payload: {count}} as const)
+export const setDecksMinMaxCount = (values: number[]) => ({
+    type: 'DECKS/SET-DECKS-MIN-MAX-COUNT',
+    payload: {values}
+} as const)
+export const setPrivateDecks = (value: boolean) => ({type: 'DECKS/SET-PRIVATE-DECKS', payload: {value}} as const);
+export const setDecksSortingMethod = (method: string) => {
+    return {type: 'DECKS/SET-DECKS-SORTING-METHOD', payload: {method}} as const;
+};
+export const setCurrentCardsCount = (values: number[]) => {
+    return {type: 'DECKS/SET-CURRENT-CARDS-COUNT', payload: {values}} as const;
+};
 
 //Thunk Creators
 export const fetchCardsPacks = (payload?: GetCardPacksQueryParams): ThunkType =>
     async (dispatch, getState: () => AppRootStateType) => {
         const decks = getState().decks
         const userID = decks.privatePacks && getState().profile.profile?._id
+        dispatch(setAppIsLoading(true))
         try {
-            dispatch(setAppIsLoading(true))
+
             const res = await packsAPI.getCardPacks({
                 page: decks.page,
                 pageCount: decks.pageCount,
@@ -53,12 +83,50 @@ export const fetchCardsPacks = (payload?: GetCardPacksQueryParams): ThunkType =>
                 sortPacks: decks.sortBy
             });
             dispatch(setDecks(res.data));
+            console.log(res.data)
         } catch (e: any) {
-            dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
+            //  dispatch(setAppError(e.response ? e.response.data.error : e));
         } finally {
             dispatch(setAppIsLoading(false))
         }
     };
+
+
+export const postDeck = (payload: NewCardsPackData): ThunkType => async dispatch => {
+    dispatch(setAppIsLoading(true));
+    try {
+        await packsAPI.createCardsPack(payload);
+        await dispatch(fetchCardsPacks());
+    } catch (e) {
+        console.log((e as Error).message);
+    } finally {
+        dispatch(setAppIsLoading(false));
+    }
+};
+
+export const deleteDeck = (payload: DeleteCardsPackData): ThunkType => async dispatch => {
+    dispatch(setAppIsLoading(true));
+    try {
+        await packsAPI.deleteCardsPack(payload);
+        await dispatch(fetchCardsPacks());
+    } catch (e) {
+        console.log((e as Error).message);
+    } finally {
+        dispatch(setAppIsLoading(false));
+    }
+};
+
+export const updateDeck = (payload: UpdateCardsPackData): ThunkType => async dispatch => {
+    dispatch(setAppIsLoading(true));
+    try {
+        await packsAPI.updateCardsPack(payload);
+        await dispatch(fetchCardsPacks());
+    } catch (e) {
+        console.log((e as Error).message);
+    } finally {
+        dispatch(setAppIsLoading(false));
+    }
+};
 
 
 //Types
@@ -73,10 +141,18 @@ export type SetDecksActionType = ReturnType<typeof setDecks>
 export type SetDecksCurrentPageActionType = ReturnType<typeof setDecksCurrentPage>
 export type SetDecksPerPageActionType = ReturnType<typeof setDecksPerPage>
 export type SetDecksTotalCountActionType = ReturnType<typeof setDecksTotalCount>
+export type SetDecksMinMaxCountActionType = ReturnType<typeof setDecksMinMaxCount>
+export type SetPrivateDecksActionType = ReturnType<typeof setPrivateDecks>
+export type SetDecksSortingMethodActionType = ReturnType<typeof setDecksSortingMethod>
+export type SetCurrentCardsCountActionType = ReturnType<typeof setCurrentCardsCount>
 
 export type DecksActionsType =
     | SetDecksActionType
     | SetDecksCurrentPageActionType
     | SetDecksPerPageActionType
     | SetDecksTotalCountActionType
+    | SetPrivateDecksActionType
+    | SetDecksMinMaxCountActionType
+    | SetDecksSortingMethodActionType
+    | SetCurrentCardsCountActionType
 

@@ -5,7 +5,6 @@ import {useAppSelector} from "../redux/store";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {initializeApp} from "../redux/app-reducer";
-import BgLoader from "../common/components/BgLoader/BgLoader";
 
 function App() {
     const dispatch = useDispatch()
@@ -15,16 +14,16 @@ function App() {
     const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
 
     useEffect(() => {
-        dispatch((initializeApp()))
+        dispatch(initializeApp())
     }, [dispatch])
-
 
     return (
         <div>
             <Header/>
-            {isLoading
-                ? <BgLoader/>
-                : <Main/>}
+            {/*{isLoading*/}
+            {/*    ? <BgLoader/>*/}
+            {/*    : <Main/>}*/}
+            <Main/>
         </div>
     );
 }
