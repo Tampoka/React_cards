@@ -8,6 +8,7 @@ import s from './Decks.module.scss'
 import {DecksTable} from "./DecksTable/DecksTable";
 import Spinner from "../../common/components/Spinner/Spinner";
 import {BtnBlock} from "./BtnBlock/BtnBlock";
+import {Search} from "../../common/components/Search/Search";
 
 export const Decks = React.memo(() => {
     const dispatch = useDispatch()
@@ -57,7 +58,8 @@ export const Decks = React.memo(() => {
     return (
         <div className={s.decksContainer}>
             {isLoading && <Spinner/>}
-            <BtnBlock showPrivate={showPrivate}/>
+            <BtnBlock showPrivate={showPrivate} active={privatePacks}/>
+            <Search/>
             <DecksTable decks={cardPacks}
                         deleteDeckHandler={deleteDeckHandler}
                         updateDeckHandler={updateDeckHandler}

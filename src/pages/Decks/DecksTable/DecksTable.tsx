@@ -30,7 +30,7 @@ export const DecksTable = React.memo(({ decks, deleteDeckHandler, updateDeckHand
                 <tbody>
                 {decks.map(m => {
                     const edit = (title: string) => updateDeckHandler(m._id, title);
-                    const disabled=userId!==m.user_id
+                    const disabled=(userId!==m.user_id)
 
                     return <tr key={m._id}>
                         <td>
