@@ -16,12 +16,12 @@ import {DecksTable} from "./DecksTable/DecksTable";
 import Spinner from "../../common/components/Spinner/Spinner";
 import {BtnBlock} from "./BtnBlock/BtnBlock";
 import {Search} from "../../common/components/Search/Search";
-import AddDeckForm from "./AddDeckForm/AddDeckForm";
-import {MyModal} from "../../common/components/Modal/Modal";
-import SuperButton from "../../common/components/SuperButton/SuperButton";
+import {Modal} from "../../common/components/Modal/Modal";
+import { AddDeckForm } from './AddDeckForm/AddDeckForm';
 
 export const Decks = React.memo(() => {
-    const [modal,setModal]=useState<boolean>(false)
+    const [modalAddDeck, setModalAddDeck] = useState<boolean>(false)
+    const [modalEditDeckTitle, setModalEditDeckTitle] = useState<boolean>(false)
     const dispatch = useDispatch()
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
@@ -72,17 +72,19 @@ export const Decks = React.memo(() => {
     if (!isLoggedIn) return <Navigate to='/login'/>
     return (
         <div className={s.decksContainer}>
-            {/*<h1 ref={paginationScrollTopRef}>Decks</h1>*/}
+            <h1 ref={paginationScrollTopRef}>Decks</h1>
+            {/*<h1 >Decks</h1>*/}
             {isLoading && <Spinner/>}
-            <BtnBlock showPrivate={showPrivate} active={privatePacks} setModal={setModal}/>
-            <MyModal visible={modal} setVisible={setModal}>
-                <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
-            </MyModal>
+            <BtnBlock showPrivate={showPrivate} active={privatePacks} setModal={setModalAddDeck}/>
+            <Modal visible={modalAddDeck} setVisible={setModalAddDeck}>
+                <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading} />
+            </Modal>
             <Search/>
             <DecksTable decks={cardPacks}
                         deleteDeckHandler={deleteDeckHandler}
                         updateDeckHandler={updateDeckHandler}
-                        userId={userId}/>
+                        userId={userId}
+                        visible={modalEditDeckTitle} setVisible={setModalEditDeckTitle}/>
             <PacksPagination totalCount={cardPacksTotalCount}
                              pageCount={pageCount}
                              currentPage={page}

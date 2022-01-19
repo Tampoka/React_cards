@@ -1,6 +1,7 @@
-import React from 'react';
+import {useDispatch} from "react-redux";
 
 const Cards = () => {
+    const dispatch=useDispatch()
     return (
         <div>
             <h1>Cards</h1>

@@ -6,7 +6,7 @@ type PropsType = {
     visible: boolean
     setVisible: (value: boolean) => void
 }
-export const MyModal = ({children, visible, setVisible}:PropsType) => {
+export const Modal = ({children, visible, setVisible}:PropsType) => {
     const rootClasses = [s.myModal]
     if (visible) {
         rootClasses.push(s.active)

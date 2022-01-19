@@ -1,17 +1,29 @@
-.tableContainer table {
-  button{
-    padding: 5px 10px;
-    font-size: inherit;
-    border-radius: 4px;
-    &:disabled{
-      opacity: 0.5;
+.tableContainer {
+  background-color: inherit;
+  table {
+    .deckName {
+      color: #fff;
     }
-  }
-  .btnColumn{
-    button{
-      margin-left: 15px;
-      &:first-child{
-        margin: 0;
+.myModal{
+  //background: rgba(0, 0, 0, 0.5);
+}
+    button {
+      padding: 5px 10px;
+      font-size: inherit;
+      border-radius: 4px;
+
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+
+    .btnColumn {
+      button {
+        margin-left: 15px;
+
+        &:first-child {
+          margin: 0;
+        }
       }
     }
   }
