@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useDispatch} from "react-redux";
 import {Navigate} from 'react-router-dom';
 import {useAppSelector} from "../../redux/store";
@@ -17,8 +17,11 @@ import Spinner from "../../common/components/Spinner/Spinner";
 import {BtnBlock} from "./BtnBlock/BtnBlock";
 import {Search} from "../../common/components/Search/Search";
 import AddDeckForm from "./AddDeckForm/AddDeckForm";
+import {MyModal} from "../../common/components/Modal/Modal";
+import SuperButton from "../../common/components/SuperButton/SuperButton";
 
 export const Decks = React.memo(() => {
+    const [modal,setModal]=useState<boolean>(false)
     const dispatch = useDispatch()
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
@@ -71,8 +74,10 @@ export const Decks = React.memo(() => {
         <div className={s.decksContainer}>
             {/*<h1 ref={paginationScrollTopRef}>Decks</h1>*/}
             {isLoading && <Spinner/>}
-            <BtnBlock showPrivate={showPrivate} active={privatePacks}/>
-            <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
+            <BtnBlock showPrivate={showPrivate} active={privatePacks} setModal={setModal}/>
+            <MyModal visible={modal} setVisible={setModal}>
+                <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
+            </MyModal>
             <Search/>
             <DecksTable decks={cardPacks}
                         deleteDeckHandler={deleteDeckHandler}
