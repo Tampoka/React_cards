@@ -2,13 +2,21 @@ import React, {useCallback, useEffect, useRef} from 'react';
 import {useDispatch} from "react-redux";
 import {Navigate} from 'react-router-dom';
 import {useAppSelector} from "../../redux/store";
-import {deleteDeck, fetchCardsPacks, PacksInitialState, setPrivateDecks, updateDeck} from "../../redux/decks-reducer";
+import {
+    deleteDeck,
+    fetchCardsPacks,
+    PacksInitialState,
+    postDeck,
+    setPrivateDecks,
+    updateDeck
+} from "../../redux/decks-reducer";
 import {PacksPagination} from "../../common/components/PacksPagination/PacksPagination";
 import s from './Decks.module.scss'
 import {DecksTable} from "./DecksTable/DecksTable";
 import Spinner from "../../common/components/Spinner/Spinner";
 import {BtnBlock} from "./BtnBlock/BtnBlock";
 import {Search} from "../../common/components/Search/Search";
+import AddDeckForm from "./AddDeckForm/AddDeckForm";
 
 export const Decks = React.memo(() => {
     const dispatch = useDispatch()
@@ -43,6 +51,10 @@ export const Decks = React.memo(() => {
         dispatch(setPrivateDecks(value))
     }, [dispatch])
 
+    const addNewDeckHandler = useCallback((title: string) => {
+        dispatch(postDeck({cardsPack: {name: title}}))
+    }, [dispatch])
+
     useEffect(() => {
         // if (cardPacks.length === 0) {
         dispatch(fetchCardsPacks())
@@ -57,13 +69,15 @@ export const Decks = React.memo(() => {
     if (!isLoggedIn) return <Navigate to='/login'/>
     return (
         <div className={s.decksContainer}>
+            {/*<h1 ref={paginationScrollTopRef}>Decks</h1>*/}
             {isLoading && <Spinner/>}
             <BtnBlock showPrivate={showPrivate} active={privatePacks}/>
+            <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
             <Search/>
             <DecksTable decks={cardPacks}
                         deleteDeckHandler={deleteDeckHandler}
                         updateDeckHandler={updateDeckHandler}
-            userId={userId}/>
+                        userId={userId}/>
             <PacksPagination totalCount={cardPacksTotalCount}
                              pageCount={pageCount}
                              currentPage={page}

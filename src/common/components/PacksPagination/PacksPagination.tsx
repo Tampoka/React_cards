@@ -25,7 +25,7 @@ export const PacksPagination = React.memo(({totalCount, pageCount, currentPage, 
                                 currentPage={currentPage}
                                 onChange={onPageChangeHandler}/>
                     <div>
-                        <span>Decks per page:</span>
+                        {(totalCount>=countPerPage[0])&&<span>Decks per page:</span>}
                         {/*<select options={countPerPage} onChangeOption={onSelectChangeHandler}/>*/}
                     </div>
                 </div>

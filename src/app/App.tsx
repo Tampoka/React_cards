@@ -5,6 +5,7 @@ import {useAppSelector} from "../redux/store";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {initializeApp} from "../redux/app-reducer";
+import {Alert} from "../common/components/InfoAlert/Alert";
 
 function App() {
     const dispatch = useDispatch()

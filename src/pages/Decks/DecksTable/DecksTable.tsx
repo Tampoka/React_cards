@@ -5,45 +5,49 @@ import {useSelector} from "react-redux";
 import SuperEditableSpan from "../../../common/components/SuperEditableSpan/SuperEditableSpan";
 import s from './DecksTable.module.scss'
 import SuperButton from "../../../common/components/SuperButton/SuperButton";
+import  moment from 'moment';
 
 type PropsType = {
     decks: CardsPackType[]
     deleteDeckHandler: (id: string) => void
     updateDeckHandler: (id: string, title: string) => void
-    userId:string
+    userId: string
 }
 
-export const DecksTable = React.memo(({ decks, deleteDeckHandler, updateDeckHandler,userId }: PropsType) => {
+export const DecksTable = React.memo(({decks, deleteDeckHandler, updateDeckHandler, userId}: PropsType) => {
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
     return (
         <div className={s.tableContainer}>
             <table>
                 <thead>
                 <tr>
-                    <td>Name</td>
+                    <td>Deck</td>
                     <td>Cards</td>
-                    <td>Last update</td>
-                    <td>Created by</td>
+                    <td>Author</td>
+                    <td>Created</td>
+                    <td>Updated</td>
                     <td>Actions</td>
                 </tr>
                 </thead>
                 <tbody>
                 {decks.map(m => {
+                    const username=m.user_name.includes('@')?m.user_name.substring(0,m.user_name.indexOf('@')):m.user_name
+                    // const dateCreated=m.created.toLocaleString().replace(/.\d+Z$/g, '')
                     const edit = (title: string) => updateDeckHandler(m._id, title);
-                    const disabled=(userId!==m.user_id)
 
                     return <tr key={m._id}>
                         <td>
-                            <SuperEditableSpan  defaultValue={m.name} onBlurHandler={edit} ></SuperEditableSpan>
+                            <SuperEditableSpan defaultValue={m.name} onBlurHandler={edit}></SuperEditableSpan>
                         </td>
-                        <td>{m._id}</td>
                         <td>{m.cardsCount}</td>
-                        <td>{m.updated}</td>
-                        <td>{m.created}</td>
-                        <td>
-                            <SuperButton disabled={disabled} onClick={() => deleteDeckHandler(m._id)}>Delete</SuperButton>
-                            <SuperButton disabled={disabled}>Edit</SuperButton>
-                            <SuperButton >Learn</SuperButton>
+                        <td>{username}</td>
+                        <td>{moment(m.created).format(('L'))}</td>
+                        <td>{moment(m.updated).format(('L'))}</td>
+                        <td className={s.btnColumn}>
+                            {userId === m.user_id && <><SuperButton disabled={isLoading}
+                                                                    onClick={() => deleteDeckHandler(m._id)}>Delete</SuperButton>
+                                <SuperButton disabled={isLoading}>Edit</SuperButton></>}
+                            <SuperButton disabled={isLoading}>Learn</SuperButton>
                         </td>
                     </tr>;
                 })}

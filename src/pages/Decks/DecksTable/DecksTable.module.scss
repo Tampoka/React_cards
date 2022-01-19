@@ -7,4 +7,12 @@
       opacity: 0;
     }
   }
+  .btnColumn{
+    button{
+      margin-left: 15px;
+      &:first-child{
+        margin: 0;
+      }
+    }
+  }
 }

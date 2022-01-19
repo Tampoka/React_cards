@@ -5,7 +5,8 @@ import {LoginForm} from "./LoginForm";
 export const Login = () => {
         const [showPassword, setShowPassword] = useState(false)
 
-        const error = useAppSelector<string | null>(state => state.app.error);
+        const error = useAppSelector<boolean>(state => state.app.error);
+        const info = useAppSelector<string>(state => state.app.appInfo);
         const isLoading = useAppSelector<boolean>(state => state.app.isLoading);
 
         const toggleShowPassword = () => {
@@ -13,7 +14,7 @@ export const Login = () => {
         }
 
         return <LoginForm isLoading={isLoading}
-                          errorMsg={error}
+                          errorMsg={info}
                           showPassword={showPassword}
                           toggleShowPassword={toggleShowPassword}
         />;

@@ -1,6 +1,6 @@
 import {authApi, SignInData} from "../api/auth-api";
 import {ThunkType} from "./store";
-import {setAppError, setAppIsLoading} from "./app-reducer";
+import {appReducer, setAppError, setAppInfo, setAppIsLoading} from "./app-reducer";
 import {ProfileInitialState, setProfile} from "./profile-reducer";
 
 const initialState = {
@@ -29,12 +29,13 @@ export const login = (signInData: SignInData): ThunkType => async dispatch => {
         let res = await authApi.signIn(signInData);
         dispatch(setIsLoggedIn(true))
         dispatch(setProfile(res.data))
+        dispatch(setAppInfo('You are logged in!'));
     } catch (e: any) {
         console.log(e as Error)
-        dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
+        setAppError(true)
+        dispatch(setAppInfo(e.response ? e.response.data.error : e));
     } finally {
         dispatch(setAppIsLoading(false))
-        setAppError('')
     }
 }
 
@@ -44,9 +45,11 @@ export const logOut = (): ThunkType => async dispatch => {
         await authApi.signOut();
         dispatch(setIsLoggedIn(false))
         dispatch(setProfile(ProfileInitialState.profile))
+        dispatch(setAppInfo('See you again!'))
     } catch (e: any) {
         console.log(e as Error)
-        dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
+        setAppError(true)
+        dispatch(setAppInfo(e.response ? e.response.data.error : e));
     } finally {
         dispatch(setAppIsLoading(false))
     }

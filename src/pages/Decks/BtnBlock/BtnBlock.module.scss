@@ -9,9 +9,9 @@
     padding: 5px 10px;
     font-size: inherit;
     border-radius: 4px;
-   &.active {
-      background-color: #3928b4;
-     color: red;
+
+    &.active {
+      opacity: 0.3;
     }
   }
 

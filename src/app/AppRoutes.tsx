@@ -9,6 +9,7 @@ import {Login} from "../pages/Login/Login";
 import TestingComponents from "../pages/Test/TestingComponents";
 import {Decks} from "../pages/Decks/Decks";
 import Cards from "../pages/Cards/Cards";
+import {Alert} from "../common/components/InfoAlert/Alert";
 
 export const routes = [
     {path: '/', component: <TestingComponents/>, title: 'Home'},
@@ -26,6 +27,7 @@ function AppRoutes() {
     const routeComponents = routes.map(({path, component}) => <Route path={path} element={component} key={path}/>)
     return (
         <div className={s.content}>
+            <Alert/>
             <Routes>
                 {routeComponents}
             </Routes>

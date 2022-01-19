@@ -5,10 +5,10 @@ import {setProfile} from "./profile-reducer";
 
 const initialState = {
     isLoading: false,
-    error: null as null | string,
+    error: false,
     //true if app already/successfully initialized (user authentication, settings etc.)
     isInitialized: false,
-    appInfo: '',
+    appInfo: 'Ready to learn?',
 }
 
 export const appReducer = (state: InitialStateType = initialState, action: AppActionsType): InitialStateType => {
@@ -27,7 +27,7 @@ export const appReducer = (state: InitialStateType = initialState, action: AppAc
 }
 
 //Action Creators
-export const setAppError = (error: string | null) => ({type: 'APP/SET-ERROR', payload: {error}} as const)
+export const setAppError = (error: boolean) => ({type: 'APP/SET-ERROR', payload: {error}} as const)
 export const setAppIsLoading = (isLoading: boolean) => ({type: 'APP/SET-IS-LOADING', payload: {isLoading}} as const)
 export const setAppInitialized = (value: boolean) => ({type: 'APP/SET-IS-INITIALIZED', payload: {value}} as const)
 export const setAppInfo = (message: string) => ({type: 'APP/SET-APP-INFO', payload: {message}} as const)
@@ -40,7 +40,8 @@ export const initializeApp = (): ThunkType => async dispatch => {
         dispatch(setIsLoggedIn(true));
         dispatch(setProfile(res.data))
     } catch (e: any) {
-        dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
+        // dispatch(setAppError(true))
+        // dispatch(setAppInfo(e.response ? e.response.data.error : e));
     } finally {
         dispatch(setAppInitialized(true));
         dispatch(setAppIsLoading(false))

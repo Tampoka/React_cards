@@ -14,7 +14,7 @@ import Spinner from "../../common/components/Spinner/Spinner";
 
 type PropsType = {
     isLoading: boolean
-    errorMsg: string | null
+    errorMsg: string
     toggleShowPassword: () => void
     showPassword: boolean
 };

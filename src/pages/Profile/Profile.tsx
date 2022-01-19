@@ -1,14 +1,13 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useAppSelector} from "../../redux/store";
 import {ProfileType} from "../../redux/profile-reducer";
 import {Navigate, useNavigate} from "react-router-dom";
-import {initializeApp} from "../../redux/app-reducer";
 import {useDispatch} from "react-redux";
 
 const Profile = React.memo(() => {
         const profile = useAppSelector<ProfileType>(state => state.profile.profile)
         const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
-        const error = useAppSelector<string | null>(state => state.app.error)
+        const error = useAppSelector<boolean>(state => state.app.error)
         const navigate = useNavigate()
         const dispatch = useDispatch()
 
