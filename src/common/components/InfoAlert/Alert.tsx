@@ -1,8 +1,8 @@
-import {AlertMessage} from "./AlertMessage";
-import {useAppSelector} from "../../../redux/store";
-import {useDispatch} from "react-redux";
-import {useCallback} from "react";
-import {setAppError, setAppInfo} from "../../../redux/app-reducer";
+import {AlertMessage} from './AlertMessage';
+import {useAppSelector} from '../../../redux/store';
+import {useDispatch} from 'react-redux';
+import {useCallback} from 'react';
+import {setAppError, setAppInfo} from '../../../redux/app-reducer';
 
 export const Alert = () => {
     const error = useAppSelector(state => state.app.error)

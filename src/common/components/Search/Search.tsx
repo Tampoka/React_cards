@@ -1,10 +1,10 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
-import SuperInputText from "../SuperInputText/SuperInputText";
+import  {ChangeEvent, useEffect, useState} from 'react';
+import SuperInputText from '../SuperInputText/SuperInputText';
 import s from './Search.module.scss'
-import {useDispatch} from "react-redux";
-import {useDebounce} from "../../hooks/useDebounce";
-import {fetchCardsPacks} from "../../../redux/decks-reducer";
-import {useAppSelector} from "../../../redux/store";
+import {useDispatch} from 'react-redux';
+import {useDebounce} from '../../hooks/useDebounce';
+import {fetchCardsPacks} from '../../../redux/decks-reducer';
+import {useAppSelector} from '../../../redux/store';
 
 export const Search = () => {
     const dispatch=useDispatch()

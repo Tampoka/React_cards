@@ -1,5 +1,5 @@
-import axios, {AxiosResponse} from "axios";
-import {instance} from "./auth-api";
+import {AxiosResponse} from 'axios';
+import {instance} from './auth-api';
 
 export const cardsAPI = {
     getCards: (payload?: GetCardsQueryParams) => instance
@@ -9,7 +9,7 @@ export const cardsAPI = {
         .post<NewCardData, AxiosResponse<CardType>>('/cards/card', payload),
 
     deleteCard: (payload: DeleteCardData) => instance
-        .delete<CardType>(`/cards/card`, {params: payload}),
+        .delete<CardType>('/cards/card', {params: payload}),
 
     updateCard: (payload: UpdateCardData) => instance
         .put<UpdateCardData, AxiosResponse<CardType>>('/cards/card', payload),

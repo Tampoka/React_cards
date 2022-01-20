@@ -1,7 +1,7 @@
-import {authApi, SignInData} from "../api/auth-api";
-import {ThunkType} from "./store";
-import {appReducer, setAppError, setAppInfo, setAppIsLoading} from "./app-reducer";
-import {ProfileInitialState, setProfile} from "./profile-reducer";
+import {authApi, SignInData} from '../api/auth-api';
+import {ThunkType} from './store';
+import {setAppError, setAppInfo, setAppIsLoading} from './app-reducer';
+import {ProfileInitialState, setProfile} from './profile-reducer';
 
 const initialState = {
     isLoggedIn: false
@@ -9,7 +9,7 @@ const initialState = {
 
 export const authReducer = (state: InitialStateType = initialState, action: AuthActionsType): InitialStateType => {
     switch (action.type) {
-        case "auth/SET-IS-LOGGED-IN":
+        case 'auth/SET-IS-LOGGED-IN':
             return {...state, isLoggedIn: action.payload.value}
         default:
             return state
@@ -26,7 +26,7 @@ export const setIsLoggedIn = (value: boolean) => ({
 export const login = (signInData: SignInData): ThunkType => async dispatch => {
     try {
         dispatch(setAppIsLoading(true))
-        let res = await authApi.signIn(signInData);
+        const res = await authApi.signIn(signInData);
         dispatch(setIsLoggedIn(true))
         dispatch(setProfile(res.data))
         dispatch(setAppInfo('You are logged in!'));

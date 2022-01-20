@@ -1,6 +1,6 @@
-import {useState} from "react";
+import {useState} from 'react';
 
-export const useModal = (openInit: boolean = false) => {
+export const useModal = (openInit = false) => {
     const [isOpen, setIsOpen] = useState(openInit)
 
     const onOpen = () => {

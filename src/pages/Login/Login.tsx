@@ -1,11 +1,10 @@
 import {useState} from 'react';
-import {useAppSelector} from "../../redux/store";
-import {LoginForm} from "./LoginForm";
+import {useAppSelector} from '../../redux/store';
+import {LoginForm} from './LoginForm';
 
 export const Login = () => {
         const [showPassword, setShowPassword] = useState(false)
 
-        const error = useAppSelector<boolean>(state => state.app.error);
         const info = useAppSelector<string>(state => state.app.appInfo);
         const isLoading = useAppSelector<boolean>(state => state.app.isLoading);
 

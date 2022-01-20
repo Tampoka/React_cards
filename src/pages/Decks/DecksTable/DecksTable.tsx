@@ -1,11 +1,11 @@
 import React from 'react';
-import {CardsPackType} from "../../../api/packs-api";
-import {AppRootStateType} from "../../../redux/store";
-import {useSelector} from "react-redux";
+import {CardsPackType} from '../../../api/packs-api';
+import {AppRootStateType} from '../../../redux/store';
+import {useSelector} from 'react-redux';
 import s from './DecksTable.module.scss'
-import SuperButton from "../../../common/components/SuperButton/SuperButton";
+import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import moment from 'moment';
-import {UpdateDeckModal} from "../UpdateDeckModal/UpdateDeckModal";
+import {UpdateDeckModal} from '../UpdateDeckModal/UpdateDeckModal';
 
 type PropsType = {
     decks: CardsPackType[]

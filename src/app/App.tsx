@@ -1,8 +1,8 @@
-import Header from "../common/components/Header/Header";
+import Header from '../common/components/Header/Header';
 import Main from '../common/components/Main/Main';
-import {useDispatch} from "react-redux";
-import {useEffect} from "react";
-import {initializeApp} from "../redux/app-reducer";
+import {useDispatch} from 'react-redux';
+import {useEffect} from 'react';
+import {initializeApp} from '../redux/app-reducer';
 
 function App() {
     const dispatch = useDispatch()

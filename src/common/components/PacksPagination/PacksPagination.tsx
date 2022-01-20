@@ -1,8 +1,8 @@
 import React from 'react';
-import {useDispatch} from "react-redux";
-import {setDecksCurrentPage, setDecksPerPage} from '../../../redux/decks-reducer';
+import {useDispatch} from 'react-redux';
+import {setDecksCurrentPage} from '../../../redux/decks-reducer';
 import s from './PacksPagination.module.scss'
-import {Pagination} from "../Pagination/Pagination";
+import {Pagination} from '../Pagination/Pagination';
 
 type PropsType = {
     totalCount: number

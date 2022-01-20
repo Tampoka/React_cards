@@ -1,10 +1,10 @@
-import React from "react";
-import {NavLink} from "react-router-dom";
-import s from "./Header.module.scss"
-import SuperButton from "../SuperButton/SuperButton";
-import {useDispatch} from "react-redux";
-import {useAppSelector} from "../../../redux/store";
-import {logOut} from "../../../redux/auth-reducer";
+import React from 'react';
+import {NavLink} from 'react-router-dom';
+import s from './Header.module.scss'
+import SuperButton from '../SuperButton/SuperButton';
+import {useDispatch} from 'react-redux';
+import {useAppSelector} from '../../../redux/store';
+import {logOut} from '../../../redux/auth-reducer';
 
 type NavListType = Array<{ title: string, to: string }>;
 

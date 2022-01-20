@@ -1,5 +1,5 @@
-import axios, {AxiosResponse} from "axios";
-import {ProfileType} from "../redux/profile-reducer";
+import axios, {AxiosResponse} from 'axios';
+import {ProfileType} from '../redux/profile-reducer';
 
 export const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',

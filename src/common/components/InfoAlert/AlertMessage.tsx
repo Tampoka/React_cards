@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from 'react';
 import s from './AlertMessage.module.scss'
 
 type PropsType = {

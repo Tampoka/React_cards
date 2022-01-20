@@ -5,7 +5,7 @@ type DefaultSelectPropsType = DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectE
 
 type SuperSelectPropsType = DefaultSelectPropsType & {
     options?: string[] | number[]
-    onChangeOption?: (option: any) => void
+    onChangeOption?: (option: string|number) => void
     label?: string
 }
 

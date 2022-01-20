@@ -8,7 +8,6 @@ type SuperCheckboxPropsType = DefaultInputPropsType & {
 }
 const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
     {
-        type,
         onChange, onChangeChecked,
         className, spanClassName,
         children,

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState} from 'react';
 import s from './Pagination.module.scss'
 
 type PropsType = {
@@ -21,8 +21,8 @@ export const Pagination = ({totalCount, countPerPage, currentPage, onChange, ste
 
     const previousPage = currentPage !== 1 ? currentPage - 1 : 1
     const nextPage = currentPage !== pageNumbers ? currentPage + 1 : pageNumbers
-    let pageNextStep = (currentPage + step) > pageNumbers ? pageNumbers : currentPage + step
-    let pagePreviousStep = (currentPage - step) < 1 ? 1 : currentPage - step
+    const pageNextStep = (currentPage + step) > pageNumbers ? pageNumbers : currentPage + step
+    const pagePreviousStep = (currentPage - step) < 1 ? 1 : currentPage - step
 
     useEffect(() => {
         previousPage === currentPage ? setPrevIsHidden(true) : setPrevIsHidden(false)

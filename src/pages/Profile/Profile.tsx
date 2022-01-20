@@ -1,15 +1,11 @@
 import React from 'react';
-import {useAppSelector} from "../../redux/store";
-import {ProfileType} from "../../redux/profile-reducer";
-import {Navigate, useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useAppSelector} from '../../redux/store';
+import {ProfileType} from '../../redux/profile-reducer';
+import {Navigate} from 'react-router-dom';
 
 const Profile = React.memo(() => {
         const profile = useAppSelector<ProfileType>(state => state.profile.profile)
         const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
-        const error = useAppSelector<boolean>(state => state.app.error)
-        const navigate = useNavigate()
-        const dispatch = useDispatch()
 
         if (!isLoggedIn) {
             return <Navigate to={'/login'}/>;

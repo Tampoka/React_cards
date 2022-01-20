@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {useDispatch} from "react-redux";
+import React, {useCallback, useEffect, useRef} from 'react';
+import {useDispatch} from 'react-redux';
 import {Navigate} from 'react-router-dom';
-import {useAppSelector} from "../../redux/store";
+import {useAppSelector} from '../../redux/store';
 import {
     deleteDeck,
     fetchCardsPacks,
@@ -9,16 +9,16 @@ import {
     postDeck,
     setPrivateDecks,
     updateDeck
-} from "../../redux/decks-reducer";
-import {PacksPagination} from "../../common/components/PacksPagination/PacksPagination";
+} from '../../redux/decks-reducer';
+import {PacksPagination} from '../../common/components/PacksPagination/PacksPagination';
 import s from './Decks.module.scss'
-import {DecksTable} from "./DecksTable/DecksTable";
-import Spinner from "../../common/components/Spinner/Spinner";
-import {BtnBlock} from "./BtnBlock/BtnBlock";
-import {Search} from "../../common/components/Search/Search";
-import {Modal} from "../../common/components/Modal/Modal";
+import {DecksTable} from './DecksTable/DecksTable';
+import Spinner from '../../common/components/Spinner/Spinner';
+import {BtnBlock} from './BtnBlock/BtnBlock';
+import {Search} from '../../common/components/Search/Search';
+import {Modal} from '../../common/components/Modal/Modal';
 import {AddDeckForm} from './AddDeckForm/AddDeckForm';
-import {useModal} from "../../common/hooks/useModal";
+import {useModal} from '../../common/hooks/useModal';
 
 export const Decks = React.memo(() => {
     // const [modalAddDeck, setModalAddDeck] = useState<boolean>(false)

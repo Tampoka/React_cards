@@ -1,7 +1,7 @@
-import {ThunkType} from "./store"
-import {authApi} from "../api/auth-api";
-import {setIsLoggedIn} from "./auth-reducer";
-import {setProfile} from "./profile-reducer";
+import {ThunkType} from './store'
+import {authApi} from '../api/auth-api';
+import {setIsLoggedIn} from './auth-reducer';
+import {setProfile} from './profile-reducer';
 
 const initialState = {
     isLoading: false,
@@ -36,7 +36,7 @@ export const setAppInfo = (message: string) => ({type: 'APP/SET-APP-INFO', paylo
 export const initializeApp = (): ThunkType => async dispatch => {
     try {
         dispatch(setAppIsLoading(true))
-        let res = await authApi.authMe();
+        const res = await authApi.authMe();
         dispatch(setIsLoggedIn(true));
         dispatch(setProfile(res.data))
     } catch (e: any) {

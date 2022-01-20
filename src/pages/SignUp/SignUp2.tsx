@@ -1,10 +1,10 @@
-import {FormEvent, useCallback, useState} from 'react';
+import {FormEvent,useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {SignUpData} from "../../api/auth-api";
-import {useAppSelector} from "../../redux/store";
-import {setAppError, setAppInfo} from "../../redux/app-reducer";
-import {SignUpForm2} from "./SignUpForm2";
-import {signUp} from "../../redux/signUp-reducer";
+import {SignUpData} from '../../api/auth-api';
+import {useAppSelector} from '../../redux/store';
+import {setAppError, setAppInfo} from '../../redux/app-reducer';
+import {SignUpForm2} from './SignUpForm2';
+import {signUp} from '../../redux/signUp-reducer';
 
 export const SignUp2 = () => {
         const [values, setValues] = useState<SignUpData>({email: '', password: '', confirmPassword: ''});

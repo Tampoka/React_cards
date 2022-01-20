@@ -1,6 +1,6 @@
-import {authApi, SignUpData} from "../api/auth-api"
-import {ThunkType} from "./store";
-import {setAppError, setAppInfo, setAppIsLoading} from "./app-reducer";
+import {authApi, SignUpData} from '../api/auth-api';
+import {ThunkType} from './store';
+import {setAppError, setAppInfo, setAppIsLoading} from './app-reducer';
 
 const initialState = {
     signUpSuccess: false

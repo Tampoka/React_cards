@@ -1,14 +1,14 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
-import {AuthActionsType, authReducer} from "./auth-reducer";
-import {AppActionsType, appReducer} from "./app-reducer";
-import thunk, {ThunkAction} from "redux-thunk";
-import {composeWithDevTools} from "redux-devtools-extension";
-import {ProfileActionsType, profileReducer} from "./profile-reducer";
-import {newPasswordReducer} from "./newPassword-reducer";
-import {restorePasswordReducer} from "./restorePassword-reducer";
-import {SignUpActionsType, signUpReducer} from "./signUp-reducer";
-import {TypedUseSelectorHook, useSelector} from "react-redux";
-import {DecksActionsType, decksReducer} from "./decks-reducer";
+import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {AuthActionsType, authReducer} from './auth-reducer';
+import {AppActionsType, appReducer} from './app-reducer';
+import thunk, {ThunkAction} from 'redux-thunk';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import {ProfileActionsType, profileReducer} from './profile-reducer';
+import {newPasswordReducer} from './newPassword-reducer';
+import {restorePasswordReducer} from './restorePassword-reducer';
+import {SignUpActionsType, signUpReducer} from './signUp-reducer';
+import {TypedUseSelectorHook, useSelector} from 'react-redux';
+import {DecksActionsType, decksReducer} from './decks-reducer';
 
 const rootReducer = combineReducers({
     app: appReducer,

@@ -1,4 +1,4 @@
-import {AppRootStateType, ThunkType} from "./store"
+import {AppRootStateType, ThunkType} from './store';
 import {
     CardsPackResponse,
     DeleteCardsPackData,
@@ -6,8 +6,8 @@ import {
     NewCardsPackData,
     packsAPI,
     UpdateCardsPackData
-} from "../api/packs-api";
-import {setAppError, setAppInfo, setAppIsLoading} from "./app-reducer";
+} from '../api/packs-api';
+import {setAppError, setAppInfo, setAppIsLoading} from './app-reducer';
 
 export const initialState: PacksInitialState = {
     cardPacks: [],
@@ -98,7 +98,7 @@ export const postDeck = (payload: NewCardsPackData): ThunkType => async dispatch
     dispatch(setAppIsLoading(true));
     try {
         await packsAPI.createCardsPack(payload);
-        await dispatch(fetchCardsPacks());
+        dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was created!'))
     } catch (e:any) {
         console.log((e as Error).message);
@@ -113,7 +113,7 @@ export const deleteDeck = (payload: DeleteCardsPackData): ThunkType => async dis
     dispatch(setAppIsLoading(true));
     try {
         await packsAPI.deleteCardsPack(payload);
-        await dispatch(fetchCardsPacks());
+        dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was deleted!'))
     } catch (e:any) {
         console.log((e as Error).message);
@@ -128,7 +128,7 @@ export const updateDeck = (payload: UpdateCardsPackData): ThunkType => async dis
     dispatch(setAppIsLoading(true));
     try {
         await packsAPI.updateCardsPack(payload);
-        await dispatch(fetchCardsPacks());
+        dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was updated!'));
     } catch (e:any) {
         console.log((e as Error).message);
