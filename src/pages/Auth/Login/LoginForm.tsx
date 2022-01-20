@@ -1,15 +1,15 @@
 import React from 'react';
-import SuperInputText from '../../common/components/SuperInputText/SuperInputText';
-import SuperButton from '../../common/components/SuperButton/SuperButton';
+import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';
+import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import {Navigate, NavLink} from 'react-router-dom';
 import s from '../SignUp/SignUp.module.scss'
 import * as Yup from 'yup';
 import {useFormik} from 'formik';
 import {useDispatch} from 'react-redux';
-import {login} from '../../redux/auth-reducer';
-import SuperCheckbox from '../../common/components/SuperCheckbox/SuperCheckbox';
-import {useAppSelector} from '../../redux/store';
-import Spinner from '../../common/components/Spinner/Spinner';
+import {login} from '../../../redux/auth-reducer';
+import SuperCheckbox from '../../../common/components/SuperCheckbox/SuperCheckbox';
+import {useAppSelector} from '../../../redux/store';
+import Spinner from '../../../common/components/Spinner/Spinner';
 
 
 type PropsType = {

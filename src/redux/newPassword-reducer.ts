@@ -1,5 +1,6 @@
 const initialState = {
     password: '',
+    //setSuccessNewPass: false,
 }
 
 export const newPasswordReducer = (state: initialStateType = initialState, action: NewPasswordActionsType) => {

@@ -14,6 +14,7 @@ const Header = React.memo(() => {
             {title: 'Profile', to: '/profile'},
             {title: 'Decks', to: '/decks'},
             {title: 'Cards', to: '/cards'},
+            {title: 'Restore', to: '/restore-password'},
         ]
         const mappedNavList = navList.map(({to, title}) => <NavLink to={to}
                                                                     className={({isActive}) => (isActive ? s.active : '')}

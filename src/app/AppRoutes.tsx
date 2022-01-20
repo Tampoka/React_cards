@@ -2,10 +2,10 @@ import {Route, Routes} from 'react-router-dom';
 import Profile from '../pages/Profile/Profile';
 import Error404 from '../pages/Error404/Error404';
 import s from './AppRoutes.module.scss'
-import RestorePassword from '../pages/RestorePassword/RestorePassword';
-import NewPassword from '../pages/NewPassword/NewPassword';
-import {SignUp2} from '../pages/SignUp/SignUp2';
-import {Login} from '../pages/Login/Login';
+import RestorePassword from '../pages/Auth/RestorePassword/RestorePassword';
+import NewPassword from '../pages/Auth/NewPassword/NewPassword';
+import {SignUp2} from '../pages/Auth/SignUp/SignUp2';
+import {Login} from '../pages/Auth/Login/Login';
 import TestingComponents from '../pages/Test/TestingComponents';
 import {Decks} from '../pages/Decks/Decks';
 import Cards from '../pages/Cards/Cards';

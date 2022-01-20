@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {useAppSelector} from '../../redux/store';
+import {useAppSelector} from '../../../redux/store';
 import {LoginForm} from './LoginForm';
 
 export const Login = () => {

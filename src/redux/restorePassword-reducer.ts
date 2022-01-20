@@ -1,12 +1,17 @@
 const initialState = {
-    isRestored: false
+    sendRecoveryEmailSuccess: false,
+    recoveryEmail: ''
 }
 
 export const restorePasswordReducer = (state: initialStateType = initialState, action: RestorePasswordActionsType) => {
     switch (action.type) {
-        case 'RESTORE-PASSWORD':
+        case 'SET-RECOVERY-EMAIL':
             return {
-                ...state, isRestored: action.payload
+                ...state, recoveryEmail: action.payload.email
+            }
+        case 'SET-RECOVERY-EMAIL=SUCCESS':
+            return {
+                ...state, sendRecoveryEmailSuccess: action.payload.value
             }
         default:
             return state
@@ -14,16 +19,17 @@ export const restorePasswordReducer = (state: initialStateType = initialState, a
 }
 
 //ACTION CREATORS
-export const restorePassword = (payload: boolean) => ({
-    type: 'RESTORE-PASSWORD',
-    payload
-} as const)
+export const setRecoveryEmail = (email: string) => ({type: 'SET-RECOVERY-EMAIL', payload: {email}} as const)
+export const setRecoveryEmailSuccess = (value: boolean) => ({type: 'SET-RECOVERY-EMAIL=SUCCESS', payload: {value}} as const)
 
 //THUNK CREATORS
 
 //TYPES
 export type initialStateType = typeof initialState
 
-export type RestorePasswordActionType = ReturnType<typeof restorePassword>
+export type SetRecoveryEmail = ReturnType<typeof setRecoveryEmail>
+export type SetRecoveryEmailSuccess = ReturnType<typeof setRecoveryEmailSuccess>
+
 export type RestorePasswordActionsType =
-    |RestorePasswordActionType
+    | SetRecoveryEmail
+    | SetRecoveryEmailSuccess

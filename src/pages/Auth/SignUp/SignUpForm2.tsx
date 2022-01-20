@@ -1,9 +1,9 @@
 import React, {ChangeEvent, FormEvent} from 'react';
 import s from './SignUp.module.scss';
-import {SignUpData} from '../../api/auth-api';
-import SuperInputText from '../../common/components/SuperInputText/SuperInputText';
-import SuperButton from '../../common/components/SuperButton/SuperButton';
-import Spinner from '../../common/components/Spinner/Spinner';
+import {SignUpData} from '../../../api/auth-api';
+import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';
+import SuperButton from '../../../common/components/SuperButton/SuperButton';
+import Spinner from '../../../common/components/Spinner/Spinner';
 import {Navigate, NavLink} from 'react-router-dom';
 
 
