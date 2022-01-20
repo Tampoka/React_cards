@@ -1,15 +1,8 @@
 import axios, {AxiosResponse} from 'axios';
 import {ProfileType} from '../redux/profile-reducer';
+import {instance} from './axios-instance';
 
-export const instance = axios.create({
-    baseURL: 'http://localhost:7542/2.0/',
-    withCredentials: true,
-})
 
-export const herokuInstance = axios.create({
-    baseURL: 'https://neko-back.herokuapp.com/2.0',
-    withCredentials: true,
-})
 
 // const messageForRecoverPW = `\n<div style='background-color: lime; padding: 15px'>\n password recovery link: \n<a href='http://localhost:3000/react-project#/pass-recovery/$token$'>link</a>\n</div>\n`;
 
