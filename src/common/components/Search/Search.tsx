@@ -11,7 +11,7 @@ export const Search = () => {
     const totalCount=useAppSelector<number>(state=>state.decks.cardPacksTotalCount)
     const [searchValue,setSearchValue]=useState('')
     const debouncedValue = useDebounce<string>(searchValue, 800)
-    const [resultsNum,setResultsNum]=useState(totalCount)
+    // const [resultsNum,setResultsNum]=useState(totalCount)
 
     const onSearchHandler= (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.currentTarget.value)
@@ -19,7 +19,7 @@ export const Search = () => {
 
     useEffect(() => {
         dispatch(fetchCardsPacks({packName: debouncedValue}))
-        setResultsNum(totalCount)
+        // setResultsNum(totalCount)
     }, [debouncedValue,dispatch,totalCount])
     return (
         <label className={s.searchLabel}>

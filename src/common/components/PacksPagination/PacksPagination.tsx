@@ -16,7 +16,7 @@ export const PacksPagination = React.memo(({totalCount, pageCount, currentPage, 
             // debugger
             dispatch(setDecksCurrentPage(page));
         }
-        const onSelectChangeHandler = (option: string) => dispatch(setDecksPerPage(Number(option)));
+        // const onSelectChangeHandler = (option: string) => dispatch(setDecksPerPage(Number(option)));
         return (
             <div className={s.paginationContainer}>
                 <div style={{marginTop: 30}}>

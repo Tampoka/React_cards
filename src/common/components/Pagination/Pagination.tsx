@@ -13,8 +13,8 @@ export const Pagination = ({totalCount, countPerPage, currentPage, onChange, ste
     const [prevIsHidden, setPrevIsHidden] = useState(false)
     const [nextIsHidden, setNextIsHidden] = useState(false)
 
-    let pageNumbers: number = Math.ceil(totalCount / countPerPage)
-    let pages = []
+    const pageNumbers: number = Math.ceil(totalCount / countPerPage)
+    const pages = []
     for (let i = 1; i <= pageNumbers; i++) {
         pages.push(i)
     }

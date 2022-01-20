@@ -1,18 +1,15 @@
 import Header from "../common/components/Header/Header";
 import Main from '../common/components/Main/Main';
 import {useDispatch} from "react-redux";
-import {useAppSelector} from "../redux/store";
 import {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
 import {initializeApp} from "../redux/app-reducer";
-import {Alert} from "../common/components/InfoAlert/Alert";
 
 function App() {
     const dispatch = useDispatch()
-    const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
-    const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
-    const navigate = useNavigate()
-    const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
+    // const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
+    // const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
+    // const navigate = useNavigate()
+    // const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
 
     useEffect(() => {
         dispatch(initializeApp())
