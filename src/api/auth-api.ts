@@ -14,8 +14,6 @@ export const herokuInstance = axios.create({
 // const messageForRecoverPW = `\n<div style='background-color: lime; padding: 15px'>\n password recovery link: \n<a href='http://localhost:3000/react-project#/pass-recovery/$token$'>link</a>\n</div>\n`;
 
 export const authApi = {
-    checkAuth: () => instance
-        .post<{}, AxiosResponse<ProfileType>>('/auth/me', {}),
     signUp(payload: SignUpData) {
         return instance.post<SignUpData, AxiosResponse<{ error?: string }>>('/auth/register', payload)
     },
@@ -26,7 +24,16 @@ export const authApi = {
         return instance.delete<CommonResponseType>('/auth/me')
     },
     authMe() {
-        return instance.post<ProfileType>('/auth/me')
+        return instance.post<{}, AxiosResponse<ProfileType>>('/auth/me', {})
+    },
+    passwordRecovery(payload: PasswordRecoveryData) {
+        return instance.post<PasswordRecoveryData, AxiosResponse<PasswordResponse>>('https://neko-back.herokuapp.com/2.0/auth/forgot', payload)
+    },
+    changeUsersInfo(payload: ChangeUsersInfoData) {
+        return instance.put<ChangeUsersInfoData, AxiosResponse<UpdateUserResponse>>('/auth/me', payload)
+    },
+    newPassword(payload: NewPasswordData) {
+        return instance.post<NewPasswordData, AxiosResponse<PasswordResponse>>(`https://neko-back.herokuapp.com/2.0/auth/set-new-password`, payload)
     }
 }
 
@@ -54,4 +61,32 @@ export type PasswordRecoveryData = {
     email: string,
     from: string,
     message: string
+}
+
+export type PasswordResponse = {
+    info: string,
+    error: string
+}
+
+type UpdateUserResponse = {
+    updatedUser: UsersInfoResponse
+    error?: string
+}
+
+export type UsersInfoResponse = {
+    _id: string
+    email: string
+    name: string
+    avatar?: string
+    publicCardPacksCount: number
+}
+
+export type ChangeUsersInfoData = {
+    name?: string
+    avatar?: string
+}
+
+export type NewPasswordData = {
+    password: string,
+    resetPasswordToken: string | undefined
 }
