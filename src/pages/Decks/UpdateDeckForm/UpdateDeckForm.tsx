@@ -25,9 +25,9 @@ export const UpdateDeckForm = React.memo(({onSubmitHandler, isLoading, title}: P
         }),
         onSubmit: (values) => {
             onSubmitHandler(values.name)
-            formik.resetForm();
         },
     });
+    console.log(formik.values)
     return (
         <>
             <form className={s.form} onSubmit={formik.handleSubmit}>
@@ -37,7 +37,8 @@ export const UpdateDeckForm = React.memo(({onSubmitHandler, isLoading, title}: P
                                      error={formik.touched.name && formik.errors.name
                                          ? formik.errors.name
                                          : ''}
-                                     autoComplete='new-title'/>
+                                     autoComplete='new-title'
+                    />
                 </label>
                 <SuperButton type='submit' className={s.submitBtn} disabled={isLoading}>Change deck title</SuperButton>
             </form>

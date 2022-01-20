@@ -1,24 +1,25 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {CardsPackType} from "../../../api/packs-api";
 import {AppRootStateType} from "../../../redux/store";
 import {useSelector} from "react-redux";
 import s from './DecksTable.module.scss'
 import SuperButton from "../../../common/components/SuperButton/SuperButton";
 import moment from 'moment';
-import {Modal} from "../../../common/components/Modal/Modal";
-import { AddDeckForm } from '../AddDeckForm/AddDeckForm';
-import {UpdateDeckForm} from "../UpdateDeckForm/UpdateDeckForm";
+import {UpdateDeckModal} from "../UpdateDeckModal/UpdateDeckModal";
 
 type PropsType = {
     decks: CardsPackType[]
     deleteDeckHandler: (id: string) => void
     updateDeckHandler: (id: string, title: string) => void
     userId: string
-    visible: boolean
-    setVisible: (value: boolean) => void
 }
 
-export const DecksTable = React.memo(({decks, deleteDeckHandler, updateDeckHandler, userId,visible,setVisible}: PropsType) => {
+export const DecksTable = React.memo(({
+                                          decks,
+                                          deleteDeckHandler,
+                                          updateDeckHandler,
+                                          userId,
+                                      }: PropsType) => {
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
     return (
         <div className={s.tableContainer}>
@@ -46,13 +47,11 @@ export const DecksTable = React.memo(({decks, deleteDeckHandler, updateDeckHandl
                         <td>{moment(m.created).format(('L'))}</td>
                         <td>{moment(m.updated).format(('L'))}</td>
                         <td className={s.btnColumn}>
-                            <Modal visible={visible} setVisible={setVisible}>
-                                <UpdateDeckForm onSubmitHandler={edit} isLoading={isLoading} title={m.name}/>
-                            </Modal>
                             {userId === m.user_id && <><SuperButton disabled={isLoading}
                                                                     onClick={() => deleteDeckHandler(m._id)}>Delete</SuperButton>
-                                <SuperButton disabled={isLoading}
-                                             onClick={() => setVisible(true)}>Edit</SuperButton></>}
+                                <UpdateDeckModal deckName={m.name} isLoading={isLoading} onSubmitHandler={edit}/>
+                            </>
+                            }
                             <SuperButton disabled={isLoading}>Learn</SuperButton>
                         </td>
                     </tr>;

@@ -17,11 +17,12 @@ import Spinner from "../../common/components/Spinner/Spinner";
 import {BtnBlock} from "./BtnBlock/BtnBlock";
 import {Search} from "../../common/components/Search/Search";
 import {Modal} from "../../common/components/Modal/Modal";
-import { AddDeckForm } from './AddDeckForm/AddDeckForm';
+import {AddDeckForm} from './AddDeckForm/AddDeckForm';
+import {useModal} from "../../common/hooks/useModal";
 
 export const Decks = React.memo(() => {
-    const [modalAddDeck, setModalAddDeck] = useState<boolean>(false)
-    const [modalEditDeckTitle, setModalEditDeckTitle] = useState<boolean>(false)
+    // const [modalAddDeck, setModalAddDeck] = useState<boolean>(false)
+    const {isOpen, onToggle} = useModal()
     const dispatch = useDispatch()
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
@@ -44,11 +45,11 @@ export const Decks = React.memo(() => {
 
     const deleteDeckHandler = useCallback((id: string) => {
         dispatch(deleteDeck({id}));
-    }, [dispatch, userId]);
+    }, [dispatch]);
 
     const updateDeckHandler = useCallback((id: string, title: string) => {
         dispatch(updateDeck({cardsPack: {_id: id, name: title}}));
-    }, [dispatch, userId]);
+    }, [dispatch]);
 
     const showPrivate = useCallback((value: boolean) => {
         dispatch(setPrivateDecks(value))
@@ -75,16 +76,15 @@ export const Decks = React.memo(() => {
             <h1 ref={paginationScrollTopRef}>Decks</h1>
             {/*<h1 >Decks</h1>*/}
             {isLoading && <Spinner/>}
-            <BtnBlock showPrivate={showPrivate} active={privatePacks} setModal={setModalAddDeck}/>
-            <Modal visible={modalAddDeck} setVisible={setModalAddDeck}>
-                <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading} />
+            <BtnBlock showPrivate={showPrivate} active={privatePacks} setModal={onToggle}/>
+            <Modal visible={isOpen} setVisible={onToggle}>
+                <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
             </Modal>
             <Search/>
             <DecksTable decks={cardPacks}
                         deleteDeckHandler={deleteDeckHandler}
                         updateDeckHandler={updateDeckHandler}
-                        userId={userId}
-                        visible={modalEditDeckTitle} setVisible={setModalEditDeckTitle}/>
+                        userId={userId}/>
             <PacksPagination totalCount={cardPacksTotalCount}
                              pageCount={pageCount}
                              currentPage={page}
