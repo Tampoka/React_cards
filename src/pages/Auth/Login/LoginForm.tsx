@@ -2,7 +2,7 @@ import React from 'react';
 import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import {Navigate, NavLink} from 'react-router-dom';
-import s from '../SignUp/SignUp.module.scss'
+import s from '../FormCommon.module.scss'
 import * as Yup from 'yup';
 import {useFormik} from 'formik';
 import {useDispatch} from 'react-redux';
@@ -53,7 +53,7 @@ export const LoginForm = React.memo(({
     }
 
     return (
-        <div className={s.register}>
+        <div className={s.authContainer}>
             <h2>Learning Cards</h2>
             {isLoading && <Spinner/>}
             <p className={s.sectionTitle}>Sign In</p>
@@ -84,8 +84,8 @@ export const LoginForm = React.memo(({
                 </form>
             </div>
             <div className={s.linksBlock}>
-                <p className={s.loginLink}><NavLink to='/recover'>Forgot password? </NavLink></p>
-                <p className={s.loginLink}><NavLink to='/register'>Not registered yet?</NavLink></p>
+                <p className={s.link}><NavLink to='/recover'>Forgot password? </NavLink></p>
+                <p className={s.link}><NavLink to='/register'>Not registered yet?</NavLink></p>
             </div>
         </div>
     );

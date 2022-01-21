@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FormEvent} from 'react';
-import s from './SignUp.module.scss';
+import s from '../FormCommon.module.scss';
 import {SignUpData} from '../../../api/auth-api';
 import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
@@ -33,7 +33,7 @@ export const SignUpForm2 = React.memo(({
         return <Navigate to='/login'/>;
     }
     return (
-        <div className={s.register}>
+        <div className={s.authContainer}>
             <h2>Learning Cards</h2>
             {isLoading && <Spinner/>}
             <p className={s.sectionTitle}>Sign Up</p>
@@ -80,7 +80,7 @@ export const SignUpForm2 = React.memo(({
                     </div>
                 </form>
             </div>
-            <p className={s.loginLink}>Already a member? <NavLink to='/login'>Sign In</NavLink></p>
+            <p className={s.link}>Already a member? <NavLink to='/login'>Sign In</NavLink></p>
 
         </div>
     );
