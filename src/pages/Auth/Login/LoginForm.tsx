@@ -30,8 +30,8 @@ export const LoginForm = React.memo(({
 
     const formik = useFormik({
         initialValues: {
-            email: 'goal.thanks@gmail.com',
-            password: '12345678',
+            email: '',
+            password: '',
             rememberMe: false,
         },
         validationSchema: Yup.object({
@@ -40,7 +40,7 @@ export const LoginForm = React.memo(({
                 .min(8, 'Must be at least 8 characters long')
                 .required('Please Enter your password')
             // .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-            //     'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character')
+            //     'Must Contain 8 characters, one uppercase, one lowercase, one number and one special case character')
         }),
         onSubmit: values => {
             dispatch(login(values))

@@ -29,15 +29,12 @@ export const UpdateDeckForm = React.memo(({onSubmitHandler, isLoading, title}: P
     return (
         <>
             <form className={s.form} onSubmit={formik.handleSubmit}>
-                <label>
-                    Name
-                    <SuperInputText  {...formik.getFieldProps('name')}
-                                     error={formik.touched.name && formik.errors.name
-                                         ? formik.errors.name
-                                         : ''}
-                                     autoComplete='new-title'
-                    />
-                </label>
+                <SuperInputText  {...formik.getFieldProps('name')}
+                                 error={formik.touched.name && formik.errors.name
+                                     ? formik.errors.name
+                                     : ''}
+                                 autoComplete='new-title'
+                />
                 <SuperButton type='submit' className={s.submitBtn} disabled={isLoading}>Change deck title</SuperButton>
             </form>
         </>

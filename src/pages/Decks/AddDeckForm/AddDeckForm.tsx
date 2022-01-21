@@ -26,15 +26,12 @@ export const AddDeckForm = ({onSubmitHandler,isLoading}: PropsType) => {
     });
     return (
         <>
-            <form className={s.formModal} onSubmit={formik.handleSubmit}>
-                <label>
-                    Name
+            <form className={s.form} onSubmit={formik.handleSubmit}>
                     <SuperInputText  {...formik.getFieldProps('name')}
                                      error={formik.touched.name && formik.errors.name
                                          ? formik.errors.name
                                          : ''}
                     autoComplete='new-title'/>
-                </label>
                 <SuperButton type='submit' className={s.submitBtn} disabled={isLoading}>Add new deck</SuperButton>
             </form>
         </>
