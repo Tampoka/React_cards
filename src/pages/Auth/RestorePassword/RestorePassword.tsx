@@ -1,7 +1,7 @@
-import {RestorePasswordForm} from "./RestorePasswordForm";
-import {useAppSelector} from "../../../redux/store";
-import {useCallback} from "react";
-import {useDispatch} from "react-redux";
+import {RestorePasswordForm} from './RestorePasswordForm';
+import {useAppSelector} from '../../../redux/store';
+import {useCallback} from 'react';
+import {useDispatch} from 'react-redux';
 import {passwordRecovery} from '../../../redux/restorePassword-reducer';
 
 const RestorePassword = () => {

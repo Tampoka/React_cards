@@ -1,10 +1,10 @@
-import {developmentMode} from '../api/axios-instance';
+// import {developmentMode} from '../api/axios-instance';
 import {PasswordRecoveryData} from '../api/auth-api';
 
 export const passwordRecoveryMessage = (email: string) => {
-    const targetLink = developmentMode
-        ? `http://localhost:3000/cards-react/#$/new-password/$token$`
-        : `https://tampoka.github.io/cards-react/#$/new-password/$token$`
+    const targetLink = //developmentMode
+        `http://localhost:3002/react-cards/#new-password/$token$`
+    // `https://tampoka.github.io/react-cards/#new-password/$token$`
 
     const payload: PasswordRecoveryData = {
         email,

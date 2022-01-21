@@ -1,3 +1,5 @@
+import React from 'react';
+
 import s from '../FormCommon.module.scss';
 import Spinner from '../../../common/components/Spinner/Spinner';
 import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';

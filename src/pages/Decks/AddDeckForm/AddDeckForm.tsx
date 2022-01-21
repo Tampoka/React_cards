@@ -26,7 +26,7 @@ export const AddDeckForm = ({onSubmitHandler,isLoading}: PropsType) => {
     });
     return (
         <>
-            <form className={s.form} onSubmit={formik.handleSubmit}>
+            <form className={s.formModal} onSubmit={formik.handleSubmit}>
                 <label>
                     Name
                     <SuperInputText  {...formik.getFieldProps('name')}

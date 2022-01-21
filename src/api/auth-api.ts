@@ -1,7 +1,6 @@
-import axios, {AxiosResponse} from 'axios';
+import {AxiosResponse} from 'axios';
 import {ProfileType} from '../redux/profile-reducer';
 import {instance} from './axios-instance';
-
 
 
 // const messageForRecoverPW = `\n<div style='background-color: lime; padding: 15px'>\n password recovery link: \n<a href='http://localhost:3000/react-project#/pass-recovery/$token$'>link</a>\n</div>\n`;
@@ -17,7 +16,7 @@ export const authApi = {
         return instance.delete<CommonResponseType>('/auth/me')
     },
     authMe() {
-        return instance.post<{}, AxiosResponse<ProfileType>>('/auth/me', {})
+        return instance.post< {},AxiosResponse<ProfileType>>('/auth/me',{})
     },
     passwordRecovery(payload: PasswordRecoveryData) {
         return instance.post<PasswordRecoveryData, AxiosResponse<PasswordResponse>>('https://neko-back.herokuapp.com/2.0/auth/forgot', payload)
@@ -26,7 +25,7 @@ export const authApi = {
         return instance.put<ChangeUsersInfoData, AxiosResponse<UpdateUserResponse>>('/auth/me', payload)
     },
     newPassword(payload: NewPasswordData) {
-        return instance.post<NewPasswordData, AxiosResponse<PasswordResponse>>(`https://neko-back.herokuapp.com/2.0/auth/set-new-password`, payload)
+        return instance.post<NewPasswordData, AxiosResponse<PasswordResponse>>('https://neko-back.herokuapp.com/2.0/auth/set-new-password', payload)
     }
 }
 

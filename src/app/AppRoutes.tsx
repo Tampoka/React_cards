@@ -21,6 +21,7 @@ export const routes = [
     {path: '/restore-password', component: <RestorePassword/>, title: 'Forgot'},
     {path: '/check-email', component: <CheckEmail/>, title: 'Check Email'},
     {path: '/new-password', component: <NewPassword/>, title: 'New Password'},
+    {path: '/new-password/:token?', component: <NewPassword/>, title: 'New PasswordWithToken'},
     {path: '/decks', component: <Decks/>, title: 'Decks'},
     {path: '/cards', component: <Cards/>, title: 'Cards'},
 ]

@@ -38,10 +38,10 @@ export const initializeApp = (): ThunkType => async dispatch => {
         dispatch(setAppIsLoading(true))
         const res = await authApi.authMe();
         dispatch(setIsLoggedIn(true));
-        dispatch(setProfile(res.data))
+        // dispatch(setProfile(res.data))
     } catch (e: any) {
-        // dispatch(setAppError(true))
-        // dispatch(setAppInfo(e.response ? e.response.data.error : e));
+        dispatch(setAppError(true))
+        dispatch(setAppInfo(e.response ? e.response.data.error : e));
     } finally {
         dispatch(setAppInitialized(true));
         dispatch(setAppIsLoading(false))
