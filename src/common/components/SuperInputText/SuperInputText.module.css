@@ -6,7 +6,6 @@
 
 .input {
     padding: 5px 5px;
-
     background: #a5b4ce;
     color: #073807;
     font-size: larger;
@@ -17,20 +16,16 @@
     border: 3px solid #556060;
 }
 
-.superInput {
-
-}
-
 .errorInput {
     border: 3px solid #dd3355;
-
     background: #d57689;
     color: #99ff99;
 }
 
 .error {
+    align-self: flex-start;
     color: #dd3355;
-    height: 81px;
+    max-height: 31px;
     max-width: 260px;
-    margin-left: 10px;
+    margin: 0 0 10px 10px;
 }

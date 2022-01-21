@@ -84,7 +84,7 @@ export const LoginForm = React.memo(({
                 </form>
             </div>
             <div className={s.linksBlock}>
-                <p className={s.link}><NavLink to='/recover'>Forgot password? </NavLink></p>
+                <p className={s.link}><NavLink to='/restore-password'>Forgot password? </NavLink></p>
                 <p className={s.link}><NavLink to='/register'>Not registered yet?</NavLink></p>
             </div>
         </div>
