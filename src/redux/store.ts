@@ -5,7 +5,7 @@ import thunk, {ThunkAction} from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {ProfileActionsType, profileReducer} from './profile-reducer';
 import {newPasswordReducer} from './newPassword-reducer';
-import {restorePasswordReducer} from './restorePassword-reducer';
+import {RestorePasswordActionsType, restorePasswordReducer} from './restorePassword-reducer';
 import {SignUpActionsType, signUpReducer} from './signUp-reducer';
 import {TypedUseSelectorHook, useSelector} from 'react-redux';
 import {DecksActionsType, decksReducer} from './decks-reducer';
@@ -32,7 +32,8 @@ export type RootActionsType =
     | ProfileActionsType
     | AppActionsType
     | AuthActionsType
-    |DecksActionsType;
+    |DecksActionsType
+    |RestorePasswordActionsType;
 
 export type ThunkType = ThunkAction<void, AppRootStateType, unknown, RootActionsType>;
 
