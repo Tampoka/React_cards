@@ -1,4 +1,4 @@
-import {setAppInfo, setAppIsLoading} from './app-reducer';
+import {setAppError, setAppInfo, setAppIsLoading} from './app-reducer';
 import {ThunkType} from './store';
 import {authApi} from '../api/auth-api';
 import {passwordRecoveryMessage} from '../utils/passwordRecoveryMessage';
@@ -35,8 +35,9 @@ export const passwordRecovery = (email: string):ThunkType => async dispatch => {
         dispatch(setRecoveryEmailSuccess(true))
         dispatch(setAppInfo(response.data.info))
         dispatch(setRecoveryEmail(email))
-    } catch (e) {
-        // errorsHandler(e, dispatch)
+    } catch (e:any) {
+        dispatch(setAppError(true))
+        dispatch(setAppInfo(e.response ? e.response.data.error : e));
     } finally {
         dispatch(setAppIsLoading(false))
         dispatch(setRecoveryEmailSuccess(false))

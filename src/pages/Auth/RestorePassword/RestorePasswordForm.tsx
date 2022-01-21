@@ -2,15 +2,17 @@ import s from '../FormCommon.module.scss';
 import Spinner from '../../../common/components/Spinner/Spinner';
 import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
-import {NavLink} from 'react-router-dom';
+import {Navigate, NavLink} from 'react-router-dom';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
+import {useAppSelector} from '../../../redux/store';
 
 type PropsType = {
     isLoading: boolean
     onSubmitHandler: (email: string) => void
 }
 export const RestorePasswordForm = ({isLoading, onSubmitHandler}: PropsType) => {
+    const sendRecoveryEmailSuccess = useAppSelector<boolean>(state => state.restorePassword.sendRecoveryEmailSuccess)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -23,6 +25,9 @@ export const RestorePasswordForm = ({isLoading, onSubmitHandler}: PropsType) => 
             formik.resetForm()
         },
     });
+
+    if (sendRecoveryEmailSuccess) return <Navigate to={'/check-email'}/>
+
     return (
         <div className={s.authContainer}>
             <h2>Learning Cards</h2>

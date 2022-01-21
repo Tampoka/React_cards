@@ -27,6 +27,7 @@ export const LoginForm = React.memo(({
                                      }: PropsType) => {
     const dispatch = useDispatch()
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
+    const sendRecoveryEmailSuccess=useAppSelector<boolean>(state=>state.restorePassword.sendRecoveryEmailSuccess)
 
     const formik = useFormik({
         initialValues: {
@@ -57,7 +58,6 @@ export const LoginForm = React.memo(({
             <h2>Learning Cards</h2>
             {isLoading && <Spinner/>}
             <p className={s.sectionTitle}>Sign In</p>
-            <p className={s.errorMsg}>{errorMsg}</p>
             <div className={s.formContainer}>
                 <form onSubmit={formik.handleSubmit} className={s.form}>
                     <label htmlFor='name'>Email</label>

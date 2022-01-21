@@ -10,6 +10,8 @@ const RestorePassword = () => {
     const onSubmitHandler=useCallback((email:string)=>{
         dispatch(passwordRecovery(email))
     },[dispatch])
+
+
     return (
         <div>
             <RestorePasswordForm isLoading={isLoading} onSubmitHandler={onSubmitHandler}/>

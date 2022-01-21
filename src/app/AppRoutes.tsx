@@ -10,6 +10,7 @@ import TestingComponents from '../pages/Test/TestingComponents';
 import {Decks} from '../pages/Decks/Decks';
 import Cards from '../pages/Cards/Cards';
 import {Alert} from '../common/components/InfoAlert/Alert';
+import {CheckEmail} from '../pages/Auth/CheckEmail/CheckEmail';
 
 export const routes = [
     {path: '/', component: <TestingComponents/>, title: 'Home'},
@@ -18,6 +19,7 @@ export const routes = [
     {path: '/register', component: <SignUp2/>, title: 'Sign Up'},
     {path: '/404', component: <Error404/>, title: 'Error404'},
     {path: '/restore-password', component: <RestorePassword/>, title: 'Forgot'},
+    {path: '/check-email', component: <CheckEmail/>, title: 'Check Email'},
     {path: '/new-password', component: <NewPassword/>, title: 'New Password'},
     {path: '/decks', component: <Decks/>, title: 'Decks'},
     {path: '/cards', component: <Cards/>, title: 'Cards'},
