@@ -16,6 +16,7 @@ const Header = React.memo(() => {
             {title: 'Cards', to: '/cards'},
             {title: 'Restore', to: '/restore-password'},
             {title: 'CheckEmail', to: '/check-email'},
+            {title: 'New pass', to: '/new-password'},
             {title: 'Login', to: '/login'},
             {title: 'Sign-Up', to: '/register'},
         ]

@@ -4,7 +4,7 @@ import {PasswordRecoveryData} from '../api/auth-api';
 export const passwordRecoveryMessage = (email: string) => {
     const targetLink = developmentMode
         ? `http://localhost:3000/cards-react/#$/new-password/$token$`
-        : `https://aportraitofjoyce.github.io/cards-react/#$/new-password/$token$`
+        : `https://tampoka.github.io/cards-react/#$/new-password/$token$`
 
     const payload: PasswordRecoveryData = {
         email,

@@ -27,7 +27,6 @@ export const LoginForm = React.memo(({
                                      }: PropsType) => {
     const dispatch = useDispatch()
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
-    const sendRecoveryEmailSuccess=useAppSelector<boolean>(state=>state.restorePassword.sendRecoveryEmailSuccess)
 
     const formik = useFormik({
         initialValues: {

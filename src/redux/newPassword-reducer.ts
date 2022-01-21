@@ -1,13 +1,16 @@
+import {setAppError, setAppInfo, setAppIsLoading} from './app-reducer';
+import {authApi} from '../api/auth-api';
+import {ThunkType} from './store';
+
 const initialState = {
-    password: '',
-    //setSuccessNewPass: false,
+    newPasswordSuccess: false,
 }
 
 export const newPasswordReducer = (state: initialStateType = initialState, action: NewPasswordActionsType) => {
     switch (action.type) {
-        case 'NEW-PASSWORD/SET-NEW-PASSWORD':
+        case 'NEW-PASS/SET-NEW-PASSWORD-SUCCESS':
             return {
-                ...state, password: action.payload.password
+                ...state, newPasswordSuccess: action.payload.value
             }
         default:
             return state
@@ -15,16 +18,31 @@ export const newPasswordReducer = (state: initialStateType = initialState, actio
 }
 
 //ACTION CREATORS
-export const setNewPassword = (password: string) => ({
-    type: 'NEW-PASSWORD/SET-NEW-PASSWORD',
-    payload: {password}
+export const setNewPasswordSuccess = (value: boolean) => ({
+    type: 'NEW-PASS/SET-NEW-PASSWORD-SUCCESS',
+    payload: {value}
 } as const)
 
 //THUNK CREATORS
+export const setNewPassword = (password: string, resetPasswordToken: string | undefined): ThunkType => async dispatch => {
+    try {
+        dispatch(setAppIsLoading(true))
+        const response = await authApi.newPassword({password, resetPasswordToken})
+        if (response.status === 200) {
+            dispatch(setNewPasswordSuccess(true))
+            dispatch(setAppInfo(response.data.info))
+        }
+    } catch (e: any) {
+        dispatch(setAppError(true))
+        dispatch(setAppInfo(e.response ? e.response.data.error : e));
+    } finally {
+        dispatch(setAppIsLoading(false))
+    }
+}
 
 //TYPES
 export type initialStateType = typeof initialState
 
-export type SetNewPasswordActionType = ReturnType<typeof setNewPassword>
+export type SetNewPasswordSuccess = ReturnType<typeof setNewPasswordSuccess>
 export type NewPasswordActionsType =
-    |SetNewPasswordActionType
+    |SetNewPasswordSuccess
