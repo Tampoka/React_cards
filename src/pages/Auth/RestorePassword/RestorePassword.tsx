@@ -2,13 +2,13 @@ import {RestorePasswordForm} from "./RestorePasswordForm";
 import {useAppSelector} from "../../../redux/store";
 import {useCallback} from "react";
 import {useDispatch} from "react-redux";
-import {login} from '../../../redux/auth-reducer';
+import {passwordRecovery} from '../../../redux/restorePassword-reducer';
 
 const RestorePassword = () => {
     const isLoading=useAppSelector<boolean>(state=>state.app.isLoading)
     const dispatch=useDispatch()
-    const onSubmitHandler=useCallback((value:string)=>{
-        dispatch(login(value))
+    const onSubmitHandler=useCallback((email:string)=>{
+        dispatch(passwordRecovery(email))
     },[dispatch])
     return (
         <div>

@@ -1,5 +1,5 @@
 import {AxiosResponse} from 'axios';
-import {instance} from './auth-api';
+import {instance} from './axios-instance';
 
 
 export const packsAPI = {
