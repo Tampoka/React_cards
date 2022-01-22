@@ -1,8 +1,10 @@
 .tableContainer {
   background-color: inherit;
   table {
-    .deckName {
+    .deckName a{
       color: #fff;
+      text-decoration: none;
+      font-size: larger;
     }
 .myModal{
   //background: rgba(0, 0, 0, 0.5);

@@ -6,6 +6,8 @@ import s from './DecksTable.module.scss'
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import moment from 'moment';
 import {UpdateDeckModal} from '../UpdateDeckModal/UpdateDeckModal';
+import {NavLink} from 'react-router-dom';
+import {ROUTES} from '../../../routes/routes';
 
 type PropsType = {
     decks: CardsPackType[]
@@ -41,7 +43,7 @@ export const DecksTable = React.memo(({
                     const edit = (title: string) => updateDeckHandler(m._id, title);
 
                     return <tr key={m._id}>
-                        <td className={s.deckName}>{m.name}</td>
+                        <td className={s.deckName}><NavLink to={ROUTES.CARDS+'/'+m._id}>{m.name}</NavLink></td>
                         <td>{m.cardsCount}</td>
                         <td>{username}</td>
                         <td>{moment(m.created).format(('L'))}</td>
