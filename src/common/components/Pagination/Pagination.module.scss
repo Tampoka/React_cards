@@ -4,30 +4,31 @@
   gap: 8px;
 }
 
-.container span {
+.container button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  //padding: 8px;
   min-width: 40px;
   min-height: 40px;
   border-radius: 4px;
   cursor: pointer;
+  background-color: transparent;
 }
 
-.container span.active {
+.container button.active {
   background: #d57689;
   cursor: default;
 }
 
-.container span:hover {
+.container button:hover {
   opacity: 0.5;
 }
 
-.container span.active:hover {
+.container button.active:hover {
   opacity: 1;
 }
 
-.container span.hidden {
+.container button.hidden {
   display: none;
 }

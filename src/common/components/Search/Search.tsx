@@ -17,7 +17,6 @@ export const Search = () => {
     }
 
     useEffect(() => {
-        console.log('effect search')
         dispatch(setPackName( debouncedValue))
     }, [debouncedValue,dispatch])
     return (

@@ -1,4 +1,6 @@
 .decksContainer {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 30px;
   background-color: #8e9bef;

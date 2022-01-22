@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import s from './Pagination.module.scss'
+import {useAppSelector} from '../../../redux/store';
 
 type PropsType = {
     totalCount: number,
@@ -12,6 +13,7 @@ type PropsType = {
 export const Pagination = ({totalCount, countPerPage, currentPage, onChange, step = 10}: PropsType) => {
     const [prevIsHidden, setPrevIsHidden] = useState(false)
     const [nextIsHidden, setNextIsHidden] = useState(false)
+    const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
 
     const pageNumbers: number = Math.ceil(totalCount / countPerPage)
     const pages = []
@@ -35,32 +37,40 @@ export const Pagination = ({totalCount, countPerPage, currentPage, onChange, ste
 
     return (
         <div className={s.container}>
-            <span className={`${prevIsHidden && s.hidden}`}
-                  onClick={() => onChange(currentPage - 1)}>Prev</span>
+            <button className={`${prevIsHidden && s.hidden}`}
+                    onClick={() => onChange(currentPage - 1)} disabled={isLoading}>Prev
+            </button>
 
-            <span className={`${prevIsHidden && s.hidden}`}
-                  onClick={() => onChange(1)}>Start</span>
+            <button className={`${prevIsHidden && s.hidden}`}
+                    onClick={() => onChange(1)} disabled={isLoading}>Start
+            </button>
 
-            <span className={`${prevIsHidden && s.hidden}`}
-                  onClick={() => onChange(pagePreviousStep)}>...</span>
+            <button className={`${prevIsHidden && s.hidden}`}
+                    onClick={() => onChange(pagePreviousStep)} disabled={isLoading}>...
+            </button>
 
-            <span className={`${prevIsHidden && s.hidden}`}
-                  onClick={() => onChange(previousPage)}>{previousPage !== currentPage && previousPage}</span>
+            <button className={`${prevIsHidden && s.hidden}`}
+                    onClick={() => onChange(previousPage)}
+                    disabled={isLoading}>{previousPage !== currentPage && previousPage}</button>
 
-            <span className={s.active}>{currentPage}</span>
+            <button className={s.active} disabled={isLoading}>{currentPage}</button>
 
-            <span className={`${nextIsHidden && s.hidden}`}
-                  onClick={() => onChange(nextPage)}>{nextPage !== currentPage && nextPage}</span>
+            <button className={`${nextIsHidden && s.hidden}`}
+                    onClick={() => onChange(nextPage)}
+                    disabled={isLoading}>{nextPage !== currentPage && nextPage}</button>
 
-            <span className={`${nextIsHidden && s.hidden}`}
-                  onClick={() => onChange(pageNextStep)}>...</span>
+            <button className={`${nextIsHidden && s.hidden}`}
+                    onClick={() => onChange(pageNextStep)} disabled={isLoading}>...
+            </button>
 
 
-            <span className={`${nextIsHidden && s.hidden}`}
-                  onClick={() => onChange(currentPage + 1)}>Next</span>
+            <button className={`${nextIsHidden && s.hidden}`}
+                    onClick={() => onChange(currentPage + 1)} disabled={isLoading}>Next
+            </button>
 
-            <span className={`${nextIsHidden && s.hidden}`}
-                  onClick={() => onChange(pageNumbers)}>End</span>
+            <button className={`${nextIsHidden && s.hidden}`}
+                    onClick={() => onChange(pageNumbers)} disabled={isLoading}>End
+            </button>
 
         </div>
     )
