@@ -2,7 +2,8 @@ import {
     cardsAPI,
     CardsResponse,
     DeleteCardData,
-    GetCardsQueryParams, GradeData,
+    GetCardsQueryParams,
+    GradeData,
     NewCardData,
     UpdateCardData
 } from '../api/cards-api';
@@ -34,11 +35,14 @@ export const cardsReducer = (state = initialState, action: CardsActionsType): Ca
         case 'CARDS/SET-CARDS-TOTAL-COUNT':
             return {...state, cardsTotalCount: action.payload.num}
         case 'CARDS/SET-CURRENT-CARDS-DECK-ID':
+            // @ts-ignore
             return {...state, currentCardsPackID: action.payload.deckId}
         case 'CARDS/SET-MIN-MAX-GRADE':
             return {...state, minGrade: action.payload.values[0], maxGrade: action.payload.values[1]}
         case 'CARDS/SET-CURRENT-GRADE':
             return {...state, currentGrade: [...action.payload.values]}
+        case 'CARDS/SET-SORTING-METHOD':
+            return {...state,sortCardsMethod:action.payload.sortCardsMethod}
         default:
             return state
     }
@@ -49,7 +53,7 @@ const setCards = (payload: CardsResponse) => ({type: 'CARDS/SET-CARDS', payload}
 export const setCardsCurrentPage = (page: number) => ({type: 'CARDS/SET-CARDS-CURRENT-PAGE', payload: {page}} as const)
 export const setCardsPerPage = (num: number) => ({type: 'CARDS/SET-CARDS-PER-PAGE', payload: {num}} as const)
 export const setCardsTotalCount = (num: number) => ({type: 'CARDS/SET-CARDS-TOTAL-COUNT', payload: {num}} as const)
-export const setCurrentCardsDeckID = (deckId: string) => ({
+export const setCurrentCardsDeckID = (deckId: string | undefined) => ({
     type: 'CARDS/SET-CURRENT-CARDS-DECK-ID',
     payload: {deckId}
 } as const)

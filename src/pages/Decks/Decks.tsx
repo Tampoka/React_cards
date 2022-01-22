@@ -21,7 +21,6 @@ import {AddDeckForm} from './AddDeckForm/AddDeckForm';
 import {useModal} from '../../common/hooks/useModal';
 
 export const Decks = React.memo(() => {
-    // const [modalAddDeck, setModalAddDeck] = useState<boolean>(false)
     const {isOpen, onToggle} = useModal()
     const dispatch = useDispatch()
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
@@ -38,7 +37,8 @@ export const Decks = React.memo(() => {
         privatePacks,
         sortBy,
         currentCardsCount,
-        countPerPage
+        countPerPage,
+        packName
     } = useAppSelector<PacksInitialState>(state => state.decks)
 
     const paginationScrollTopRef = useRef<HTMLHeadingElement>(null)
@@ -60,11 +60,12 @@ export const Decks = React.memo(() => {
     }, [dispatch])
 
     useEffect(() => {
+        console.log('effect decks')
         // if (cardPacks.length === 0) {
         dispatch(fetchCardsPacks())
         // }
 
-    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn])
+    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy,packName])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})

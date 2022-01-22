@@ -6,7 +6,6 @@ import RestorePassword from '../pages/Auth/RestorePassword/RestorePassword';
 import {SignUp2} from '../pages/Auth/SignUp/SignUp2';
 import {Login} from '../pages/Auth/Login/Login';
 import {Decks} from '../pages/Decks/Decks';
-import Cards from '../pages/Cards/Cards';
 import {Alert} from '../common/components/InfoAlert/Alert';
 import {CheckEmail} from '../pages/Auth/CheckEmail/CheckEmail';
 import {NewPassword} from '../pages/Auth/NewPassword/NewPassword';
@@ -16,17 +15,19 @@ import {useDispatch} from 'react-redux';
 import React, {useEffect} from 'react';
 import {initializeApp} from '../redux/app-reducer';
 import BgLoader from '../common/components/BgLoader/BgLoader';
+import {Cards} from '../pages/Cards/Cards';
 
 
 function AppRoutes() {
     const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
+    const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(initializeApp())
     }, [dispatch])
 
-    if(!isInitialized) return<BgLoader/>
+    if (!isInitialized) return <BgLoader/>
     return (
         <div className={s.content}>
             <Alert/>

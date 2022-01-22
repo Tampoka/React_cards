@@ -19,7 +19,8 @@ export const initialState: PacksInitialState = {
     privatePacks: false,
     sortBy: undefined,
     currentCardsCount: [0, 0],
-    countPerPage: [10, 25, 50]
+    countPerPage: [10, 25, 50],
+    packName: ''
 }
 
 export const decksReducer = (state: PacksInitialState = initialState, action: DecksActionsType): PacksInitialState => {
@@ -43,6 +44,8 @@ export const decksReducer = (state: PacksInitialState = initialState, action: De
             return {...state, privatePacks: action.payload.value}
         case 'DECKS/SET-CURRENT-CARDS-COUNT':
             return {...state, currentCardsCount: [...action.payload.values]}
+        case 'DECKS/SET-DECK-NAME':
+            return {...state, packName:action.payload.name}
         default:
             return state
     }
@@ -64,6 +67,9 @@ export const setDecksSortingMethod = (method: string) => {
 export const setCurrentCardsCount = (values: number[]) => {
     return {type: 'DECKS/SET-CURRENT-CARDS-COUNT', payload: {values}} as const;
 };
+export const setPackName = (name: string) => {
+    return {type: 'DECKS/SET-DECK-NAME', payload: {name}} as const;
+};
 
 //Thunk Creators
 export const fetchCardsPacks = (payload?: GetCardPacksQueryParams): ThunkType =>
@@ -77,16 +83,16 @@ export const fetchCardsPacks = (payload?: GetCardPacksQueryParams): ThunkType =>
                 pageCount: decks.pageCount,
                 min: decks.currentCardsCount[0],
                 max: decks.currentCardsCount[1],
-                packName: payload?.packName || undefined,
+                packName: payload?.packName || decks.packName||undefined,
                 user_id: userID || undefined,
                 sortPacks: decks.sortBy
             });
             dispatch(setDecks(res.data));
             dispatch(setAppInfo('Cards are ready to study!'));
             console.log(res.data)
-        } catch (e: any) {
-             // dispatch(setAppError(true));
-             // dispatch(setAppInfo(e.response ? e.response.data.error : e));
+        } catch (e:any) {
+            dispatch(setAppError(true));
+            dispatch(setAppInfo(e.response ? e.response.data.error : e));
         } finally {
             dispatch(setAppIsLoading(false))
         }
@@ -99,7 +105,7 @@ export const postDeck = (payload: NewCardsPackData): ThunkType => async dispatch
         await decksApi.createCardsPack(payload);
         dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was created!'))
-    } catch (e:any) {
+    } catch (e: any) {
         console.log((e as Error).message);
         dispatch(setAppError(true));
         dispatch(setAppInfo(e.response ? e.response.data.error : e));
@@ -114,7 +120,7 @@ export const deleteDeck = (payload: DeleteCardsPackData): ThunkType => async dis
         await decksApi.deleteCardsPack(payload);
         dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was deleted!'))
-    } catch (e:any) {
+    } catch (e: any) {
         console.log((e as Error).message);
         dispatch(setAppError(true));
         dispatch(setAppInfo(e.response ? e.response.data.error : e));
@@ -129,7 +135,7 @@ export const updateDeck = (payload: UpdateCardsPackData): ThunkType => async dis
         await decksApi.updateCardsPack(payload);
         dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was updated!'));
-    } catch (e:any) {
+    } catch (e: any) {
         console.log((e as Error).message);
         dispatch(setAppError(true));
         dispatch(setAppInfo(e.response ? e.response.data.error : e));
@@ -145,6 +151,7 @@ export type PacksInitialState = CardsPackResponse & {
     sortBy: string | undefined
     currentCardsCount: number[]
     countPerPage: number[]
+    packName: string
 }
 
 export type SetDecksActionType = ReturnType<typeof setDecks>
@@ -155,6 +162,7 @@ export type SetDecksMinMaxCountActionType = ReturnType<typeof setDecksMinMaxCoun
 export type SetPrivateDecksActionType = ReturnType<typeof setPrivateDecks>
 export type SetDecksSortingMethodActionType = ReturnType<typeof setDecksSortingMethod>
 export type SetCurrentCardsCountActionType = ReturnType<typeof setCurrentCardsCount>
+export type SetPackNameActionType = ReturnType<typeof setPackName>
 
 export type DecksActionsType =
     | SetDecksActionType
@@ -165,4 +173,5 @@ export type DecksActionsType =
     | SetDecksMinMaxCountActionType
     | SetDecksSortingMethodActionType
     | SetCurrentCardsCountActionType
+    | SetPackNameActionType
 

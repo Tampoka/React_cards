@@ -40,7 +40,7 @@ export type CardsResponse = {
     minGrade: number
     page: number
     pageCount: number
-    packUserId: string
+    packUserId: string|undefined
 }
 
 export type GetCardsQueryParams = {

@@ -43,7 +43,7 @@ export const DecksTable = React.memo(({
                     const edit = (title: string) => updateDeckHandler(m._id, title);
 
                     return <tr key={m._id}>
-                        <td className={s.deckName}><NavLink to={ROUTES.CARDS+'/'+m._id}>{m.name}</NavLink></td>
+                        <td className={s.deckName}><NavLink to={`${ROUTES.CARDS}/${m._id}`}>{m.name}</NavLink></td>
                         <td>{m.cardsCount}</td>
                         <td>{username}</td>
                         <td>{moment(m.created).format(('L'))}</td>

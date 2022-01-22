@@ -25,7 +25,6 @@ export const UpdateDeckForm = React.memo(({onSubmitHandler, isLoading, title}: P
             onSubmitHandler(values.name)
         },
     });
-    console.log(formik.values)
     return (
         <>
             <form className={s.form} onSubmit={formik.handleSubmit}>
