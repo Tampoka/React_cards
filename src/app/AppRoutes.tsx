@@ -11,8 +11,22 @@ import {Alert} from '../common/components/InfoAlert/Alert';
 import {CheckEmail} from '../pages/Auth/CheckEmail/CheckEmail';
 import {NewPassword} from '../pages/Auth/NewPassword/NewPassword';
 import {ROUTES} from '../routes/routes';
+import {useAppSelector} from '../redux/store';
+import {useDispatch} from 'react-redux';
+import React, {useEffect} from 'react';
+import {initializeApp} from '../redux/app-reducer';
+import BgLoader from '../common/components/BgLoader/BgLoader';
+
 
 function AppRoutes() {
+    const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(initializeApp())
+    }, [dispatch])
+
+    if(!isInitialized) return<BgLoader/>
     return (
         <div className={s.content}>
             <Alert/>
@@ -20,6 +34,7 @@ function AppRoutes() {
                 {/*<Route path='/' element={<Profile/>}/>*/}
                 <Route path={ROUTES.PROFILE} element={<Profile/>}/>
                 <Route path={`${ROUTES.CARDS}/:cardsPackId`} element={<Cards/>}/>
+                <Route path={ROUTES.CARDS} element={<Cards/>}/>
                 <Route path={ROUTES.DECKS} element={<Decks/>}/>
                 <Route path={ROUTES.LOGIN} element={<Login/>}/>
                 <Route path={ROUTES.REG} element={<SignUp2/>}/>

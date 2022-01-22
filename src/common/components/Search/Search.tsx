@@ -22,12 +22,14 @@ export const Search = () => {
         // setResultsNum(totalCount)
     }, [debouncedValue,dispatch,totalCount])
     return (
-        <label className={s.searchLabel}>
-            Search for decks:
-            <SuperInputText value={searchValue}
-            onChange={onSearchHandler}/>
-            <span>Results: {totalCount}</span>
-        </label>
+        <div className={s.searchBlock}>
+            <label className={s.searchLabel}>
+                Search for decks:
+                <SuperInputText value={searchValue}
+                                onChange={onSearchHandler}/>
+                <span>Results: {totalCount}</span>
+            </label>
+    </div>
     );
 };
 
