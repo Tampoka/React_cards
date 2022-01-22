@@ -1,8 +1,13 @@
-import {cardsAPI, CardsResponse, GetCardsQueryParams} from '../api/cards-api';
-import {decksApi, GetCardPacksQueryParams} from '../api/decks-api';
+import {
+    cardsAPI,
+    CardsResponse,
+    DeleteCardData,
+    GetCardsQueryParams, GradeData,
+    NewCardData,
+    UpdateCardData
+} from '../api/cards-api';
 import {AppRootStateType, ThunkType} from './store';
 import {setAppError, setAppInfo, setAppIsLoading} from './app-reducer';
-import {setDecks} from './decks-reducer';
 
 const initialState: CardsInitialStateType = {
     cards: [],
@@ -60,16 +65,16 @@ export const fetchCards = (payload?: GetCardsQueryParams): ThunkType =>
     async (dispatch, getState: () => AppRootStateType) => {
         const cards = getState().cards
         try {
-        dispatch(setAppIsLoading(true))
+            dispatch(setAppIsLoading(true))
             const res = await cardsAPI.getCards({
-                cardsPack_id: cards.currentCardsPackID||payload?.cardsPack_id,
-                page:cards.page,
-                pageCount:payload?.pageCount||cards.pageCount,
-                min:cards.currentGrade[0],
-                max:cards.currentGrade[1],
-                cardQuestion:payload?.cardQuestion||undefined,
-                cardAnswer:payload?.cardAnswer||undefined,
-                sortCards:cards.sortCardsMethod
+                cardsPack_id: cards.currentCardsPackID || payload?.cardsPack_id,
+                page: cards.page,
+                pageCount: payload?.pageCount || cards.pageCount,
+                min: cards.currentGrade[0],
+                max: cards.currentGrade[1],
+                cardQuestion: payload?.cardQuestion || undefined,
+                cardAnswer: payload?.cardAnswer || undefined,
+                sortCards: cards.sortCardsMethod
             });
             dispatch(setCards(res.data));
             dispatch(setAppInfo('Cards are ready to study!'));
@@ -82,6 +87,57 @@ export const fetchCards = (payload?: GetCardsQueryParams): ThunkType =>
         }
     };
 
+export const createCard = (payload?: NewCardData): ThunkType => async dispatch => {
+    try {
+        dispatch(setAppIsLoading(true))
+        await cardsAPI.createCard(payload)
+        await dispatch(fetchCards())
+    } catch (e: any) {
+        dispatch(setAppError(true));
+        dispatch(setAppInfo(e.response ? e.response.data.error : e));
+    } finally {
+        dispatch(setAppIsLoading(false))
+    }
+}
+
+export const deleteCard = (payload: DeleteCardData): ThunkType => async dispatch => {
+    try {
+        dispatch(setAppIsLoading(true))
+        await cardsAPI.deleteCard(payload)
+        await dispatch(fetchCards())
+    } catch (e: any) {
+        dispatch(setAppError(true));
+        dispatch(setAppInfo(e.response ? e.response.data.error : e));
+    } finally {
+        dispatch(setAppIsLoading(false))
+    }
+}
+
+export const updateCard = (payload: UpdateCardData): ThunkType => async dispatch => {
+    try {
+        dispatch(setAppIsLoading(true))
+        await cardsAPI.updateCard(payload)
+        await dispatch(fetchCards())
+    } catch (e: any) {
+        dispatch(setAppError(true));
+        dispatch(setAppInfo(e.response ? e.response.data.error : e));
+    } finally {
+        dispatch(setAppIsLoading(false))
+    }
+}
+
+export const gradeAnswer = (payload: GradeData): ThunkType => async dispatch => {
+    try {
+        dispatch(setAppIsLoading(true))
+        await cardsAPI.grade(payload)
+        // await dispatch(fetchCards())
+    } catch (e: any) {
+        dispatch(setAppError(true));
+        dispatch(setAppInfo(e.response ? e.response.data.error : e));
+    } finally {
+        dispatch(setAppIsLoading(false))
+    }
+}
 
 //TYPES
 
