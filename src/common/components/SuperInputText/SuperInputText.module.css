@@ -1,4 +1,6 @@
 .inputContainer {
+    display: flex;
+    flex-direction: column;
 }
 
 .input {
@@ -24,5 +26,5 @@
     color: #dd3355;
     max-height: 80px;
     max-width: 260px;
-    margin: 0 0 10px 10px;
+    margin-bottom: 10px;
 }
