@@ -4,9 +4,9 @@ import {
     DeleteCardsPackData,
     GetCardPacksQueryParams,
     NewCardsPackData,
-    packsAPI,
+    decksApi,
     UpdateCardsPackData
-} from '../api/packs-api';
+} from '../api/decks-api';
 import {setAppError, setAppInfo, setAppIsLoading} from './app-reducer';
 
 export const initialState: PacksInitialState = {
@@ -72,8 +72,7 @@ export const fetchCardsPacks = (payload?: GetCardPacksQueryParams): ThunkType =>
         const userID = decks.privatePacks && getState().profile.profile?._id
         dispatch(setAppIsLoading(true))
         try {
-
-            const res = await packsAPI.getCardPacks({
+            const res = await decksApi.getCardPacks({
                 page: decks.page,
                 pageCount: decks.pageCount,
                 min: decks.currentCardsCount[0],
@@ -97,7 +96,7 @@ export const fetchCardsPacks = (payload?: GetCardPacksQueryParams): ThunkType =>
 export const postDeck = (payload: NewCardsPackData): ThunkType => async dispatch => {
     dispatch(setAppIsLoading(true));
     try {
-        await packsAPI.createCardsPack(payload);
+        await decksApi.createCardsPack(payload);
         dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was created!'))
     } catch (e:any) {
@@ -112,7 +111,7 @@ export const postDeck = (payload: NewCardsPackData): ThunkType => async dispatch
 export const deleteDeck = (payload: DeleteCardsPackData): ThunkType => async dispatch => {
     dispatch(setAppIsLoading(true));
     try {
-        await packsAPI.deleteCardsPack(payload);
+        await decksApi.deleteCardsPack(payload);
         dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was deleted!'))
     } catch (e:any) {
@@ -127,7 +126,7 @@ export const deleteDeck = (payload: DeleteCardsPackData): ThunkType => async dis
 export const updateDeck = (payload: UpdateCardsPackData): ThunkType => async dispatch => {
     dispatch(setAppIsLoading(true));
     try {
-        await packsAPI.updateCardsPack(payload);
+        await decksApi.updateCardsPack(payload);
         dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was updated!'));
     } catch (e:any) {

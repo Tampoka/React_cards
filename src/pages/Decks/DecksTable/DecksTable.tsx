@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardsPackType} from '../../../api/packs-api';
+import {CardsPackType} from '../../../api/decks-api';
 import {AppRootStateType} from '../../../redux/store';
 import {useSelector} from 'react-redux';
 import s from './DecksTable.module.scss'

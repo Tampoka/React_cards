@@ -2,7 +2,7 @@ import {AxiosResponse} from 'axios';
 import {instance} from './axios-instance';
 
 
-export const packsAPI = {
+export const decksApi = {
     getCardPacks: (payload?: GetCardPacksQueryParams) => instance
         .get<CardsPackResponse>('/cards/pack', {params: payload}),
 
