@@ -10,15 +10,10 @@ type NavListType = Array<{ title: string, to: string }>;
 
 const Header = React.memo(() => {
         const navList: NavListType = [
-            {title: 'Home', to: '/'},
+            // {title: 'Home', to: '/'},
             {title: 'Profile', to: '/profile'},
             {title: 'Decks', to: '/decks'},
             {title: 'Cards', to: '/cards'},
-            {title: 'Restore', to: '/restore-password'},
-            {title: 'CheckEmail', to: '/check-email'},
-            {title: 'New pass', to: '/new-password'},
-            {title: 'Login', to: '/login'},
-            {title: 'Sign-Up', to: '/register'},
         ]
         const mappedNavList = navList.map(({to, title}) => <NavLink to={to}
                                                                     className={({isActive}) => (isActive ? s.active : '')}
