@@ -9,6 +9,7 @@ import {RestorePasswordActionsType, restorePasswordReducer} from './restorePassw
 import {SignUpActionsType, signUpReducer} from './signUp-reducer';
 import {TypedUseSelectorHook, useSelector} from 'react-redux';
 import {DecksActionsType, decksReducer} from './decks-reducer';
+import {CardsActionsType, cardsReducer} from './cards-reducer';
 
 const rootReducer = combineReducers({
     app: appReducer,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
     newPassword: newPasswordReducer,
     restorePassword: restorePasswordReducer,
     signUp: signUpReducer,
-    decks: decksReducer
+    decks: decksReducer,
+    cards: cardsReducer
 })
 
 const middlewareEnhancer = applyMiddleware(thunk)
@@ -28,13 +30,14 @@ export const store = createStore(rootReducer, composeEnhancers)
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
 export type RootActionsType =
-    SignUpActionsType
+    | SignUpActionsType
     | ProfileActionsType
     | AppActionsType
     | AuthActionsType
     | DecksActionsType
     | RestorePasswordActionsType
-    | NewPasswordActionsType;
+    | NewPasswordActionsType
+    | CardsActionsType;
 
 export type ThunkType = ThunkAction<void, AppRootStateType, unknown, RootActionsType>;
 
