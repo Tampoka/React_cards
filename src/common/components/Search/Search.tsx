@@ -25,7 +25,7 @@ export const Search = () => {
                 Search for decks:
                 <SuperInputText value={searchValue}
                                 onChange={onSearchHandler}/>
-                <span>Results: {totalCount}</span>
+                <span>Found: <span className={s.results}>{totalCount}</span></span>
             </label>
     </div>
     );

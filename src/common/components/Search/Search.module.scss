@@ -1,7 +1,19 @@
-.searchBlock{
+.searchBlock {
   width: 200px;
-margin: 20px 0;
-input {
-  margin: 10px 0;
+  margin: 20px 0;
+
+  span {
+    color: #fff;
+  }
+
+  .results {
+    color: #d57689;
+    font-weight: bold;
+  }
+.searchLabel {
+  color: #fff;
 }
+  input {
+    margin: 10px 0;
+  }
 }
