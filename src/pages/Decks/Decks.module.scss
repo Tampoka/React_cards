@@ -1,11 +1,12 @@
 .decksWithSidebar {
   display: flex;
+
   .decksContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 30px;
+    padding: 10px;
     background-color: #8e9bef;
     min-height: 100vh;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -14,6 +15,14 @@
       text-align: center;
       margin-bottom: 30px;
     }
+
+    .searchWithAddItem {
+      display: flex;
+      align-items: center;
+
+      button {
+        margin-left: 80px;
+      }
+    }
   }
 }
-//for cards

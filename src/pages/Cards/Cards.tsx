@@ -7,6 +7,7 @@ import {
     createCard,
     deleteCard,
     fetchCards,
+    setCards,
     setCurrentCardsDeckID,
     updateCard
 } from '../../redux/cards-reducer';
@@ -16,6 +17,7 @@ import {CardsPackType} from '../../api/decks-api';
 import SuperButton from '../../common/components/SuperButton/SuperButton';
 import Spinner from '../../common/components/Spinner/Spinner';
 import {CardsTable} from './CardsTable/CardsTable';
+import {initialState} from '../../redux/cards-reducer';
 
 export const Cards = React.memo(() => {
     const {cardsPackId} = useParams<{ cardsPackId: string }>()
@@ -55,8 +57,9 @@ export const Cards = React.memo(() => {
 
     useEffect(() => {
         dispatch(setCurrentCardsDeckID(cardsPackId))
+        // clearing cards
         return () => {
-            setCurrentCardsDeckID('')
+           dispatch( setCards(initialState))
         }
     }, [dispatch, cardsPackId])
 

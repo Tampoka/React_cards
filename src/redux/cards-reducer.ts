@@ -10,7 +10,7 @@ import {
 import {AppRootStateType, ThunkType} from './store';
 import {setAppError, setAppInfo, setAppIsLoading} from './app-reducer';
 
-const initialState: CardsInitialStateType = {
+export const initialState: CardsInitialStateType = {
     cards: [],
     page: 1,
     pageCount: 10,
@@ -49,7 +49,7 @@ export const cardsReducer = (state = initialState, action: CardsActionsType): Ca
 }
 
 //ACTION CREATORS
-const setCards = (payload: CardsResponse) => ({type: 'CARDS/SET-CARDS', payload} as const)
+export const setCards = (payload: CardsResponse) => ({type: 'CARDS/SET-CARDS', payload} as const)
 export const setCardsCurrentPage = (page: number) => ({type: 'CARDS/SET-CARDS-CURRENT-PAGE', payload: {page}} as const)
 export const setCardsPerPage = (num: number) => ({type: 'CARDS/SET-CARDS-PER-PAGE', payload: {num}} as const)
 export const setCardsTotalCount = (num: number) => ({type: 'CARDS/SET-CARDS-TOTAL-COUNT', payload: {num}} as const)

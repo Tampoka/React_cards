@@ -14,7 +14,6 @@ import {PacksPagination} from './PacksPagination/PacksPagination';
 import s from './Decks.module.scss'
 import {DecksTable} from './DecksTable/DecksTable';
 import Spinner from '../../common/components/Spinner/Spinner';
-import {BtnBlock} from './BtnBlock/BtnBlock';
 import {Search} from '../../common/components/Search/Search';
 import {Modal} from '../../common/components/Modal/Modal';
 import {AddDeckForm} from './AddDeckForm/AddDeckForm';
@@ -64,7 +63,7 @@ export const Decks = React.memo(() => {
 
     useEffect(() => {
         dispatch(fetchCardsPacks())
-    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn,packName])
+    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn, packName])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
@@ -73,17 +72,17 @@ export const Decks = React.memo(() => {
     if (!isLoggedIn) return <Navigate to={'/login'}/>
     return (
         <div className={s.decksWithSidebar}>
-            <Sidebar/>
+            <Sidebar showPrivate={showPrivate} active={privatePacks}/>
             <div className={s.decksContainer}>
                 <h1 ref={paginationScrollTopRef}>Decks List</h1>
                 {/*<h1 >Decks</h1>*/}
                 {isLoading && <Spinner/>}
-                <BtnBlock showPrivate={showPrivate} active={privatePacks} />
-                <AddItem title='Add deck' setModal={onToggle}/>
                 <Modal visible={isOpen} setVisible={onToggle}>
                     <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
                 </Modal>
-                <Search/>
+                <div className={s.searchWithAddItem}>
+                    <Search/>
+                    <AddItem title='Add deck' setModal={onToggle}/></div>
                 <DecksTable decks={cardPacks}
                             deleteDeckHandler={deleteDeckHandler}
                             updateDeckHandler={updateDeckHandler}
