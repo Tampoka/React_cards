@@ -1,14 +1,14 @@
 .tableContainer {
   background-color: inherit;
+  flex-grow: 1;
+
   table {
-    .deckName a{
-      color: #fff;
-      text-decoration: none;
-      font-size: larger;
+    border-collapse: collapse;
+
+    .myModal {
+      //background: rgba(0, 0, 0, 0.5);
     }
-.myModal{
-  //background: rgba(0, 0, 0, 0.5);
-}
+
     button {
       padding: 5px 10px;
       font-size: inherit;
@@ -28,5 +28,34 @@
         }
       }
     }
+  }
+
+  td, th {
+    border: 1px solid #c2c3c4;
+    padding: 20px;
+  }
+
+  thead {
+    text-align: center;
+    font-size: larger;
+    background-color: #7c8efd;
+  }
+
+  tbody tr:nth-child(odd) {
+    background: #a6b0f3;
+  }
+
+  .deckName {
+    text-align: center;
+    overflow: hidden;
+
+    a {
+      color: #f9fcfb;
+      text-decoration: none;
+      font-size: larger;
+    }
+  }
+  tbody tr:hover {
+    background: #7c8efd;
   }
 }

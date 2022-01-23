@@ -52,6 +52,7 @@ export const Decks = React.memo(() => {
     }, [dispatch]);
 
     const showPrivate = useCallback((value: boolean) => {
+        console.log(value)
         dispatch(setPrivateDecks(value))
     }, [dispatch])
 
@@ -65,7 +66,7 @@ export const Decks = React.memo(() => {
         dispatch(fetchCardsPacks())
         // }
 
-    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy,packName])
+    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn,packName])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
