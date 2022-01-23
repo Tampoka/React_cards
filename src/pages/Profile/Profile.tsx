@@ -1,22 +1,24 @@
 import React from 'react';
 import {useAppSelector} from '../../redux/store';
 import {ProfileType} from '../../redux/profile-reducer';
-import {Navigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import s from './Profile.module.scss';
+import userImg from '../../assets/images/icons8-person-96.png'
 
 const Profile = React.memo(() => {
         const profile = useAppSelector<ProfileType>(state => state.profile.profile)
         const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
-    const userId=useAppSelector<string>(state=>state.profile.profile._id)
+        const navigate = useNavigate()
 
-        if (!isLoggedIn) {
-            return <Navigate to={'/login'}/>;
+        if (!isLoggedIn||profile._id!=='') {
+            navigate('/login')
         }
         return (
-            <div>
-                <h1>Welcome back, {profile.name}</h1>
-                <div>
-                    <img src={profile.avatar} alt="avatar"/>
-                    <p>Email: {profile.email}</p>
+            <div className={s.profileContainer}>
+                <h1>Welcome
+                    back, <span>{profile.name.includes('@') ? profile.name.substring(0, profile.name.indexOf('@')) : profile.name}</span> !</h1>
+                <div className={s.avatar}>
+                    <img src={profile.avatar?profile.avatar:userImg} alt="avatar"/>
                 </div>
             </div>
         );

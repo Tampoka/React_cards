@@ -10,7 +10,6 @@ export const AddItem = ({setModal,title}:PropsType) => {
     return (
         <div className={s.addBlock}>
             <SuperButton  className={s.addDeckBtn} onClick={() => setModal(true)}>{title}</SuperButton>
-
         </div>
     );
 };

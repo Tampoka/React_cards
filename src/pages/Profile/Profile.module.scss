@@ -1,0 +1,32 @@
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  //justify-content: space-evenly;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  width: 100%;
+  min-height: 550px;
+  background-color: rgba(0, 224, 255, 0.5354516806722689);
+
+  h1 span {
+  color: #fff;
+  }
+
+  .avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #7fcaea;
+    background-color: #64b1fc;
+    margin-top: 50px;
+
+
+    img {
+
+    }
+  }
+}

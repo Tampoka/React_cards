@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef} from 'react';
 import {useDispatch} from 'react-redux';
-import {Navigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../redux/store';
 import {
     deleteDeck,
@@ -27,6 +27,8 @@ export const Decks = React.memo(() => {
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
     const userId = useAppSelector<string>(state => state.profile.profile._id)
+    const userName= useAppSelector<string>(state => state.profile.profile.name)
+    const navigate=useNavigate()
 
     const {
         cardPacks,
@@ -62,17 +64,22 @@ export const Decks = React.memo(() => {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(fetchCardsPacks())
-    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn, packName])
+        if(!!userId) {
+            dispatch(fetchCardsPacks())
+        }
+    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn, packName,userId])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
     }, [page, pageCount])
 
-    if (!isLoggedIn) return <Navigate to={'/login'}/>
+    if (!isLoggedIn) {
+            navigate('/login')
+        // return <Navigate to={'/login'}/>
+    }
     return (
         <div className={s.decksWithSidebar}>
-            <Sidebar showPrivate={showPrivate} active={privatePacks}/>
+            <Sidebar showPrivate={showPrivate} active={privatePacks} userName={userName}/>
             <div className={s.decksContainer}>
                 <h1 ref={paginationScrollTopRef}>Decks List</h1>
                 {/*<h1 >Decks</h1>*/}
