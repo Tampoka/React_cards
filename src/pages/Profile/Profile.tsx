@@ -6,6 +6,7 @@ import {Navigate} from 'react-router-dom';
 const Profile = React.memo(() => {
         const profile = useAppSelector<ProfileType>(state => state.profile.profile)
         const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
+    const userId=useAppSelector<string>(state=>state.profile.profile._id)
 
         if (!isLoggedIn) {
             return <Navigate to={'/login'}/>;

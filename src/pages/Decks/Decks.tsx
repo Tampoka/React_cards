@@ -61,7 +61,6 @@ export const Decks = React.memo(() => {
     }, [dispatch])
 
     useEffect(() => {
-        console.log('effect decks')
         dispatch(fetchCardsPacks())
     }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn,packName])
 
@@ -69,7 +68,7 @@ export const Decks = React.memo(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
     }, [page, pageCount])
 
-    if (!isLoggedIn||!userId) return <Navigate to={'/login'}/>
+    if (!isLoggedIn) return <Navigate to={'/login'}/>
     return (
         <div className={s.decksContainer}>
             <h1 ref={paginationScrollTopRef}>Decks List</h1>
