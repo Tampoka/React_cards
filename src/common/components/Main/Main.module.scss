@@ -2,14 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  //align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-
   width: 80%;
   min-height: calc(100vh - 130px);
   margin: 0 auto;
-
-  background-color: #ecefee;
-
+  @media screen and (max-width: 881px) {
+    width: 100vw;
+  }
 }

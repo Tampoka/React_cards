@@ -19,6 +19,8 @@ import {Search} from '../../common/components/Search/Search';
 import {Modal} from '../../common/components/Modal/Modal';
 import {AddDeckForm} from './AddDeckForm/AddDeckForm';
 import {useModal} from '../../common/hooks/useModal';
+import {Sidebar} from './Sidebar/Sidebar';
+import {AddItem} from './Sidebar/AddItem/AddItem';
 
 export const Decks = React.memo(() => {
     const {isOpen, onToggle} = useModal()
@@ -70,23 +72,27 @@ export const Decks = React.memo(() => {
 
     if (!isLoggedIn) return <Navigate to={'/login'}/>
     return (
-        <div className={s.decksContainer}>
-            <h1 ref={paginationScrollTopRef}>Decks List</h1>
-            {/*<h1 >Decks</h1>*/}
-            {isLoading && <Spinner/>}
-            <BtnBlock showPrivate={showPrivate} active={privatePacks} setModal={onToggle}/>
-            <Modal visible={isOpen} setVisible={onToggle}>
-                <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
-            </Modal>
-            <Search/>
-            <DecksTable decks={cardPacks}
-                        deleteDeckHandler={deleteDeckHandler}
-                        updateDeckHandler={updateDeckHandler}
-                        userId={userId}/>
-            <PacksPagination totalCount={cardPacksTotalCount}
-                             pageCount={pageCount}
-                             currentPage={page}
-                             countPerPage={countPerPage}/>
+        <div className={s.decksWithSidebar}>
+            <Sidebar/>
+            <div className={s.decksContainer}>
+                <h1 ref={paginationScrollTopRef}>Decks List</h1>
+                {/*<h1 >Decks</h1>*/}
+                {isLoading && <Spinner/>}
+                <BtnBlock showPrivate={showPrivate} active={privatePacks} />
+                <AddItem title='Add deck' setModal={onToggle}/>
+                <Modal visible={isOpen} setVisible={onToggle}>
+                    <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
+                </Modal>
+                <Search/>
+                <DecksTable decks={cardPacks}
+                            deleteDeckHandler={deleteDeckHandler}
+                            updateDeckHandler={updateDeckHandler}
+                            userId={userId}/>
+                <PacksPagination totalCount={cardPacksTotalCount}
+                                 pageCount={pageCount}
+                                 currentPage={page}
+                                 countPerPage={countPerPage}/>
+            </div>
         </div>
     )
 })

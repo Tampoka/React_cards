@@ -10,9 +10,9 @@ type PropsType = {
     cards: CardType[]
     deleteCardHandler: (id: string) => void
     updateCardHandler: (id: string, title: string) => void
-    userId: string
+    isOwner: boolean
 }
-export const CardsTable = React.memo(({cards, deleteCardHandler, updateCardHandler, userId}: PropsType) => {
+export const CardsTable = React.memo(({cards, deleteCardHandler, updateCardHandler, isOwner}: PropsType) => {
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
 
     return (
@@ -36,13 +36,12 @@ export const CardsTable = React.memo(({cards, deleteCardHandler, updateCardHandl
                         <td>{moment(c.updated).format(('L'))}</td>
                         <td>{c.grade}</td>
                         <td className={s.btnColumn}>
-                            {userId === c.user_id && <><SuperButton disabled={isLoading}
-                                                                    onClick={() => deleteCardHandler(c._id)}
-                                                                    red>Delete</SuperButton>
+                            {isOwner && <><SuperButton disabled={isLoading}
+                                                       onClick={() => deleteCardHandler(c._id)}
+                                                       red>Delete</SuperButton>
                                 {/*<UpdateDeckModal deckName={c.name} isLoading={isLoading} onSubmitHandler={edit}/>*/}
                             </>
                             }
-                            <SuperButton disabled={isLoading}>Learn</SuperButton>
                         </td>
                     </tr>;
                 })}

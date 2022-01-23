@@ -55,6 +55,9 @@ export const Cards = React.memo(() => {
 
     useEffect(() => {
         dispatch(setCurrentCardsDeckID(cardsPackId))
+        return () => {
+            setCurrentCardsDeckID('')
+        }
     }, [dispatch, cardsPackId])
 
     useEffect(() => {
@@ -79,7 +82,7 @@ export const Cards = React.memo(() => {
                     <CardsTable cards={cards}
                                 deleteCardHandler={deleteCardHandler}
                                 updateCardHandler={updateCardHandler}
-                                userId={userId}/>
+                                isOwner={userId === packUserId}/>
                 </>
                 : <h1>Please <NavLink to={'/decks'}>choose deck</NavLink> to start learning</h1>
             }
