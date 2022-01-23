@@ -10,9 +10,11 @@ import {
     setCurrentCardsDeckID,
     updateCard
 } from '../../redux/cards-reducer';
-import {Navigate, useParams} from 'react-router-dom';
-import s from '../Decks/Decks.module.scss'
+import {Navigate, NavLink, useParams} from 'react-router-dom';
+import s from './Cards.module.scss'
 import {CardsPackType} from '../../api/decks-api';
+import SuperButton from '../../common/components/SuperButton/SuperButton';
+import Spinner from '../../common/components/Spinner/Spinner';
 
 export const Cards = React.memo(() => {
     const {cardsPackId} = useParams<{ cardsPackId: string }>()
@@ -57,7 +59,7 @@ export const Cards = React.memo(() => {
 
     useEffect(() => {
         cardsPackId && dispatch(fetchCards())
-    }, [dispatch,cardsPackId, page, pageCount, sortCardsMethod, currentGrade, isLoggedIn])
+    }, [dispatch, cardsPackId, page, pageCount, sortCardsMethod, currentGrade, isLoggedIn])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
@@ -65,18 +67,18 @@ export const Cards = React.memo(() => {
 
     if (!isLoggedIn) return <Navigate to='/login'/>
     return (
-        <div className={s.decksContainer}>
-            <h1 ref={paginationScrollTopRef}>Cards</h1>
+        <div className={s.cardsContainer}>
+            {currentCardsPack ? < >
+                    <SuperButton><NavLink to={'/decks'}>Back</NavLink></SuperButton>
+                    {currentCardsPack.cardsCount === 0
+                        ? <h1>There are no cards in this deck.
+                            Please <NavLink to={'/decks'}>choose another deck</NavLink></h1>
+                        : <h1 ref={paginationScrollTopRef}>{currentCardsPack.name}</h1>}
+                    {isLoading && <Spinner/>}
+                </>
+                : <h1>Please <NavLink to={'/decks'}>choose deck</NavLink> to start learning</h1>
+            }
 
-            {currentCardsPack && <div >
-                <p> {currentCardsPack.user_name}</p>
-            </div>}
-            {cardsPackId?<p>{cardsPackId} yo!</p>
-            :<p>No deckId</p>}
-
-
-            {/*<h1 >Cards</h1>*/}
-            {/*{isLoading && <Spinner/>}*/}
             {/*<Modal visible={isOpen} setVisible={onToggle}>*/}
             {/*    <AddDeckForm onSubmitHandler={addNewCardHandler} isLoading={isLoading}/>*/}
             {/*</Modal>*/}

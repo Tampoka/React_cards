@@ -1,29 +1,28 @@
 .selectContainer {
+    width: 160px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    margin-left: 60px;
 }
 
 .selectLabel {
-    color: #fff;
     margin-bottom: 5px;
+    margin-right: 10px;
     font-size: larger;
 }
 
 .select {
     appearance: none;
-
+    text-align: center;
     cursor: pointer;
-    min-width: 200px;
+    min-width: 70px;
     height: 40px;
-    background-color: #3928b4;
-    padding: 8px;
-    padding-right: 20px;
+    background-color: #d57689;
     color: #99ff99;
     font-size: larger;
     border-radius: 6px;
     line-height: 21px;
-    border: 1px solid #fff;
+    /*border: 1px solid #fff;*/
 }
 
 .select:focus {
@@ -44,4 +43,6 @@
 .option:checked {
     background: #3928b4;
 }
+
+
 

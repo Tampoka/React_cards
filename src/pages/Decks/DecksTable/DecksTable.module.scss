@@ -1,6 +1,6 @@
 .tableContainer {
   background-color: inherit;
-  flex-grow: 1;
+  //flex-grow: 1;
 
   table {
     border-collapse: collapse;
@@ -41,13 +41,14 @@
     background-color: #7c8efd;
   }
 
-  tbody tr:nth-child(odd) {
-    background: #a6b0f3;
-  }
+  //tbody tr:nth-child(odd) {
+  //  background: #a6b0f3;
+  //}
 
   .deckName {
     text-align: center;
     overflow: hidden;
+    max-width: 300px;
 
     a {
       color: #f9fcfb;

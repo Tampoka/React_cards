@@ -5,7 +5,7 @@ type DefaultSelectPropsType = DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectE
 
 type SuperSelectPropsType = DefaultSelectPropsType & {
     options?: string[] | number[]
-    onChangeOption?: (option: string|number) => void
+    onChangeOption?: (option: any) => void
     label?: string
 }
 
@@ -38,14 +38,14 @@ const SuperSelect: React.FC<SuperSelectPropsType> = (
     const finalSelectClassName = s.select + (className ? ' ' + className : '')
 
     return (
-        <div className={s.selectContainer}>
+        <div className={`${s.selectContainer} (disabled?${s.disabled})`}>
             {label && <label className={s.selectLabel}>{label}</label>}
             <select onChange={onChangeCallback}
                     {...restProps}
-                    className={finalSelectClassName}
-            >
+                    className={finalSelectClassName}>
                 {mappedOptions}
-            </select></div>
+            </select>
+        </div>
     )
 }
 
