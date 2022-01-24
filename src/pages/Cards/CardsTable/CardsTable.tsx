@@ -6,6 +6,7 @@ import moment from 'moment';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import {CardType} from '../../../api/cards-api';
 import {Sort} from '../../../common/components/Sort/Sort';
+import {Grade} from '../Grade/Grade';
 
 type PropsType = {
     cards: CardType[]
@@ -14,30 +15,43 @@ type PropsType = {
     isOwner: boolean
     sortCallback: (sortMethod: string) => void
     sortMethod?: string
+    minGrade: number
+    maxGrade: number
 }
-export const CardsTable = React.memo(({cards, deleteCardHandler, updateCardHandler, isOwner,sortMethod,sortCallback}: PropsType) => {
+export const CardsTable = React.memo(({
+                                          cards,
+                                          deleteCardHandler,
+                                          updateCardHandler,
+                                          isOwner,
+                                          sortMethod,
+                                          sortCallback,
+                                          minGrade, maxGrade
+                                      }: PropsType) => {
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
 
     return (
-        <div className={s.tableContainer}>
+        <div className={
+            s.tableContainer
+        }
+        >
             <table>
                 <thead>
                 <tr>
                     <td>
                         <div className={s.tableHeading}><p>Question</p>
-                        <Sort sortBy={'question'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                            <Sort sortBy={'question'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
                     </td>
                     <td>
                         <div className={s.tableHeading}><p>Answer</p>
-                        <Sort sortBy={'question'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                            <Sort sortBy={'answe'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
                     </td>
                     <td>
                         <div className={s.tableHeading}><p>Last updated</p>
-                            <Sort sortBy={'question'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                            <Sort sortBy={'updated'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
                     </td>
                     <td>
                         <div className={s.tableHeading}><p>Grade</p>
-                            <Sort sortBy={'question'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                            <Sort sortBy={'grade'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
                     </td>
                     <td>Actions</td>
                 </tr>
@@ -49,7 +63,8 @@ export const CardsTable = React.memo(({cards, deleteCardHandler, updateCardHandl
                         <td className={s.deckName}>{c.question}</td>
                         <td>{c.answer}</td>
                         <td>{moment(c.updated).format(('L'))}</td>
-                        <td>{c.grade}</td>
+                        {/*<td>{c.grade}</td>*/}
+                        <td className={s.grade}>{c.grade}<Grade grade={c.grade} minGrade={minGrade} maxGrade={maxGrade}/></td>
                         <td className={s.btnColumn}>
                             {isOwner && <><SuperButton disabled={isLoading}
                                                        onClick={() => deleteCardHandler(c._id)}
@@ -63,6 +78,7 @@ export const CardsTable = React.memo(({cards, deleteCardHandler, updateCardHandl
                 </tbody>
             </table>
         </div>
-    );
+    )
+        ;
 })
 

@@ -65,7 +65,7 @@ export const Cards = React.memo(() => {
         dispatch(setCurrentCardsDeckID(cardsPackId))
         // clearing cards
         return () => {
-           dispatch( setCards(initialState))
+            dispatch(setCards(initialState))
         }
     }, [dispatch, cardsPackId])
 
@@ -93,7 +93,9 @@ export const Cards = React.memo(() => {
                                 updateCardHandler={updateCardHandler}
                                 isOwner={userId === packUserId}
                                 sortCallback={changeCardsSortMethod}
-                                sortMethod={sortCardsMethod}/>
+                                sortMethod={sortCardsMethod}
+                                minGrade={minGrade}
+                                maxGrade={maxGrade}/>
                 </>
                 : <h1>Please <NavLink to={'/decks'}>choose deck</NavLink> to start learning</h1>
             }
