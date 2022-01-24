@@ -1,3 +1,5 @@
+@import '../../styles/saas/variables.scss';
+
 .button {
     text-decoration: none;
     border: none;
@@ -24,13 +26,13 @@
 }
 
 .default {
-    background-color: #3928b4;
+    background-color: $buttonDefaultBgColor;
     color: #99ff99;
     outline: none;
 }
 
 .red {
-    background: #dd3355;
+    background: $buttonErrorBgColor;
 }
 
 .button:disabled {

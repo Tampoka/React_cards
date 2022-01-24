@@ -1,3 +1,5 @@
+@import '../../styles/saas/variables';
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -17,7 +19,7 @@
 }
 
 .container button.active {
-  background: #d57689;
+  background: $buttonErrorBgColor;
   cursor: default;
 }
 

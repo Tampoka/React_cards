@@ -1,3 +1,5 @@
+@import '../../styles/saas/variables.scss';
+
 .selectContainer {
     width: 160px;
     display: flex;
@@ -16,7 +18,7 @@
     cursor: pointer;
     min-width: 80px;
     height: 40px;
-    background-color: #d57689;
+    background-color: $buttonErrorBgColor;
     color: #99ff99;
     font-size: larger;
     border-radius: 6px;
@@ -32,7 +34,7 @@
 
 .option {
     color: black;
-    background: #3928b4;
+    background: $buttonDefaultBgColor;
 }
 
 
@@ -41,7 +43,7 @@
 }
 
 .option:checked {
-    background: #3928b4;
+    background: $buttonDefaultBgColor;
 }
 
 

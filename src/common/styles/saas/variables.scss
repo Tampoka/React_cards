@@ -1,14 +1,14 @@
 //COLORS
 
-$textColor: #fff;
+$textColor: #000;
+$textColorLight:#fff;
 
 $primaryColor: #3b3b81;
 
-$bgColor: #88c5c5;
+$bgLightColor: rgba(84, 165, 245, 0.53);
+$bgSecondColor: rgba(87, 204, 252, 0.71);
 
-$bgSecondColor: #1d2323;
+$buttonDefaultBgColor: #493ac4;
+$buttonErrorBgColor: #8531af;
 
 //FONTS
-$titleFont: 'Josefin Sans', sans-serif;
-
-$textFont: 'Poppins', sans-serif;

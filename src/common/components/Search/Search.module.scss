@@ -1,3 +1,5 @@
+@import '../../styles/saas/variables';
+
 .searchBlock {
   width: 300px;
   margin: 20px 0;
@@ -7,7 +9,7 @@
   }
 
   .results {
-    color: #d57689;
+    color: $buttonErrorBgColor;
     font-weight: bold;
   }
 .searchLabel {
