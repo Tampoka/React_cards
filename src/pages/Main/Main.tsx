@@ -1,5 +1,5 @@
 import s from './Main.module.scss';
-import AppRoutes from '../../../app/AppRoutes';
+import AppRoutes from '../../app/AppRoutes';
 
 const Main = () => {
     return (

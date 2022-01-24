@@ -19,6 +19,7 @@ export const Search = () => {
     useEffect(() => {
         dispatch(setPackName( debouncedValue))
     }, [debouncedValue,dispatch])
+
     return (
         <div className={s.searchBlock}>
             <label className={s.searchLabel}>

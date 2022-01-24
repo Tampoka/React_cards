@@ -79,7 +79,7 @@ export const Cards = React.memo(() => {
                     <SuperButton><NavLink to={'/decks'}>Back</NavLink></SuperButton>
                     {currentCardsPack.cardsCount === 0
                         ? <h1>There are no cards in this deck.
-                            Please <NavLink to={'/decks'}>choose another deck</NavLink></h1>
+                            <span>Please <NavLink to={'/decks'}>choose another deck</NavLink></span></h1>
                         : <h1 ref={paginationScrollTopRef}>{currentCardsPack.name}</h1>}
                     {isLoading && <Spinner/>}
                     <CardsTable cards={cards}

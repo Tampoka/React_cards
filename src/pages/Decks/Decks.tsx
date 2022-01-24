@@ -20,6 +20,7 @@ import {AddDeckForm} from './AddDeckForm/AddDeckForm';
 import {useModal} from '../../common/hooks/useModal';
 import {Sidebar} from './Sidebar/Sidebar';
 import {AddItem} from './Sidebar/AddItem/AddItem';
+import {DecksRange} from './Sidebar/DecksRange/DecksRange';
 
 export const Decks = React.memo(() => {
     const {isOpen, onToggle} = useModal()
@@ -73,16 +74,14 @@ export const Decks = React.memo(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
     }, [page, pageCount])
 
-    if (!isLoggedIn) {
-            navigate('/login')
-        // return <Navigate to={'/login'}/>
-    }
+    if (!isLoggedIn) return <Navigate to={'/login'}/>
     return (
         <div className={s.decksWithSidebar}>
-            <Sidebar showPrivate={showPrivate} active={privatePacks} userName={userName}/>
+            <Sidebar showPrivate={showPrivate} active={privatePacks} userName={userName}  minCardsCount={minCardsCount}
+                     maxCardsCount={maxCardsCount}/>
             <div className={s.decksContainer}>
                 <h1 ref={paginationScrollTopRef}>Decks List</h1>
-                {/*<h1 >Decks</h1>*/}
+                <DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount}/>
                 {isLoading && <Spinner/>}
                 <Modal visible={isOpen} setVisible={onToggle}>
                     <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>

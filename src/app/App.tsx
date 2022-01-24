@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../common/components/Header/Header';
-import Main from '../common/components/Main/Main';
+import Main from '../pages/Main/Main';
 
 function App() {
     // const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
