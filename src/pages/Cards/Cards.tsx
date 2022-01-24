@@ -7,8 +7,10 @@ import {
     createCard,
     deleteCard,
     fetchCards,
+    initialState,
     setCards,
     setCurrentCardsDeckID,
+    setSortCardsMethod,
     updateCard
 } from '../../redux/cards-reducer';
 import {Navigate, NavLink, useParams} from 'react-router-dom';
@@ -17,7 +19,6 @@ import {CardsPackType} from '../../api/decks-api';
 import SuperButton from '../../common/components/SuperButton/SuperButton';
 import Spinner from '../../common/components/Spinner/Spinner';
 import {CardsTable} from './CardsTable/CardsTable';
-import {initialState} from '../../redux/cards-reducer';
 
 export const Cards = React.memo(() => {
     const {cardsPackId} = useParams<{ cardsPackId: string }>()
@@ -29,6 +30,11 @@ export const Cards = React.memo(() => {
     const cardPacks = useAppSelector<CardsPackType[]>(state => state.decks.cardPacks)
     const currentCardsPack = cardPacks.find(d => d._id === cardsPackId)
     const paginationScrollTopRef = useRef<HTMLHeadingElement>(null)
+
+    const changeCardsSortMethod = (sortMethod: string) => {
+        dispatch(setSortCardsMethod(sortMethod))
+    }
+
     const {
         cards,
         page,
@@ -85,7 +91,9 @@ export const Cards = React.memo(() => {
                     <CardsTable cards={cards}
                                 deleteCardHandler={deleteCardHandler}
                                 updateCardHandler={updateCardHandler}
-                                isOwner={userId === packUserId}/>
+                                isOwner={userId === packUserId}
+                                sortCallback={changeCardsSortMethod}
+                                sortMethod={sortCardsMethod}/>
                 </>
                 : <h1>Please <NavLink to={'/decks'}>choose deck</NavLink> to start learning</h1>
             }

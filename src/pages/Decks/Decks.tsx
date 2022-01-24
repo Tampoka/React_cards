@@ -32,7 +32,7 @@ export const Decks = React.memo(() => {
     const navigate = useNavigate()
 
     const sortDecksMethod = useAppSelector<string | undefined>(state => state.cards.sortCardsMethod)
-    const changeCardsSortMethod = (sortMethod: string) => {
+    const changeDecksSortMethod = (sortMethod: string) => {
         dispatch(setDecksSortingMethod(sortMethod))
     }
 
@@ -98,7 +98,7 @@ export const Decks = React.memo(() => {
                             deleteDeckHandler={deleteDeckHandler}
                             updateDeckHandler={updateDeckHandler}
                             userId={userId}
-                            sortCallback={changeCardsSortMethod}
+                            sortCallback={changeDecksSortMethod}
                             sortMethod={sortDecksMethod}
                 />
                 <PacksPagination totalCount={cardPacksTotalCount}

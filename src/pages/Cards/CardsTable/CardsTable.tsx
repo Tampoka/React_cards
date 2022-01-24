@@ -5,14 +5,17 @@ import s from '../../Decks/DecksTable/DecksTable.module.scss';
 import moment from 'moment';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import {CardType} from '../../../api/cards-api';
+import {Sort} from '../../../common/components/Sort/Sort';
 
 type PropsType = {
     cards: CardType[]
     deleteCardHandler: (id: string) => void
     updateCardHandler: (id: string, title: string) => void
     isOwner: boolean
+    sortCallback: (sortMethod: string) => void
+    sortMethod?: string
 }
-export const CardsTable = React.memo(({cards, deleteCardHandler, updateCardHandler, isOwner}: PropsType) => {
+export const CardsTable = React.memo(({cards, deleteCardHandler, updateCardHandler, isOwner,sortMethod,sortCallback}: PropsType) => {
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
 
     return (
@@ -20,10 +23,22 @@ export const CardsTable = React.memo(({cards, deleteCardHandler, updateCardHandl
             <table>
                 <thead>
                 <tr>
-                    <td>Question</td>
-                    <td>Answer</td>
-                    <td>Last updated</td>
-                    <td>Grade</td>
+                    <td>
+                        <div className={s.tableHeading}><p>Question</p>
+                        <Sort sortBy={'question'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                    </td>
+                    <td>
+                        <div className={s.tableHeading}><p>Answer</p>
+                        <Sort sortBy={'question'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                    </td>
+                    <td>
+                        <div className={s.tableHeading}><p>Last updated</p>
+                            <Sort sortBy={'question'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                    </td>
+                    <td>
+                        <div className={s.tableHeading}><p>Grade</p>
+                            <Sort sortBy={'question'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                    </td>
                     <td>Actions</td>
                 </tr>
                 </thead>
