@@ -8,12 +8,15 @@ import moment from 'moment';
 import {UpdateDeckModal} from '../UpdateDeckModal/UpdateDeckModal';
 import {NavLink} from 'react-router-dom';
 import {ROUTES} from '../../../routes/routes';
+import {Sort} from '../../../common/components/Sort/Sort';
 
 type PropsType = {
     decks: CardsPackType[]
     deleteDeckHandler: (id: string) => void
     updateDeckHandler: (id: string, title: string) => void
     userId: string
+    sortCallback: (sortMethod: string) => void
+    sortMethod?: string
 }
 
 export const DecksTable = React.memo(({
@@ -21,6 +24,8 @@ export const DecksTable = React.memo(({
                                           deleteDeckHandler,
                                           updateDeckHandler,
                                           userId,
+                                          sortMethod,
+                                          sortCallback
                                       }: PropsType) => {
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
     return (
@@ -28,11 +33,24 @@ export const DecksTable = React.memo(({
             <table>
                 <thead>
                 <tr>
-                    <td>Deck</td>
-                    <td>Cards</td>
-                    <td>Author</td>
-                    <td>Created</td>
-                    <td>Updated</td>
+                    <td>
+                        <div className={s.tableHeading}><p>Deck</p>
+                            <Sort sortBy={'name'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                    </td>
+                    <td>
+                        <div className={s.tableHeading}><p>Cards</p>
+                            <Sort sortBy={'cardsCount'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                    </td>
+                    <td><div className={s.tableHeading}><p>Author</p>
+                        <Sort sortBy={'user_id'} sortCallback={sortCallback} sortMethod={sortMethod}/></div></td>
+                    <td>
+                        <div className={s.tableHeading}><p>Created</p>
+                            <Sort sortBy={'created'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                    </td>
+                    <td>
+                        <div className={s.tableHeading}><p>Updated</p>
+                            <Sort sortBy={'updated'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                    </td>
                     <td>Actions</td>
                 </tr>
                 </thead>
@@ -50,7 +68,8 @@ export const DecksTable = React.memo(({
                         <td>{moment(m.updated).format(('L'))}</td>
                         <td className={s.btnColumn}>
                             {userId === m.user_id && <><SuperButton disabled={isLoading}
-                                                                    onClick={() => deleteDeckHandler(m._id)} red>Delete</SuperButton>
+                                                                    onClick={() => deleteDeckHandler(m._id)}
+                                                                    red>Delete</SuperButton>
                                 <UpdateDeckModal deckName={m.name} isLoading={isLoading} onSubmitHandler={edit}/>
                             </>
                             }

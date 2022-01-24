@@ -7,6 +7,7 @@ import {
     fetchCardsPacks,
     PacksInitialState,
     postDeck,
+    setDecksSortingMethod,
     setPrivateDecks,
     updateDeck
 } from '../../redux/decks-reducer';
@@ -20,7 +21,6 @@ import {AddDeckForm} from './AddDeckForm/AddDeckForm';
 import {useModal} from '../../common/hooks/useModal';
 import {Sidebar} from './Sidebar/Sidebar';
 import {AddItem} from './Sidebar/AddItem/AddItem';
-import {DecksRange} from './DecksRange/DecksRange';
 
 export const Decks = React.memo(() => {
     const {isOpen, onToggle} = useModal()
@@ -28,8 +28,13 @@ export const Decks = React.memo(() => {
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
     const userId = useAppSelector<string>(state => state.profile.profile._id)
-    const userName= useAppSelector<string>(state => state.profile.profile.name)
-    const navigate=useNavigate()
+    const userName = useAppSelector<string>(state => state.profile.profile.name)
+    const navigate = useNavigate()
+
+    const sortDecksMethod = useAppSelector<string | undefined>(state => state.cards.sortCardsMethod)
+    const changeCardsSortMethod = (sortMethod: string) => {
+        dispatch(setDecksSortingMethod(sortMethod))
+    }
 
     const {
         cardPacks,
@@ -65,10 +70,10 @@ export const Decks = React.memo(() => {
     }, [dispatch])
 
     useEffect(() => {
-        if(!!userId) {
+        if (!!userId) {
             dispatch(fetchCardsPacks())
         }
-    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn, packName,userId])
+    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn, packName, userId,sortDecksMethod])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
@@ -77,7 +82,7 @@ export const Decks = React.memo(() => {
     if (!isLoggedIn) return <Navigate to={'/login'}/>
     return (
         <div className={s.decksWithSidebar}>
-            <Sidebar showPrivate={showPrivate} active={privatePacks} userName={userName}  minCardsCount={minCardsCount}
+            <Sidebar showPrivate={showPrivate} active={privatePacks} userName={userName} minCardsCount={minCardsCount}
                      maxCardsCount={maxCardsCount}/>
             <div className={s.decksContainer}>
                 <h1 ref={paginationScrollTopRef}>Decks List</h1>
@@ -92,7 +97,10 @@ export const Decks = React.memo(() => {
                 <DecksTable decks={cardPacks}
                             deleteDeckHandler={deleteDeckHandler}
                             updateDeckHandler={updateDeckHandler}
-                            userId={userId}/>
+                            userId={userId}
+                            sortCallback={changeCardsSortMethod}
+                            sortMethod={sortDecksMethod}
+                />
                 <PacksPagination totalCount={cardPacksTotalCount}
                                  pageCount={pageCount}
                                  currentPage={page}

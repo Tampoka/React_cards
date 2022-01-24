@@ -1,0 +1,24 @@
+.sort {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+
+  button {
+    background-color: transparent;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+
+    &.active {
+      i {
+        color: #306e9a;
+      }
+    }
+
+    i {
+      color: #7fc1ef;
+    }
+  }
+}

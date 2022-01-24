@@ -40,8 +40,12 @@
     text-align: center;
     min-width: 80px;
   }
+.tableHeading{
+  display: flex;
+  justify-content: space-between;
 
-  thead {
+}
+  thead  td{
     font-size: larger;
     background-color: #7c8efd;
   }
