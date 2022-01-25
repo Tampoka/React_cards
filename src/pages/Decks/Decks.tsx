@@ -7,7 +7,8 @@ import {
     fetchCardsPacks,
     PacksInitialState,
     postDeck,
-    setDecksSortingMethod, setPackName,
+    setDecksSortingMethod,
+    setPackName,
     setPrivateDecks,
     updateDeck
 } from '../../redux/decks-reducer';
@@ -87,7 +88,7 @@ export const Decks = React.memo(() => {
     return (
         <div className={s.decksWithSidebar}>
             <Sidebar showPrivate={showPrivate} active={privatePacks} userName={userName} minCardsCount={minCardsCount}
-                     maxCardsCount={maxCardsCount}/>
+                     maxCardsCount={maxCardsCount} isLoading={isLoading}/>
             <div className={s.decksContainer}>
                 <h1 ref={paginationScrollTopRef}>Decks List</h1>
                 {/*<DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount}/>*/}

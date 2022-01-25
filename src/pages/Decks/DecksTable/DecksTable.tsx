@@ -41,8 +41,10 @@ export const DecksTable = React.memo(({
                         <div className={s.tableHeading}><p>Cards</p>
                             <Sort sortBy={'cardsCount'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
                     </td>
-                    <td><div className={s.tableHeading}><p>Author</p>
-                        <Sort sortBy={'user_id'} sortCallback={sortCallback} sortMethod={sortMethod}/></div></td>
+                    <td>
+                        <div className={s.tableHeading}><p>Author</p>
+                            <Sort sortBy={'user_id'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
+                    </td>
                     <td>
                         <div className={s.tableHeading}><p>Created</p>
                             <Sort sortBy={'created'} sortCallback={sortCallback} sortMethod={sortMethod}/></div>
@@ -62,8 +64,8 @@ export const DecksTable = React.memo(({
 
                     return <tr key={m._id}>
                         <td className={s.deckName}>
-                            <SuperButton><NavLink to={`${ROUTES.CARDS}/${m._id}`}>{m.name}</NavLink>
-                            </SuperButton></td>
+                            <NavLink to={`${ROUTES.CARDS}/${m._id}`}>{m.name}</NavLink>
+                        </td>
                         <td>{m.cardsCount}</td>
                         <td>{username}</td>
                         <td>{moment(m.created).format(('L'))}</td>

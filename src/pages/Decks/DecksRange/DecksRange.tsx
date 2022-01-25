@@ -5,14 +5,17 @@ import s from './DecksRange.module.scss'
 import {useDispatch} from 'react-redux';
 import {useDebounce} from '../../../common/hooks/useDebounce';
 import {setCurrentCardsCount} from '../../../redux/decks-reducer';
+import SuperButton from '../../../common/components/SuperButton/SuperButton';
 
 type PropsType = {
     minCardsCount: number
     maxCardsCount: number
+    isLoading: boolean
 }
 
-export const DecksRange = ({minCardsCount, maxCardsCount}: PropsType) => {
+export const DecksRange = ({minCardsCount, maxCardsCount, isLoading}: PropsType) => {
         const dispatch = useDispatch()
+
         const [rangeValues, setRangeValues] = useState([minCardsCount, maxCardsCount])
         const createSliderWithTooltip = Slider.createSliderWithTooltip;
         const Range = createSliderWithTooltip(Slider.Range);
@@ -26,6 +29,9 @@ export const DecksRange = ({minCardsCount, maxCardsCount}: PropsType) => {
             setRangeValues(values)
         }
 
+        const resetRange = () => {
+            setRangeValues([minCardsCount, maxCardsCount])
+        }
         useEffect(() => {
             dispatch(setCurrentCardsCount(debouncedRange))
         }, [debouncedRange, dispatch])
@@ -54,7 +60,9 @@ export const DecksRange = ({minCardsCount, maxCardsCount}: PropsType) => {
                         placement: "top",
                         visible: true,
                     }}
-                /></div>
+                />
+                <SuperButton disabled={isLoading} onClick={resetRange}>Reset</SuperButton>
+            </div>
         )
             ;
     }

@@ -22,7 +22,7 @@
     .btnColumn {
       text-align: initial;
       min-width: 200px;
-      padding: 0 5px ;
+      padding: 0 5px;
 
       button {
         margin-left: 5px;
@@ -35,17 +35,19 @@
   }
 
   td, th {
-    border: 1px solid #c2c3c4;
+    border: 1px solid rgba(194, 195, 196, 0.3);
     padding: 20px;
     text-align: center;
-    min-width: 80px;
+    min-width: 40px;
   }
-.tableHeading{
-  display: flex;
-  justify-content: space-between;
 
-}
-  thead  td{
+  .tableHeading {
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  thead td {
     font-size: larger;
     background-color: #7c8efd;
   }
@@ -61,18 +63,28 @@
     color: #f9fcfb;
     text-decoration: none;
     font-size: larger;
+    padding: 20px;
 
     a {
+      display: inline-block;
       color: #f9fcfb;
       text-decoration: none;
       font-size: larger;
+      margin: 0;
+      padding: 15px 5px;
+      background-color: #7c8efd;
+      width: 100%;
+      height: 100%;
+      border: 2px solid rgba(232, 234, 250, 0.39);
+      overflow: hidden;
     }
   }
 
   tbody tr:hover {
     background: #7c8efd;
   }
-  .grade{
+
+  .grade {
     color: #c7c7c7;
   }
 }

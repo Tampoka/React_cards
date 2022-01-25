@@ -9,14 +9,15 @@ type PropsType = {
     userName:string
     minCardsCount: number
     maxCardsCount: number
+    isLoading:boolean
 }
 
-export const Sidebar = ({showPrivate, active,userName,minCardsCount,maxCardsCount}: PropsType) => {
+export const Sidebar = ({showPrivate, active,userName,minCardsCount,maxCardsCount,isLoading}: PropsType) => {
     return (
         <div className={s.sidebarContainer}>
             <p>Decks created: <span>18</span></p>
             <BtnBlock showPrivate={showPrivate} active={active}/>
-            <DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount}/>
+            <DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount} isLoading={isLoading}/>
         </div>
     );
 };
