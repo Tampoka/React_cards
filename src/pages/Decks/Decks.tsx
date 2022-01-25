@@ -7,7 +7,7 @@ import {
     fetchCardsPacks,
     PacksInitialState,
     postDeck,
-    setDecksSortingMethod,
+    setDecksSortingMethod, setPackName,
     setPrivateDecks,
     updateDeck
 } from '../../redux/decks-reducer';
@@ -69,11 +69,15 @@ export const Decks = React.memo(() => {
         dispatch(postDeck({cardsPack: {name: title}}))
     }, [dispatch])
 
+    const onDeckSearchCallback = useCallback((value: string) => {
+        dispatch(setPackName(value))
+    }, [dispatch])
+
     useEffect(() => {
         if (!!userId) {
             dispatch(fetchCardsPacks())
         }
-    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn, packName, userId,sortDecksMethod])
+    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn, packName, userId, sortDecksMethod])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
@@ -92,8 +96,9 @@ export const Decks = React.memo(() => {
                     <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
                 </Modal>
                 <div className={s.searchWithAddItem}>
-                    <Search/>
-                    <AddItem title='Add deck' setModal={onToggle}/></div>
+                    <Search totalCount={cardPacksTotalCount} searchCallback={onDeckSearchCallback} label='Search for decks'/>
+                    <AddItem title='Add deck' setModal={onToggle} isLoading={isLoading}/>
+                </div>
                 <DecksTable decks={cardPacks}
                             deleteDeckHandler={deleteDeckHandler}
                             updateDeckHandler={updateDeckHandler}

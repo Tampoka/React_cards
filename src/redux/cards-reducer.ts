@@ -21,7 +21,9 @@ export const initialState: CardsInitialStateType = {
     currentCardsPackID: '',
     sortCardsMethod: undefined,
     currentGrade: [0, 0],
-    countPerPage: [10, 25, 50]
+    countPerPage: [10, 25, 50],
+    cardAnswer: '',
+    cardQuestion: '',
 }
 
 export const cardsReducer = (state = initialState, action: CardsActionsType): CardsInitialStateType => {
@@ -42,7 +44,11 @@ export const cardsReducer = (state = initialState, action: CardsActionsType): Ca
         case 'CARDS/SET-CURRENT-GRADE':
             return {...state, currentGrade: [...action.payload.values]}
         case 'CARDS/SET-SORTING-METHOD':
-            return {...state,sortCardsMethod:action.payload.sortCardsMethod}
+            return {...state, sortCardsMethod: action.payload.sortCardsMethod}
+        case 'CARDS/SET-CARD-QUESTION':
+            return {...state, cardQuestion: action.payload.question}
+        case 'CARDS/SET-CARD-ANSWER':
+            return {...state, cardAnswer: action.payload.answer}
         default:
             return state
     }
@@ -63,6 +69,12 @@ export const setSortCardsMethod = (sortCardsMethod: string) => ({
     type: 'CARDS/SET-SORTING-METHOD',
     payload: {sortCardsMethod}
 } as const)
+export const setCardQuestion = (question: string) => {
+    return {type: 'CARDS/SET-CARD-QUESTION', payload: {question}} as const;
+};
+export const setCardAnswer = (answer: string) => {
+    return {type: 'CARDS/SET-CARD-ANSWER', payload: {answer}} as const;
+};
 
 //THUNK CREATORS
 export const fetchCards = (payload?: GetCardsQueryParams): ThunkType =>
@@ -76,8 +88,9 @@ export const fetchCards = (payload?: GetCardsQueryParams): ThunkType =>
                 pageCount: payload?.pageCount || cards.pageCount,
                 min: cards.currentGrade[0],
                 max: cards.currentGrade[1],
-                cardQuestion: payload?.cardQuestion || undefined,
-                cardAnswer: payload?.cardAnswer || undefined,
+                // cardName: payload?.name || cards.cardName||undefined,
+                cardQuestion: payload?.cardQuestion || cards.cardQuestion || undefined,
+                cardAnswer: payload?.cardAnswer || cards.cardAnswer || undefined,
                 sortCards: cards.sortCardsMethod
             });
             dispatch(setCards(res.data));
@@ -150,6 +163,8 @@ export type CardsInitialStateType = CardsResponse & {
     sortCardsMethod: string | undefined
     currentGrade: number[]
     countPerPage: number[]
+    cardAnswer: string
+    cardQuestion: string
 }
 
 export type SetCardsActionType = ReturnType<typeof setCards>
@@ -160,6 +175,8 @@ export type SetCurrentCardsDeckIDActionType = ReturnType<typeof setCurrentCardsD
 export type SetMinMaxGradeActionType = ReturnType<typeof setMinMaxGrade>
 export type SetCurrentGradeActionType = ReturnType<typeof setCurrentGrade>
 export type SetSortCardsMethodActionType = ReturnType<typeof setSortCardsMethod>
+export type SetCardQuestionActionType = ReturnType<typeof setCardQuestion>
+export type SetCardAnswerActionType = ReturnType<typeof setCardAnswer>
 
 export type CardsActionsType =
     | SetCardsActionType
@@ -170,3 +187,5 @@ export type CardsActionsType =
     | SetMinMaxGradeActionType
     | SetCurrentGradeActionType
     | SetSortCardsMethodActionType
+    | SetCardQuestionActionType
+    | SetCardAnswerActionType

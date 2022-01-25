@@ -8,6 +8,9 @@
     margin-left: 5px;
     white-space: nowrap;
     background-color: $buttonErrorBgColor;
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 
   .addDeckBtn {

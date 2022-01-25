@@ -8,6 +8,8 @@ import {
     deleteCard,
     fetchCards,
     initialState,
+    setCardAnswer,
+    setCardQuestion,
     setCards,
     setCurrentCardsDeckID,
     setSortCardsMethod,
@@ -19,6 +21,8 @@ import {CardsPackType} from '../../api/decks-api';
 import SuperButton from '../../common/components/SuperButton/SuperButton';
 import Spinner from '../../common/components/Spinner/Spinner';
 import {CardsTable} from './CardsTable/CardsTable';
+import {Search} from '../../common/components/Search/Search';
+import {AddItem} from '../Decks/Sidebar/AddItem/AddItem';
 
 export const Cards = React.memo(() => {
     const {cardsPackId} = useParams<{ cardsPackId: string }>()
@@ -46,7 +50,9 @@ export const Cards = React.memo(() => {
         currentCardsPackID,
         sortCardsMethod,
         currentGrade,
-        countPerPage
+        countPerPage,
+        cardAnswer,
+        cardQuestion
     } = useAppSelector<CardsInitialStateType>(state => state.cards)
 
     const deleteCardHandler = useCallback((id: string) => {
@@ -61,6 +67,13 @@ export const Cards = React.memo(() => {
         dispatch(createCard({card: {cardsPack_id}}))
     }, [dispatch])
 
+    const onCardQuestionSearchCallback = useCallback((value: string) => {
+        dispatch(setCardQuestion(value))
+    }, [dispatch])
+    const onCardAnswerSearchCallback = useCallback((value: string) => {
+        dispatch(setCardAnswer(value))
+    }, [dispatch])
+
     useEffect(() => {
         dispatch(setCurrentCardsDeckID(cardsPackId))
         // clearing cards
@@ -71,7 +84,7 @@ export const Cards = React.memo(() => {
 
     useEffect(() => {
         cardsPackId && dispatch(fetchCards())
-    }, [dispatch, cardsPackId, page, pageCount, sortCardsMethod, currentGrade, isLoggedIn])
+    }, [dispatch, cardsPackId, page, pageCount, sortCardsMethod, currentGrade, isLoggedIn, cardAnswer, cardQuestion])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
@@ -87,6 +100,11 @@ export const Cards = React.memo(() => {
                         ? <h1>There are no cards in this deck.
                             <span>Please <NavLink to={'/decks'}>choose another deck</NavLink></span></h1>
                         : <h1 ref={paginationScrollTopRef}>{currentCardsPack.name}</h1>}
+                    <div className={s.searchWithAddItem}>
+                        <Search totalCount={cardsTotalCount} searchCallback={onCardQuestionSearchCallback} label='Search by question'/>
+                        <Search totalCount={cardsTotalCount} searchCallback={onCardAnswerSearchCallback} label='Search by answer'/>
+                        <AddItem title='Add Card' setModal={onToggle} isLoading={isLoading}/>
+                    </div>
                     {isLoading && <Spinner/>}
                     <CardsTable cards={cards}
                                 deleteCardHandler={deleteCardHandler}
