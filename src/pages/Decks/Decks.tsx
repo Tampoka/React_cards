@@ -12,7 +12,7 @@ import {
     setPrivateDecks,
     updateDeck
 } from '../../redux/decks-reducer';
-import {PacksPagination} from './PacksPagination/PacksPagination';
+import {DecksPagination} from './DecksPagination/DecksPagination';
 import s from './Decks.module.scss'
 import {DecksTable} from './DecksTable/DecksTable';
 import Spinner from '../../common/components/Spinner/Spinner';
@@ -107,7 +107,7 @@ export const Decks = React.memo(() => {
                             sortCallback={changeDecksSortMethod}
                             sortMethod={sortDecksMethod}
                 />
-                <PacksPagination totalCount={cardPacksTotalCount}
+                <DecksPagination totalCount={cardPacksTotalCount}
                                  pageCount={pageCount}
                                  currentPage={page}
                                  countPerPage={countPerPage}/>

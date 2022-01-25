@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import {setDecksCurrentPage, setDecksPerPage} from '../../../redux/decks-reducer';
-import s from './PacksPagination.module.scss'
+import s from './DecksPagination.module.scss'
 import {Pagination} from '../../../common/components/Pagination/Pagination';
 import SuperSelect from '../../../common/components/SuperSelect/SuperSelect';
 import {useAppSelector} from '../../../redux/store';
@@ -12,7 +12,7 @@ type PropsType = {
     currentPage: number
     countPerPage: number[]
 }
-export const PacksPagination = React.memo(({totalCount, pageCount, currentPage, countPerPage}: PropsType) => {
+export const DecksPagination = React.memo(({totalCount, pageCount, currentPage, countPerPage}: PropsType) => {
         const dispatch = useDispatch()
         const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
 

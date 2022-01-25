@@ -23,6 +23,7 @@ import Spinner from '../../common/components/Spinner/Spinner';
 import {CardsTable} from './CardsTable/CardsTable';
 import {Search} from '../../common/components/Search/Search';
 import {AddItem} from '../Decks/Sidebar/AddItem/AddItem';
+import {CardsPagination} from './CardsPagination/CardsPagination';
 
 export const Cards = React.memo(() => {
     const {cardsPackId} = useParams<{ cardsPackId: string }>()
@@ -122,12 +123,10 @@ export const Cards = React.memo(() => {
             {/*    <AddDeckForm onSubmitHandler={addNewCardHandler} isLoading={isLoading}/>*/}
             {/*</Modal>*/}
 
-            {/*<PacksPagination totalCount={cardPacksTotalCount}*/}
-            {/*                 pageCount={pageCount}*/}
-            {/*                 currentPage={page}*/}
-            {/*                 countPerPage={countPerPage}/>*/}
-
-
+            <CardsPagination totalCount={cardsTotalCount}
+                             pageCount={pageCount}
+                             currentPage={page}
+                             countPerPage={countPerPage}/>
         </div>
     )
 })
