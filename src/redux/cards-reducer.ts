@@ -109,6 +109,7 @@ export const createCard = (payload?: { card: { cardsPack_id: string; question: s
         dispatch(setAppIsLoading(true))
         await cardsAPI.createCard(payload)
         await dispatch(fetchCards())
+        dispatch(setAppInfo('Card was created!'))
     } catch (e: any) {
         dispatch(setAppError(true));
         dispatch(setAppInfo(e.response ? e.response.data.error : e));
@@ -122,6 +123,7 @@ export const deleteCard = (payload: DeleteCardData): ThunkType => async dispatch
         dispatch(setAppIsLoading(true))
         await cardsAPI.deleteCard(payload)
         await dispatch(fetchCards())
+        dispatch(setAppInfo('Card was deleted!'))
     } catch (e: any) {
         dispatch(setAppError(true));
         dispatch(setAppInfo(e.response ? e.response.data.error : e));
@@ -135,6 +137,7 @@ export const updateCard = (payload: UpdateCardData): ThunkType => async dispatch
         dispatch(setAppIsLoading(true))
         await cardsAPI.updateCard(payload)
         await dispatch(fetchCards())
+        dispatch(setAppInfo('Card was updated!'));
     } catch (e: any) {
         dispatch(setAppError(true));
         dispatch(setAppInfo(e.response ? e.response.data.error : e));
@@ -148,6 +151,7 @@ export const gradeAnswer = (payload: GradeData): ThunkType => async dispatch => 
         dispatch(setAppIsLoading(true))
         await cardsAPI.grade(payload)
         // await dispatch(fetchCards())
+        dispatch(setAppInfo('Your rate was accepted!'));
     } catch (e: any) {
         dispatch(setAppError(true));
         dispatch(setAppInfo(e.response ? e.response.data.error : e));

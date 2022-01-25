@@ -88,7 +88,7 @@ export const fetchCardsPacks = (payload?: GetCardPacksQueryParams): ThunkType =>
                 sortPacks: decks.sortBy
             });
             dispatch(setDecks(res.data));
-            dispatch(setAppInfo('Cards are ready to study!'));
+            // dispatch(setAppInfo('Cards are ready to study!'));
         } catch (e:any) {
             dispatch(setAppError(true));
             dispatch(setAppInfo(e.response ? e.response.data.error : e));
