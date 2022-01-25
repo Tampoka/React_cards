@@ -11,6 +11,7 @@ type PropsType = {
     pageCount: number
     currentPage: number
     countPerPage: number[]
+
 }
 
 export const CardsPagination =React.memo( ({totalCount, pageCount, currentPage, countPerPage}:PropsType) => {
@@ -27,7 +28,7 @@ export const CardsPagination =React.memo( ({totalCount, pageCount, currentPage, 
                         currentPage={currentPage}
                         onChange={onPageChangeHandler}/>
             {totalCount >= countPerPage[0] &&
-            <SuperSelect options={countPerPage} onChangeOption={onSelectChangeHandler} label={'Decks per page:'}
+            <SuperSelect options={countPerPage} onChangeOption={onSelectChangeHandler} label={'Cards per page:'}
                          disabled={isLoading}/>}
         </div>
     );
