@@ -3,16 +3,15 @@ import SuperInputText from '../SuperInputText/SuperInputText';
 import s from './Search.module.scss'
 import {useDispatch} from 'react-redux';
 import {useDebounce} from '../../hooks/useDebounce';
-import {setPackName} from '../../../redux/decks-reducer';
-import {useAppSelector} from '../../../redux/store';
 
 type PropsType={
     totalCount:number
     searchCallback:(value:string)=>void
     label:string
+    showResults:boolean
 }
 
-export const Search = ({totalCount,searchCallback,label}:PropsType) => {
+export const Search = ({totalCount,searchCallback,label,showResults}:PropsType) => {
     const dispatch=useDispatch()
     const [searchValue,setSearchValue]=useState('')
     const debouncedValue = useDebounce<string>(searchValue, 1000)
@@ -31,7 +30,7 @@ export const Search = ({totalCount,searchCallback,label}:PropsType) => {
                 {label}
                 <SuperInputText value={searchValue}
                                 onChange={onSearchHandler}/>
-                <span>Found: <span className={s.results}>{totalCount}</span></span>
+                {showResults&&<span>Found: <span className={s.results}>{totalCount}</span></span>}
             </label>
     </div>
     );

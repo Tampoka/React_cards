@@ -1,0 +1,29 @@
+@import '../../../common/styles/saas/variables';
+
+.searchWithAddItem {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.searchBlock {
+  width: 300px;
+  margin-right: 50px;
+
+  input {
+    margin: 0;
+  }
+  span {
+    color: #fff;
+  }
+
+  .results {
+    color: $buttonErrorBgColor;
+    font-weight: bold;
+  }
+
+  .searchLabel {
+    color: #fff;
+  }
+
+}

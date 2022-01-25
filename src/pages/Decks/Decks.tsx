@@ -30,7 +30,6 @@ export const Decks = React.memo(() => {
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
     const userId = useAppSelector<string>(state => state.profile.profile._id)
     const userName = useAppSelector<string>(state => state.profile.profile.name)
-    const navigate = useNavigate()
 
     const sortDecksMethod = useAppSelector<string | undefined>(state => state.cards.sortCardsMethod)
     const changeDecksSortMethod = (sortMethod: string) => {
@@ -97,7 +96,8 @@ export const Decks = React.memo(() => {
                     <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
                 </Modal>
                 <div className={s.searchWithAddItem}>
-                    <Search totalCount={cardPacksTotalCount} searchCallback={onDeckSearchCallback} label='Search for decks'/>
+                    <Search totalCount={cardPacksTotalCount} searchCallback={onDeckSearchCallback}
+                            label='Search for decks' showResults={true}/>
                     <AddItem title='Add deck' setModal={onToggle} isLoading={isLoading}/>
                 </div>
                 <DecksTable decks={cardPacks}

@@ -24,6 +24,7 @@ import {CardsTable} from './CardsTable/CardsTable';
 import {Search} from '../../common/components/Search/Search';
 import {AddItem} from '../Decks/Sidebar/AddItem/AddItem';
 import {CardsPagination} from './CardsPagination/CardsPagination';
+import {CardsSearch} from './CardsSearch/CardsSearch';
 
 export const Cards = React.memo(() => {
     const {cardsPackId} = useParams<{ cardsPackId: string }>()
@@ -101,11 +102,9 @@ export const Cards = React.memo(() => {
                         ? <h1>There are no cards in this deck.
                             <span>Please <NavLink to={'/decks'}>choose another deck</NavLink></span></h1>
                         : <h1 ref={paginationScrollTopRef}>{currentCardsPack.name}</h1>}
-                    <div className={s.searchWithAddItem}>
-                        <Search totalCount={cardsTotalCount} searchCallback={onCardQuestionSearchCallback} label='Search by question'/>
-                        <Search totalCount={cardsTotalCount} searchCallback={onCardAnswerSearchCallback} label='Search by answer'/>
-                        <AddItem title='Add Card' setModal={onToggle} isLoading={isLoading}/>
-                    </div>
+                    <CardsSearch isLoading={isLoading} onCardQuestionSearchCallback={onCardQuestionSearchCallback}
+                                 onCardAnswerSearchCallback={onCardAnswerSearchCallback} totalCount={cardsTotalCount}
+                                 onToggle={onToggle}/>
                     {isLoading && <Spinner/>}
                     <CardsTable cards={cards}
                                 deleteCardHandler={deleteCardHandler}
