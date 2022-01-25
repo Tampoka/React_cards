@@ -21,10 +21,10 @@ import {CardsPackType} from '../../api/decks-api';
 import SuperButton from '../../common/components/SuperButton/SuperButton';
 import Spinner from '../../common/components/Spinner/Spinner';
 import {CardsTable} from './CardsTable/CardsTable';
-import {Search} from '../../common/components/Search/Search';
-import {AddItem} from '../Decks/Sidebar/AddItem/AddItem';
 import {CardsPagination} from './CardsPagination/CardsPagination';
 import {CardsSearch} from './CardsSearch/CardsSearch';
+import {Modal} from '../../common/components/Modal/Modal';
+import { AddCardForm } from './AddCardForm/AddCardForm';
 
 export const Cards = React.memo(() => {
     const {cardsPackId} = useParams<{ cardsPackId: string }>()
@@ -65,9 +65,10 @@ export const Cards = React.memo(() => {
         dispatch(updateCard({card: {_id: id, question, answer}}));
     }, [dispatch]);
 
-    const addNewCardHandler = useCallback((cardsPack_id: string) => {
-        dispatch(createCard({card: {cardsPack_id}}))
+    const addNewCardHandler = useCallback((question:string,answer:string) => {
+        dispatch(createCard({card: {cardsPack_id:cardsPackId?cardsPackId:'',question,answer}}))
     }, [dispatch])
+
 
     const onCardQuestionSearchCallback = useCallback((value: string) => {
         dispatch(setCardQuestion(value))
@@ -94,6 +95,7 @@ export const Cards = React.memo(() => {
 
     if (!isLoggedIn) return <Navigate to='/login'/>
     console.log(currentCardsPack)
+    // @ts-ignore
     return (
         <div className={s.cardsContainer}>
             {currentCardsPack ? < >
@@ -106,6 +108,9 @@ export const Cards = React.memo(() => {
                                  onCardAnswerSearchCallback={onCardAnswerSearchCallback} totalCount={cardsTotalCount}
                                  onToggle={onToggle}/>
                     {isLoading && <Spinner/>}
+                    <Modal visible={isOpen} setVisible={onToggle}>
+                        <AddCardForm onSubmitHandler={addNewCardHandler} isLoading={isLoading}/>
+                    </Modal>
                     <CardsTable cards={cards}
                                 deleteCardHandler={deleteCardHandler}
                                 updateCardHandler={updateCardHandler}

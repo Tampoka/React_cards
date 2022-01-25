@@ -104,7 +104,7 @@ export const fetchCards = (payload?: GetCardsQueryParams): ThunkType =>
         }
     };
 
-export const createCard = (payload?: NewCardData): ThunkType => async dispatch => {
+export const createCard = (payload?: { card: { cardsPack_id: string; question: string; answer: string } }): ThunkType => async dispatch => {
     try {
         dispatch(setAppIsLoading(true))
         await cardsAPI.createCard(payload)
