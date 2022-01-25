@@ -1,12 +1,10 @@
+@import '../../../common/styles/saas/variables';
+
 .tableContainer {
   background-color: inherit;
 
   table {
     border-collapse: collapse;
-
-    .myModal {
-      //background: rgba(0, 0, 0, 0.5);
-    }
 
     button {
       padding: 5px;

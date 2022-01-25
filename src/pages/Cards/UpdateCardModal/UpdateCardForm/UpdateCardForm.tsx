@@ -1,31 +1,31 @@
 import React from 'react';
+import s from '../../AddCardForm/AddCardForm.module.scss';
+import SuperInputText from '../../../../common/components/SuperInputText/SuperInputText';
+import SuperButton from '../../../../common/components/SuperButton/SuperButton';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
-import s from './AddCardForm.module.scss';
-import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';
-import SuperButton from '../../../common/components/SuperButton/SuperButton';
 
 type PropsType = {
     onSubmitHandler: (question: string, answer: string) => void
     isLoading: boolean
+    question: string
+    answer: string
     closeOnSubmit:()=>void
 }
 
-export const AddCardForm = ({onSubmitHandler, isLoading,closeOnSubmit}: PropsType) => {
+export const UpdateCardForm = ({onSubmitHandler, isLoading, question, answer,closeOnSubmit}: PropsType) => {
     const formik = useFormik({
         initialValues: {
-            question: '',
-            answer: ''
+            question: question,
+            answer: answer,
         },
         validationSchema: Yup.object({
             question: Yup.string()
-                .min(2, 'Too Short!')
-                // .max(25, 'Too Long!')
-                .required('Required'),
+                .min(2, 'Too Short!'),
+                // .max(25, 'Too Long!'),
             answer: Yup.string()
                 .min(2, 'Too Short!')
-                // .max(25, 'Too Long!')
-                .required('Required'),
+                // .max(25, 'Too Long!'),
         }),
         onSubmit: (values) => {
             onSubmitHandler(values.question, values.answer)
@@ -42,8 +42,7 @@ export const AddCardForm = ({onSubmitHandler, isLoading,closeOnSubmit}: PropsTyp
                                      ? formik.errors.question
                                      : ''}
                                  autoComplete='new-question'
-                placeholder={'Enter question'}/>
-                <p className={s.attach}>+ Attach file</p>
+                                 placeholder={'Enter question'}/>
                 <label htmlFor='answer'>Answer</label>
                 <SuperInputText  {...formik.getFieldProps('answer')}
                                  error={formik.touched.answer && formik.errors.answer
@@ -51,10 +50,9 @@ export const AddCardForm = ({onSubmitHandler, isLoading,closeOnSubmit}: PropsTyp
                                      : ''}
                                  autoComplete='new-answer'
                                  placeholder={'Enter answer'}/>
-                <p>+ Attach file</p>
                 <SuperButton type='submit' className={s.submitBtn} disabled={isLoading}>Save</SuperButton>
             </form>
         </div>
-    )
+    );
 };
 

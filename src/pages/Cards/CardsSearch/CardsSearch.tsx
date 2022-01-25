@@ -1,4 +1,3 @@
-import React from 'react';
 import s from './CardsSearch.module.scss';
 import {Search} from '../../../common/components/Search/Search';
 import {AddItem} from '../../Decks/Sidebar/AddItem/AddItem';
@@ -9,6 +8,7 @@ type PropsType = {
     onCardAnswerSearchCallback: (answer: string) => void
     totalCount: number
     onToggle: () => void
+    isOwner: boolean
 }
 
 export const CardsSearch = ({
@@ -16,7 +16,8 @@ export const CardsSearch = ({
                                 onCardAnswerSearchCallback,
                                 onCardQuestionSearchCallback,
                                 onToggle,
-                                totalCount
+                                totalCount,
+                                isOwner
                             }: PropsType) => {
     return (
         <div className={s.searchWithAddItem}>
@@ -28,7 +29,7 @@ export const CardsSearch = ({
                         showResults={false}/>
                 <span>Found: <span className={s.results}>{totalCount}</span></span>
             </div>
-            <AddItem title='Add Card' setModal={onToggle} isLoading={isLoading}/>
+            {isOwner&&<AddItem title='Add Card' setModal={onToggle} isLoading={isLoading}/>}
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import {Modal} from '../../../common/components/Modal/Modal';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import {useModal} from '../../../common/hooks/useModal';
-import {UpdateDeckForm} from '../UpdateDeckForm/UpdateDeckForm';
+import {UpdateDeckForm} from './UpdateDeckForm/UpdateDeckForm';
 
 type PropsType = {
     deckName: string

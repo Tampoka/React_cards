@@ -60,7 +60,7 @@ export const DecksTable = React.memo(({
                 {decks.map(m => {
                     const username = m.user_name.includes('@') ? m.user_name.substring(0, m.user_name.indexOf('@')) : m.user_name
                     // const dateCreated=m.created.toLocaleString().replace(/.\d+Z$/g, '')
-                    const edit = (title: string) => updateDeckHandler(m._id, title);
+                    const editCallback = (title: string) => updateDeckHandler(m._id, title);
 
                     return <tr key={m._id}>
                         <td className={s.deckName}>
@@ -74,7 +74,7 @@ export const DecksTable = React.memo(({
                             {userId === m.user_id && <><SuperButton disabled={isLoading}
                                                                     onClick={() => deleteDeckHandler(m._id)}
                                                                     red>Delete</SuperButton>
-                                <UpdateDeckModal deckName={m.name} isLoading={isLoading} onSubmitHandler={edit}/>
+                                <UpdateDeckModal deckName={m.name} isLoading={isLoading} onSubmitHandler={editCallback}/>
                             </>
                             }
                             <SuperButton disabled={isLoading}>Learn</SuperButton>
