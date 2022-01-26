@@ -69,10 +69,11 @@
   }
 
   //for disabling browser eye icon
-  .form input[type="password"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
+  .form {
+    input[type="password"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
 
   .form input[type="password"]::-ms-reveal,
   .form input[type="password"]::-ms-clear {
@@ -101,5 +102,6 @@
     .userEmail {
       color: #128cd9;
     }
+  }
   }
 }

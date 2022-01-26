@@ -61,8 +61,8 @@ export const Cards = React.memo(() => {
         dispatch(deleteCard({id}));
     }, [dispatch]);
 
-    const updateCardHandler = useCallback((id:string,question: string, answer: string) => {
-        dispatch(updateCard({card: {_id:id, question, answer}}));
+    const updateCardHandler = useCallback((id: string, question: string, answer: string) => {
+        dispatch(updateCard({card: {_id: id, question, answer}}));
     }, [dispatch]);
 
     const addNewCardHandler = useCallback((question: string, answer: string) => {
