@@ -1,25 +1,31 @@
-export const ProfileInitialState = {
-    profile: {
-        _id: '',
-        email: '',
-        name: '',
-        avatar: '',
-        publicCardPacksCount: 0, // количество колод
-        created: '',
-        updated: '',
-        isAdmin: false,
-        verified: false, // подтвердил ли почту
-        rememberMe: false,
-        error: '',
-    },
-    profileError: false
+import {authApi, ChangeUsersInfoData, UsersInfoResponse} from '../api/auth-api';
+import {setAppError, setAppInfo, setAppIsLoading} from './app-reducer';
+import {ThunkType} from './store';
+
+export const ProfileInitialState: ProfileType = {
+    _id: '',
+    email: '',
+    name: '',
+    avatar: 'https://wave.rozhlas.cz/sites/default/files/images/7db3c4cc3827e89eefd5319023edefea.png',
+    publicCardPacksCount: 0, // количество колод
+    created: '',
+    updated: '',
+    isAdmin: false,
+    verified: false, // подтвердил ли почту
+    rememberMe: false,
+    error: '',
 }
 
-export const profileReducer = (state: initialStateType = ProfileInitialState, action: ProfileActionsType) => {
+export const profileReducer = (state: ProfileType = ProfileInitialState, action: ProfileActionsType) => {
     switch (action.type) {
         case 'PROFILE/SET-USER-PROFILE':
             return {
-                ...state, profile: action.payload.profileData
+                ...state, ...action.payload.profileData
+            }
+        case 'PROFILE/UPDATE-USER-PROFILE':
+            return {
+                ...state, name: action.payload.name,
+                avatar: action.payload.avatar
             }
         default:
             return state
@@ -31,29 +37,25 @@ export const setProfile = (profileData: ProfileType) => ({
     type: 'PROFILE/SET-USER-PROFILE',
     payload: {profileData}
 } as const)
+export const setUpdatedProfile = (payload: UsersInfoResponse) => ({
+    type: 'PROFILE/UPDATE-USER-PROFILE',
+    payload
+} as const)
 
 //THUNK CREATORS
-// export const fetchProfileData = (): ThunkType => async dispatch => {
-//     try {
-//         dispatch(setAppIsLoading(true))
-//         let res = await authApi.authMe()
-//         console.log(res.data)
-//         dispatch(setAppInitialized(true))
-//         dispatch(setProfile(res.data))
-//         dispatch(setAppIsLoading(false))
-//     } catch (e: any) {
-//         console.log(e as Error)
-//         dispatch(setAppError(e.response ? e.response.data.error.toUpperCase() : e));
-//     } finally {
-//         dispatch(setAppIsLoading(false))
-//         dispatch(setAppInitialized(true))
-//     }
-// }
-//TYPES
-export type initialStateType = {
-    profile: ProfileType
-    profileError: boolean
+export const updateProfile = (payload: ChangeUsersInfoData): ThunkType => async dispatch => {
+    try {
+        dispatch(setAppIsLoading(true))
+        const res = await authApi.changeUsersInfo(payload);
+        dispatch(updateProfile(res.data.updatedUser))
+        dispatch(setAppInfo('Profile was successfully updated!'));
+    } catch (e: any) {
+        dispatch(setAppError(e.response ? e.response.data.error : e));
+    } finally {
+        dispatch(setAppIsLoading(false))
+    }
 }
+//TYPES
 export type ProfileType = {
     _id: string;
     email: string;
@@ -69,5 +71,8 @@ export type ProfileType = {
 }
 
 export type SetProfileActionType = ReturnType<typeof setProfile>
+export type SetUpdatedProfileActionType = ReturnType<typeof setUpdatedProfile>
+
 export type ProfileActionsType =
-    |SetProfileActionType
+    | SetProfileActionType
+    | SetUpdatedProfileActionType
