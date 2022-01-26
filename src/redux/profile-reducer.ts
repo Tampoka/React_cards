@@ -6,7 +6,7 @@ export const ProfileInitialState: ProfileType = {
     _id: '',
     email: '',
     name: '',
-    avatar: 'https://wave.rozhlas.cz/sites/default/files/images/7db3c4cc3827e89eefd5319023edefea.png',
+    avatar: '',
     publicCardPacksCount: 0, // количество колод
     created: '',
     updated: '',
@@ -47,7 +47,7 @@ export const updateProfile = (payload: ChangeUsersInfoData): ThunkType => async 
     try {
         dispatch(setAppIsLoading(true))
         const res = await authApi.changeUsersInfo(payload);
-        dispatch(updateProfile(res.data.updatedUser))
+        dispatch(setUpdatedProfile(res.data.updatedUser))
         dispatch(setAppInfo('Profile was successfully updated!'));
     } catch (e: any) {
         dispatch(setAppError(e.response ? e.response.data.error : e));

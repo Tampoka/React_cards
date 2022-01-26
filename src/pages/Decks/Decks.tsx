@@ -22,6 +22,7 @@ import {AddDeckForm} from './AddDeckForm/AddDeckForm';
 import {useModal} from '../../common/hooks/useModal';
 import {Sidebar} from './Sidebar/Sidebar';
 import {AddItem} from './Sidebar/AddItem/AddItem';
+import {updateProfile} from '../../redux/profile-reducer';
 
 export const Decks = React.memo(() => {
     const {isOpen, onToggle} = useModal()
@@ -72,6 +73,10 @@ export const Decks = React.memo(() => {
         dispatch(setPackName(value))
     }, [dispatch])
 
+    const updateUserProfile = useCallback((name: string, avatar: string) => {
+        dispatch(updateProfile(({name, avatar})))
+    }, [dispatch])
+
     useEffect(() => {
         if (!!userId) {
             dispatch(fetchCardsPacks())
@@ -86,7 +91,7 @@ export const Decks = React.memo(() => {
     return (
         <div className={s.decksWithSidebar}>
             <Sidebar showPrivate={showPrivate} active={privatePacks} minCardsCount={minCardsCount}
-                     maxCardsCount={maxCardsCount} isLoading={isLoading}/>
+                     maxCardsCount={maxCardsCount} isLoading={isLoading} onSubmitHandler={updateUserProfile}/>
             <div className={s.decksContainer}>
                 <h1 ref={paginationScrollTopRef}>Decks List</h1>
                 {/*<DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount}/>*/}

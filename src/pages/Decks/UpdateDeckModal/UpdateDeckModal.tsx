@@ -8,6 +8,7 @@ type PropsType = {
     isLoading: boolean
     onSubmitHandler: (title: string) => void
 }
+
 export const UpdateDeckModal = ({deckName, isLoading, onSubmitHandler}: PropsType) => {
     const {isOpen, onToggle} = useModal()
 

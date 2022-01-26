@@ -4,7 +4,7 @@ import {BtnBlock} from '../BtnBlock/BtnBlock';
 import {DecksRange} from '../DecksRange/DecksRange';
 import {useAppSelector} from '../../../redux/store';
 import userImg from '../../../assets/images/icons8-person-96.png';
-import SuperButton from '../../../common/components/SuperButton/SuperButton';
+import {UpdateUserProfileModal} from '../../Cards/UpdateUserProfileModal/UpdateUserProfileModal';
 
 type PropsType = {
     showPrivate: (value: boolean) => void
@@ -12,9 +12,10 @@ type PropsType = {
     minCardsCount: number
     maxCardsCount: number
     isLoading: boolean
+    onSubmitHandler:(name:string,avatar:string)=>void
 }
 
-export const Sidebar = ({showPrivate, active, minCardsCount, maxCardsCount, isLoading}: PropsType) => {
+export const Sidebar = ({showPrivate, active, minCardsCount, maxCardsCount, isLoading,onSubmitHandler}: PropsType) => {
     const avatar = useAppSelector(state => state.profile.avatar)
     const userName = useAppSelector(state => state.profile.name)
     return (
@@ -24,7 +25,7 @@ export const Sidebar = ({showPrivate, active, minCardsCount, maxCardsCount, isLo
                     <img src={avatar ? avatar : userImg} alt="avatar"/>
                 </div>
                 <p className={s.username}>{userName.includes('@') ? userName.substring(0, userName.indexOf('@')) : userName}</p>
-                <SuperButton disabled={isLoading}>Edit profile</SuperButton>
+                <UpdateUserProfileModal isLoading={isLoading} onSubmitHandler={onSubmitHandler} userName={userName} avatar={avatar}/>
             </div>
             <div className={s.info}>
                 <p>Decks created: <span>18</span></p>
