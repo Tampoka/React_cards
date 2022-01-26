@@ -7,12 +7,12 @@
   justify-content: center;
   height: 20px;
 
-  button {
-    background-color: transparent;
-    border: none;
-    margin-left: 10px;
+  span {
+    display: flex;
+    justify-items: center;
+    margin: 0 0 5px 20px;
+    font-size: 16px;
     cursor: pointer;
-    padding: 0;
 
     &.active {
       i {

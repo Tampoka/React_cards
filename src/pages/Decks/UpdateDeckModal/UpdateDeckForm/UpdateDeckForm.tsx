@@ -1,7 +1,7 @@
 import SuperInputText from '../../../../common/components/SuperInputText/SuperInputText';
 import SuperButton from '../../../../common/components/SuperButton/SuperButton';
 import {useFormik} from 'formik';
-import s from '../../AddDeckForm/AddDeckForm.module.scss';
+import s from '../../../../common/components/Modal/CommonModalForm/CommonModalForm.module.scss';
 import * as Yup from 'yup';
 import React from 'react';
 
@@ -26,7 +26,8 @@ export const UpdateDeckForm = React.memo(({onSubmitHandler, isLoading, title}: P
         },
     });
     return (
-        <>
+        <div className={s.container}>
+            <h2>Change Title</h2>
             <form className={s.form} onSubmit={formik.handleSubmit}>
                 <SuperInputText  {...formik.getFieldProps('name')}
                                  error={formik.touched.name && formik.errors.name
@@ -34,8 +35,8 @@ export const UpdateDeckForm = React.memo(({onSubmitHandler, isLoading, title}: P
                                      : ''}
                                  autoComplete='new-title'
                 />
-                <SuperButton type='submit' className={s.submitBtn} disabled={isLoading}>Change deck title</SuperButton>
+                <div className={s.submitBtn}><SuperButton type='submit'disabled={isLoading}>Update</SuperButton></div>
             </form>
-        </>
+        </div>
     )
 })

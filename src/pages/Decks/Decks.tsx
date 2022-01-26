@@ -91,7 +91,7 @@ export const Decks = React.memo(() => {
     return (
         <div className={s.decksWithSidebar}>
             <Sidebar showPrivate={showPrivate} active={privatePacks} minCardsCount={minCardsCount}
-                     maxCardsCount={maxCardsCount} isLoading={isLoading} onSubmitHandler={updateUserProfile}/>
+                     maxCardsCount={maxCardsCount} isLoading={isLoading} onSubmitHandler={updateUserProfile} totalCount={cardPacksTotalCount}/>
             <div className={s.decksContainer}>
                 <h1 ref={paginationScrollTopRef}>Decks List</h1>
                 {/*<DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount}/>*/}

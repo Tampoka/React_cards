@@ -17,10 +17,13 @@
       font-size: 20px;
       text-decoration: none;
       margin-right: 20px;
-      padding: 10px 15px;
+      padding: 15px 15px;
+      max-height: 50px;
       border-radius: 4px;
       background-color: $bgSecondColor;
-
+      &:hover{
+        border-bottom: 8px solid #fff;
+      }
       &.active {
         color: #fff;
       }
@@ -29,8 +32,8 @@
 
   .devPages {
     position: absolute;
-    top: 20px;
-    left: 400px;
+    top: 200px;
+    left: 0;
     z-index: 2;
     display: flex;
     flex-direction: column;

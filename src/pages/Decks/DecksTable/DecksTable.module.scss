@@ -9,6 +9,8 @@
 
     button {
       padding: 8px 12px;
+      font-size: 14px;
+
 
       &:disabled {
         opacity: 0.5;
@@ -16,30 +18,26 @@
     }
 
       .btnColumn {
-
         min-width: 240px;
         padding: 0 5px;
-
-        & button {
+        button{
           margin-left: 6px;
-
           &:first-child {
             margin: 0;
           }
         }
-      }
   }
 
   td, th {
     border: 1px solid rgba(229, 232, 234, 0.36);
     padding: 20px;
-    text-align: center;
+    //text-align: center;
     min-width: 40px;
   }
 
   .tableHeading {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
   }
 
@@ -48,10 +46,6 @@
     background-color:$bgSecondColor;
     color: $textColor;
   }
-
-  //tbody tr:nth-child(odd) {
-  //  background: #a6b0f3;
-  //}
 
   .deckName {
     text-align: center;
@@ -71,7 +65,6 @@
       width: 100%;
       height: 100%;
       border-radius: 4px;
-      //border: 2px solid rgba(232, 234, 250, 0.39);
       overflow: hidden;
       &:hover{
         background-color: $hoverColor;
@@ -85,5 +78,6 @@
 
   .grade {
     color: #c7c7c7;
+  }
   }
 }

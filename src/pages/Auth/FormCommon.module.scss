@@ -11,8 +11,13 @@
   padding: 10px;
   background-color: $bgLightColor;
 
+  h2{
+    color: $defaultBgColor;
+  }
   .sectionTitle {
     font-size: larger;
+    color: $textColor;
+    font-weight: 700;
   }
 
   .errorMsg {
@@ -24,12 +29,15 @@
     padding: 7px;
     margin: 5px 0 20px;
   }
-
+  label{
+    color: $textColor;
+  }
   .btnBlock {
     display: flex;
     justify-content: center;
 
     button {
+      margin-top: 20px;
       padding: 10px 20px;
       font-size:16px;
 
@@ -76,13 +84,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
-    .link {
-      display: inline-block;
-      margin-bottom: 10px;
-    }
   }
 
+  .link {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: $textColor;
+    a{
+      text-decoration: none;
+    }
+  }
   .checkEmail {
     text-align: center;
     line-height: 25px;

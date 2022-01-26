@@ -51,8 +51,9 @@ export const DecksRange = ({minCardsCount, maxCardsCount, isLoading}: PropsType)
                         backgroundColor: '#e8ebe4',
                         height: 20,
                         width: 20,
-                        borderRadius: 0
-                    }, {backgroundColor: '#999ac6', height: 20, width: 20, borderRadius: 0}]}
+                        borderRadius: 0,
+                        borderColor: '#d2d5dd'
+                    }, {backgroundColor: '#999ac6', height: 20, width: 20, borderRadius: 0,borderColor:'#d2d5dd'}]}
                     // dotStyle={{backgroundColor:'red',width:20,height:20,top:-5}}
                     dotStyle={{display: 'none'}}
                     tipFormatter={value => `${value}`}

@@ -24,8 +24,8 @@ export const Sort = ({sortBy, sortCallback, sortMethod}: PropsType) => {
 
     return (
         <div className={s.sort}>
-            <button className={`${s.up} ${sort && s.active}`} onClick={()=>onSortHandler(true)}><i>▲</i></button>
-            <button className={`${s.down} ${!sort && s.active}`} onClick={()=>onSortHandler(false)}><i>▼</i></button>
+            <span className={`${s.up} ${sort && s.active}`} onClick={()=>onSortHandler(true)}><i>▲</i></span>
+            <span className={`${s.down} ${!sort && s.active}`} onClick={()=>onSortHandler(false)}><i>▼</i></span>
         </div>
     );
 };

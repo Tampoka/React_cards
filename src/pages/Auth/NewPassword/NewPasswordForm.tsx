@@ -52,7 +52,8 @@ export const NewPasswordForm = React.memo(({
                                             ? formik.errors.password
                                             : ''}
                                         {...formik.getFieldProps('password')}
-                                        autoComplete='new-password'/>
+                                        autoComplete='new-password'
+                                        autoFocus/>
                         <span className={s.eye} onClick={toggleShowPassword}></span>
                     </div>
                     <label htmlFor='password'>Confirm password</label>

@@ -1,8 +1,9 @@
 import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import {useFormik} from 'formik';
-import s from './AddDeckForm.module.scss'
+import s from '../../../common/components/Modal/CommonModalForm/CommonModalForm.module.scss'
 import * as Yup from 'yup';
+import React from 'react';
 
 type PropsType = {
     onSubmitHandler: (title:string)=>void
@@ -25,15 +26,17 @@ export const AddDeckForm = ({onSubmitHandler,isLoading}: PropsType) => {
         },
     });
     return (
-        <>
+        <div className={s.container}>
+            <h2>New Deck Info</h2>
             <form className={s.form} onSubmit={formik.handleSubmit}>
                     <SuperInputText  {...formik.getFieldProps('name')}
                                      error={formik.touched.name && formik.errors.name
                                          ? formik.errors.name
                                          : ''}
-                    autoComplete='new-title'/>
-                <SuperButton type='submit' className={s.submitBtn} disabled={isLoading}>Add new deck</SuperButton>
+                    autoComplete='new-title'
+                    placeholder={'Enter deck title'}/>
+                <div className={s.submitBtn}><SuperButton type='submit'  disabled={isLoading}>Save</SuperButton></div>
             </form>
-        </>
+        </div>
     )
 };

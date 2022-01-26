@@ -13,9 +13,10 @@ type PropsType = {
     maxCardsCount: number
     isLoading: boolean
     onSubmitHandler:(name:string,avatar:string)=>void
+    totalCount:number
 }
 
-export const Sidebar = ({showPrivate, active, minCardsCount, maxCardsCount, isLoading,onSubmitHandler}: PropsType) => {
+export const Sidebar = ({showPrivate, active, minCardsCount, maxCardsCount, isLoading,onSubmitHandler,totalCount}: PropsType) => {
     const avatar = useAppSelector(state => state.profile.avatar)
     const userName = useAppSelector(state => state.profile.name)
     return (
@@ -28,7 +29,7 @@ export const Sidebar = ({showPrivate, active, minCardsCount, maxCardsCount, isLo
                 <UpdateUserProfileModal isLoading={isLoading} onSubmitHandler={onSubmitHandler} userName={userName} avatar={avatar}/>
             </div>
             <div className={s.info}>
-                <p>Decks created: <span>18</span></p>
+                <p>Decks created: <span>{totalCount}</span></p>
                 <BtnBlock showPrivate={showPrivate} active={active}/>
                 <DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount} isLoading={isLoading}/>
             </div>

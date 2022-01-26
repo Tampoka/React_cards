@@ -1,0 +1,40 @@
+@import '../../../styles/saas/variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  justify-content: space-evenly;
+
+  h2 {
+    align-self: center;
+    margin-bottom: 20px;
+    color: $textColor;
+  }
+
+
+  .form {
+    label {
+      display: block;
+      align-self: flex-start;
+    }
+
+    input {
+      margin: 5px 0;
+    }
+
+    .attach {
+      margin: 10px 0;
+    }
+
+    .submitBtn {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+
+      button {
+        font-size: 16px;
+      }
+    }
+  }
+}
