@@ -20,10 +20,12 @@
 
     .searchWithAddItem {
       display: flex;
-      align-items: center;
+      align-items: inherit;
 
       button {
+        margin-top: -15px;
         margin-left: 80px;
+
       }
     }
   }
