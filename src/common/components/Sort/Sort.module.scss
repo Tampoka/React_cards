@@ -1,3 +1,5 @@
+@import '../../styles/saas/variables';
+
 .sort {
   display: flex;
   flex-direction: column;
@@ -14,12 +16,12 @@
 
     &.active {
       i {
-        color: #306e9a;
+        color: $accentColor;
       }
     }
 
     i {
-      color: #7fc1ef;
+      color: $bgLightColor;
     }
   }
 }

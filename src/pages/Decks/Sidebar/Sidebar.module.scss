@@ -5,7 +5,6 @@
   flex-direction: column;
   align-items: center;
   width: 20vw;
-  //background-color: rgba(159, 170, 243, 0.98);
   background-color: $bgSecondColor;
 
   .profile {
@@ -16,7 +15,9 @@
     width: 100%;
     background-color: $bgLightColor;
     height: 350px;
-
+    button{
+      background-color: $accentColor;
+    }
     .avatar {
       display: flex;
       justify-content: center;
@@ -24,8 +25,8 @@
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      border: 3px solid #7fcaea;
-      background-color: #64b1fc;
+      border: 3px solid $accentColor;
+      background-color: $accentColor;
       overflow: hidden;
 
       img {
@@ -38,6 +39,7 @@
 
     .username {
       text-transform: uppercase;
+      color: #fff;
     }
   }
 
@@ -52,10 +54,9 @@
       color: #fff;
 
       span {
-        color: $buttonErrorBgColor;
+        color: $accentColor;
       }
     }
 
   }
-
 }

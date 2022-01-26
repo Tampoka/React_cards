@@ -48,11 +48,11 @@ export const DecksRange = ({minCardsCount, maxCardsCount, isLoading}: PropsType)
                     railStyle={{backgroundColor: '#FFC4ED', height: 10}}
                     trackStyle={[{backgroundColor: '#FFEAF5', height: 10}]}
                     handleStyle={[{
-                        backgroundColor: '#d57689',
+                        backgroundColor: '#e8ebe4',
                         height: 20,
                         width: 20,
                         borderRadius: 0
-                    }, {backgroundColor: '#7c8efd', height: 20, width: 20, borderRadius: 0}]}
+                    }, {backgroundColor: '#999ac6', height: 20, width: 20, borderRadius: 0}]}
                     // dotStyle={{backgroundColor:'red',width:20,height:20,top:-5}}
                     dotStyle={{display: 'none'}}
                     tipFormatter={value => `${value}`}
@@ -61,7 +61,8 @@ export const DecksRange = ({minCardsCount, maxCardsCount, isLoading}: PropsType)
                         visible: true,
                     }}
                 />
-                <SuperButton disabled={isLoading} onClick={resetRange}>Reset</SuperButton>
+                <SuperButton disabled={isLoading} onClick={resetRange}
+                className={s.submitBtn}>Reset</SuperButton>
             </div>
         )
             ;

@@ -61,7 +61,9 @@ export const CardsTable = React.memo(({
                 {cards.map(c => {
                     const editCallback = (question: string,answer:string) => updateCardHandler(c._id, question,answer);
                     return <tr key={c._id}>
-                        <td className={s.deckName}>{c.question}</td>
+                        <td className={s.deckName}>
+                            <div className={s.question}>{c.question}</div>
+                        </td>
                         <td>{c.answer}</td>
                         <td>{moment(c.updated).format(('L'))}</td>
                         {/*<td>{c.grade}</td>*/}

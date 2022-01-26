@@ -1,43 +1,45 @@
 @import '../../styles/saas/variables.scss';
 
 .button {
-    text-decoration: none;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    letter-spacing: 2px;
-    background-color: #02111a;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  background-color: #02111a;
+  color: #fff;
+  box-shadow: 7px 6px 28px 1px rgba(252, 253, 252, 0.68);
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s all;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 4px;
+
+  &.default {
+    background-color: $buttonDefaultBgColor;
+    border: 1px solid rgba(219, 222, 236, 0.51);
     color: #fff;
-    border-radius: 4px;
-    box-shadow: 7px 6px 28px 1px rgba(148, 137, 137, 0.24);
-    cursor: pointer;
     outline: none;
-    transition: 0.2s all;
+  }
+
+  &.red {
+    background: $accentColor;
+    border: 1px solid rgb(175, 187, 232);
+  }
 }
 
 .button:hover {
-    box-shadow: 7px 6px 28px 1px rgba(232, 225, 225, 0.24);
+  box-shadow: 7px 6px 28px 1px rgba(15, 15, 16, 0.24);
 
 }
+
 .button:active {
-    transform: scale(0.98);
-    /* Scaling button to 0.98 to its original size */
-    box-shadow: 3px 2px 22px 1px rgba(30, 29, 29, 0.24);
-}
-
-.default {
-    background-color: $buttonDefaultBgColor;
-    color: #99ff99;
-    outline: none;
-    border-radius: 4px;
-}
-
-.red {
-    background: $buttonErrorBgColor;
+  transform: scale(0.98);
+  /* Scaling button to 0.98 to its original size */
+  box-shadow: 3px 2px 22px 1px rgba(30, 29, 29, 0.24);
 }
 
 .button:disabled {
-    opacity: 0.4;
-    /*cursor: not-allowed;*/
+  opacity: 0.4;
+  /*cursor: not-allowed;*/
 }
 

@@ -75,10 +75,10 @@ export const DecksTable = React.memo(({
                             {userId === m.user_id && <><SuperButton disabled={isLoading}
                                                                     onClick={() => deleteDeckHandler(m._id)}
                                                                     red>Delete</SuperButton>
-                                <UpdateDeckModal deckName={m.name} isLoading={isLoading} onSubmitHandler={editCallback}/>
+                                <UpdateDeckModal deckName={m.name} isLoading={isLoading}
+                                                 onSubmitHandler={editCallback}/>
                             </>
                             }
-                            {/*<SuperButton disabled={isLoading}>Learn</SuperButton>*/}
                             <LearnModal deckName={m.name} isLoading={isLoading} onSubmitHandler={editCallback}/>
                         </td>
                     </tr>;

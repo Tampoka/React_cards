@@ -14,7 +14,7 @@ export const StarRating = ({grade, maxGrade, minGrade}: PropsType) => {
                 return (
                     <i
                         key={index}
-                        style={{color: index <= (grade) ? '#d57689' : '#c7c7c7'}}>
+                        style={{color: index <= (grade) ? '#d57689' : '#9a8f8f'}}>
                         <span>&#9733;</span>
                     </i>
                 )

@@ -1,3 +1,5 @@
+@import '../../common/styles/saas/variables';
+
 .authContainer {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,7 @@
   width: 400px;
   min-height: 550px;
   padding: 10px;
-  background-color: #fff;
+  background-color: $bgLightColor;
 
   .sectionTitle {
     font-size: larger;
@@ -29,6 +31,7 @@
 
     button {
       padding: 10px 20px;
+      font-size:16px;
 
       :disabled {
         opacity: 0.2;
