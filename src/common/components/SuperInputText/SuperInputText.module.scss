@@ -1,0 +1,53 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+
+
+  .input {
+    /*padding: 5px 5px;*/
+    background: #b8bacf;
+    color: #073807;
+    font-size: larger;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+  }
+
+  .errorInput {
+    border: 3px solid rgba(221, 51, 85, 0.45);
+    background: #cb97a1;
+    color: #99ff99;
+  }
+
+  .error {
+    align-self: flex-start;
+    color: #dd3355;
+    max-height: 80px;
+    max-width: 260px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 100%;
+    padding: 0 20px;
+    outline: none;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 20px;
+    letter-spacing: .1px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    color: rgba(198, 201, 216, .75);
+    background: 0 0;
+
+    &:focus {
+      outline: none;
+      border: 3px solid #798071;
+    }
+
+    &::placeholder {
+      color: #717173;
+    }
+
+  }
+}
