@@ -75,7 +75,7 @@ export const setPackName = (name: string) => {
 export const fetchCardsPacks = (payload?: GetCardPacksQueryParams): ThunkType =>
     async (dispatch, getState: () => AppRootStateType) => {
         const decks = getState().decks
-        const userID = decks.privatePacks && getState().profile.profile?._id
+        const userID = decks.privatePacks && getState().profile?._id
         dispatch(setAppIsLoading(true))
         try {
             const res = await decksApi.getCardPacks({

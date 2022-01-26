@@ -32,7 +32,7 @@ export const Cards = React.memo(() => {
     const dispatch = useDispatch()
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
-    const userId = useAppSelector<string>(state => state.profile.profile?._id)
+    const userId = useAppSelector<string>(state => state.profile?._id)
     const cardPacks = useAppSelector<CardsPackType[]>(state => state.decks.cardPacks)
     const currentCardsPack = cardPacks.find(d => d._id === cardsPackId)
     const paginationScrollTopRef = useRef<HTMLHeadingElement>(null)

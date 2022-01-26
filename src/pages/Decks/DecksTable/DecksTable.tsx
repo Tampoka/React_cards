@@ -9,6 +9,7 @@ import {UpdateDeckModal} from '../UpdateDeckModal/UpdateDeckModal';
 import {NavLink} from 'react-router-dom';
 import {ROUTES} from '../../../routes/routes';
 import {Sort} from '../../../common/components/Sort/Sort';
+import {LearnModal} from '../LearnModal/LearnModal';
 
 type PropsType = {
     decks: CardsPackType[]
@@ -77,7 +78,8 @@ export const DecksTable = React.memo(({
                                 <UpdateDeckModal deckName={m.name} isLoading={isLoading} onSubmitHandler={editCallback}/>
                             </>
                             }
-                            <SuperButton disabled={isLoading}>Learn</SuperButton>
+                            {/*<SuperButton disabled={isLoading}>Learn</SuperButton>*/}
+                            <LearnModal deckName={m.name} isLoading={isLoading} onSubmitHandler={editCallback}/>
                         </td>
                     </tr>;
                 })}

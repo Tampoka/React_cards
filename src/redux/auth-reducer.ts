@@ -44,7 +44,7 @@ export const logOut = (): ThunkType => async dispatch => {
         dispatch(setAppIsLoading(true))
         await authApi.signOut();
         dispatch(setIsLoggedIn(false))
-        dispatch(setProfile(ProfileInitialState.profile))
+        dispatch(setProfile(ProfileInitialState))
         dispatch(setAppInfo('See you again!'))
     } catch (e: any) {
         console.log(e as Error)

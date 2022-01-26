@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef} from 'react';
 import {useDispatch} from 'react-redux';
-import {Navigate, useNavigate} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import {useAppSelector} from '../../redux/store';
 import {
     deleteDeck,
@@ -28,8 +28,7 @@ export const Decks = React.memo(() => {
     const dispatch = useDispatch()
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
-    const userId = useAppSelector<string>(state => state.profile.profile._id)
-    const userName = useAppSelector<string>(state => state.profile.profile.name)
+    const userId = useAppSelector<string>(state => state.profile._id)
 
     const sortDecksMethod = useAppSelector<string | undefined>(state => state.cards.sortCardsMethod)
     const changeDecksSortMethod = (sortMethod: string) => {
@@ -86,7 +85,7 @@ export const Decks = React.memo(() => {
     if (!isLoggedIn) return <Navigate to={'/login'}/>
     return (
         <div className={s.decksWithSidebar}>
-            <Sidebar showPrivate={showPrivate} active={privatePacks} userName={userName} minCardsCount={minCardsCount}
+            <Sidebar showPrivate={showPrivate} active={privatePacks} minCardsCount={minCardsCount}
                      maxCardsCount={maxCardsCount} isLoading={isLoading}/>
             <div className={s.decksContainer}>
                 <h1 ref={paginationScrollTopRef}>Decks List</h1>
