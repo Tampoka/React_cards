@@ -45,7 +45,7 @@ export const decksReducer = (state: PacksInitialState = initialState, action: De
         case 'DECKS/SET-CURRENT-CARDS-COUNT':
             return {...state, currentCardsCount: [...action.payload.values]}
         case 'DECKS/SET-DECK-NAME':
-            return {...state, packName:action.payload.name}
+            return {...state, packName: action.payload.name}
         default:
             return state
     }
@@ -83,13 +83,13 @@ export const fetchCardsPacks = (payload?: GetCardPacksQueryParams): ThunkType =>
                 pageCount: decks.pageCount,
                 min: decks.currentCardsCount[0],
                 max: decks.currentCardsCount[1],
-                packName: payload?.packName || decks.packName||undefined,
+                packName: payload?.packName || decks.packName || undefined,
                 user_id: userID || undefined,
                 sortPacks: decks.sortBy
             });
             dispatch(setDecks(res.data));
             // dispatch(setAppInfo('Cards are ready to study!'));
-        } catch (e:any) {
+        } catch (e: any) {
             dispatch(setAppError(true));
             dispatch(setAppInfo(e.response ? e.response.data.error : e));
         } finally {
@@ -102,7 +102,7 @@ export const postDeck = (payload: NewCardsPackData): ThunkType => async dispatch
     dispatch(setAppIsLoading(true));
     try {
         await decksApi.createCardsPack(payload);
-        dispatch(fetchCardsPacks());
+        await dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was created!'))
     } catch (e: any) {
         console.log((e as Error).message);
@@ -117,7 +117,7 @@ export const deleteDeck = (payload: DeleteCardsPackData): ThunkType => async dis
     dispatch(setAppIsLoading(true));
     try {
         await decksApi.deleteCardsPack(payload);
-        dispatch(fetchCardsPacks());
+        await dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was deleted!'))
     } catch (e: any) {
         console.log((e as Error).message);
@@ -132,7 +132,7 @@ export const updateDeck = (payload: UpdateCardsPackData): ThunkType => async dis
     dispatch(setAppIsLoading(true));
     try {
         await decksApi.updateCardsPack(payload);
-        dispatch(fetchCardsPacks());
+        await dispatch(fetchCardsPacks());
         dispatch(setAppInfo('Deck was updated!'));
     } catch (e: any) {
         console.log((e as Error).message);
