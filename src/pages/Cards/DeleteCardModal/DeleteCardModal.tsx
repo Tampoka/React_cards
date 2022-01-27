@@ -2,7 +2,6 @@ import React from 'react';
 import {useModal} from '../../../common/hooks/useModal';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import {Modal} from '../../../common/components/Modal/Modal';
-import {DeleteDeckForm} from '../../Decks/DeleteDeckModal/DeleteDeckForm/DeleteDeckForm';
 import {DeleteCardForm} from './DeleteCardForm/DeleteCardForm';
 
 type PropsType = {
