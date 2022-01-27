@@ -108,7 +108,7 @@ export const Cards = React.memo(() => {
                                  onToggle={onToggle} isOwner={userId === packUserId}/>
                     {isLoading && <Spinner/>}
                     <Modal visible={isOpen} setVisible={onToggle}>
-                        <AddCardForm onSubmitHandler={addNewCardHandler} isLoading={isLoading} closeOnSubmit={onToggle}/>
+                        <AddCardForm onSubmitHandler={addNewCardHandler} isLoading={isLoading} onClose={onToggle}/>
                     </Modal>
                     <CardsTable cards={cards}
                                 deleteCardHandler={deleteCardHandler}
@@ -121,11 +121,6 @@ export const Cards = React.memo(() => {
                 </>
                 : <h1>Please <NavLink to={'/decks'}>choose deck</NavLink> to start learning</h1>
             }
-
-            {/*<Modal visible={isOpen} setVisible={onToggle}>*/}
-            {/*    <AddDeckForm onSubmitHandler={addNewCardHandler} isLoading={isLoading}/>*/}
-            {/*</Modal>*/}
-
             <CardsPagination totalCount={cardsTotalCount}
                              pageCount={pageCount}
                              currentPage={page}

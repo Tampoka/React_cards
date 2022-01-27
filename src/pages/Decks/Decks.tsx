@@ -97,7 +97,7 @@ export const Decks = React.memo(() => {
                 {/*<DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount}/>*/}
                 {isLoading && <Spinner/>}
                 <Modal visible={isOpen} setVisible={onToggle}>
-                    <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading}/>
+                    <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading} onClose={onToggle}/>
                 </Modal>
                 <div className={s.searchWithAddItem}>
                     <Search totalCount={cardPacksTotalCount} searchCallback={onDeckSearchCallback}

@@ -8,10 +8,10 @@ import SuperButton from '../../../common/components/SuperButton/SuperButton';
 type PropsType = {
     onSubmitHandler: (question: string, answer: string) => void
     isLoading: boolean
-    closeOnSubmit:()=>void
+    onClose:()=>void
 }
 
-export const AddCardForm = ({onSubmitHandler, isLoading,closeOnSubmit}: PropsType) => {
+export const AddCardForm = ({onSubmitHandler, isLoading,onClose}: PropsType) => {
     const formik = useFormik({
         initialValues: {
             question: '',
@@ -26,12 +26,12 @@ export const AddCardForm = ({onSubmitHandler, isLoading,closeOnSubmit}: PropsTyp
         onSubmit: (values) => {
             onSubmitHandler(values.question, values.answer)
             formik.resetForm();
-            closeOnSubmit()
         },
     });
     return (
         <div className={s.container}>
             <h2>New Card Info</h2>
+            <button onClick={onClose} className={s.closeBtn}>X</button>
             <form className={s.form} onSubmit={formik.handleSubmit}>
                 <SuperInputText  {...formik.getFieldProps('question')}
                                  error={formik.touched.question && formik.errors.question

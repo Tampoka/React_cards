@@ -8,8 +8,9 @@ import React from 'react';
 type PropsType = {
     onSubmitHandler: (title:string)=>void
     isLoading:boolean
+    onClose:()=>void
 }
-export const AddDeckForm = ({onSubmitHandler,isLoading}: PropsType) => {
+export const AddDeckForm = ({onSubmitHandler,isLoading,onClose}: PropsType) => {
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -28,6 +29,7 @@ export const AddDeckForm = ({onSubmitHandler,isLoading}: PropsType) => {
     return (
         <div className={s.container}>
             <h2>New Deck Info</h2>
+            <button onClick={onClose} className={s.closeBtn}>X</button>
             <form className={s.form} onSubmit={formik.handleSubmit}>
                     <SuperInputText  {...formik.getFieldProps('name')}
                                      error={formik.touched.name && formik.errors.name

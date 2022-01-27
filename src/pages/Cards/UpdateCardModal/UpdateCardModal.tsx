@@ -16,10 +16,10 @@ export const UpdateCardModal = ({isLoading, onSubmitHandler, question, answer}: 
     return (
         <>
             <SuperButton disabled={isLoading}
-                         onClick={() => onToggle()}>Edit</SuperButton>
+                         onClick={onToggle}>Edit</SuperButton>
             <Modal visible={isOpen} setVisible={onToggle}>
                 <UpdateCardForm onSubmitHandler={onSubmitHandler} isLoading={isLoading} question={question}
-                                answer={answer} closeOnSubmit={onToggle}/>
+                                answer={answer} onClose={onToggle}/>
             </Modal>
         </>
     );

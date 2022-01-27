@@ -31,20 +31,19 @@
   td, th {
     border: 1px solid rgba(229, 232, 234, 0.36);
     padding: 20px;
-    text-align: center;
     min-width: 40px;
   }
 
   .tableHeading {
     display: flex;
     justify-content: center;
-
   }
 
   thead td {
     font-size: larger;
     background-color:$bgSecondColor;
     color: $textColor;
+    text-align: center;
   }
 
   .deckName {

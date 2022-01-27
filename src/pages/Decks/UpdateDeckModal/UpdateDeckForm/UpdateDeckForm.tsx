@@ -9,8 +9,9 @@ type PropsType = {
     onSubmitHandler: (title: string) => void
     isLoading: boolean
     title: string
+    onClose:()=>void
 }
-export const UpdateDeckForm = React.memo(({onSubmitHandler, isLoading, title}: PropsType) => {
+export const UpdateDeckForm = React.memo(({onSubmitHandler, isLoading, title,onClose}: PropsType) => {
     const formik = useFormik({
         initialValues: {
             name: title,
@@ -28,6 +29,7 @@ export const UpdateDeckForm = React.memo(({onSubmitHandler, isLoading, title}: P
     return (
         <div className={s.container}>
             <h2>Change Title</h2>
+            <button onClick={onClose} className={s.closeBtn}>X</button>
             <form className={s.form} onSubmit={formik.handleSubmit}>
                 <SuperInputText  {...formik.getFieldProps('name')}
                                  error={formik.touched.name && formik.errors.name

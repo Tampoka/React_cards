@@ -15,9 +15,9 @@ export const UpdateDeckModal = ({deckName, isLoading, onSubmitHandler}: PropsTyp
     return (
         <>
             <SuperButton disabled={isLoading}
-                         onClick={() => onToggle()}>Edit</SuperButton>
+                         onClick={onToggle}>Edit</SuperButton>
             <Modal visible={isOpen} setVisible={onToggle}>
-                <UpdateDeckForm onSubmitHandler={onSubmitHandler} isLoading={isLoading} title={deckName}/>
+                <UpdateDeckForm onSubmitHandler={onSubmitHandler} isLoading={isLoading} title={deckName} onClose={onToggle}/>
             </Modal>
         </>
     );

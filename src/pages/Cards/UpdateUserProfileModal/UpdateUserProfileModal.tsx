@@ -16,10 +16,10 @@ export const UpdateUserProfileModal = ({isLoading, onSubmitHandler, userName, av
     return (
         <>
             <SuperButton disabled={isLoading}
-                         onClick={() => onToggle()}>Edit profile</SuperButton>
+                         onClick={onToggle} red>Edit profile</SuperButton>
             <Modal visible={isOpen} setVisible={onToggle}>
-                <UpdateUserProfileForm onSubmitHandler={onSubmitHandler} isLoading={isLoading} closeOnSubmit={onToggle}
-                                       userName={userName} avatar={avatar?avatar:''}/>
+                <UpdateUserProfileForm onSubmitHandler={onSubmitHandler} isLoading={isLoading}
+                                       userName={userName} avatar={avatar?avatar:''} onClose={onToggle}/>
             </Modal>
         </>
     );

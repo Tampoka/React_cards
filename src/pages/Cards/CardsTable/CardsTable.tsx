@@ -8,11 +8,12 @@ import {CardType} from '../../../api/cards-api';
 import {Sort} from '../../../common/components/Sort/Sort';
 import {Grade} from '../Grade/Grade';
 import {UpdateCardModal} from '../UpdateCardModal/UpdateCardModal';
+import {DeleteCardModal} from '../DeleteCardModal/DeleteCardModal';
 
 type PropsType = {
     cards: CardType[]
     deleteCardHandler: (id: string) => void
-    updateCardHandler: (id: string, question: string,answer:string) => void
+    updateCardHandler: (id: string, question: string, answer: string) => void
     isOwner: boolean
     sortCallback: (sortMethod: string) => void
     sortMethod?: string
@@ -59,21 +60,23 @@ export const CardsTable = React.memo(({
                 </thead>
                 <tbody>
                 {cards.map(c => {
-                    const editCallback = (question: string,answer:string) => updateCardHandler(c._id, question,answer);
+                    const editCallback = (question: string, answer: string) => updateCardHandler(c._id, question, answer);
+                    const deleteCallback=()=>deleteCardHandler(c._id)
                     return <tr key={c._id}>
                         <td className={s.deckName}>
                             <div className={s.question}>{c.question}</div>
                         </td>
                         <td>{c.answer}</td>
                         <td>{moment(c.updated).format(('L'))}</td>
-                        {/*<td>{c.grade}</td>*/}
-                        <td className={s.grade}>{c.grade}<Grade grade={c.grade} minGrade={minGrade} maxGrade={maxGrade}/></td>
+                        <td className={s.grade}>{c.grade}<Grade grade={c.grade} minGrade={minGrade}
+                                                                maxGrade={maxGrade}/></td>
                         <td className={s.btnColumn}>
-                            {isOwner && <><SuperButton disabled={isLoading}
-                                                       onClick={() => deleteCardHandler(c._id)}
-                                                       red>Delete</SuperButton>
-                                <UpdateCardModal  isLoading={isLoading} onSubmitHandler={editCallback}
-                                question={c.question} answer={c.answer}/>
+                            {isOwner && <><DeleteCardModal isLoading={isLoading} onSubmitHandler={deleteCallback}/>
+                                {/*<SuperButton disabled={isLoading}*/}
+                                {/*                       onClick={() => deleteCardHandler(c._id)}*/}
+                                {/*                       red>Delete</SuperButton>*/}
+                                <UpdateCardModal isLoading={isLoading} onSubmitHandler={editCallback}
+                                                 question={c.question} answer={c.answer}/>
                             </>
                             }
                         </td>

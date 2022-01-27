@@ -10,10 +10,10 @@ type PropsType = {
     isLoading: boolean
     question: string
     answer: string
-    closeOnSubmit:()=>void
+    onClose:()=>void
 }
 
-export const UpdateCardForm = ({onSubmitHandler, isLoading, question, answer,closeOnSubmit}: PropsType) => {
+export const UpdateCardForm = ({onSubmitHandler, isLoading, question, answer,onClose}: PropsType) => {
     const formik = useFormik({
         initialValues: {
             question: question,
@@ -28,12 +28,12 @@ export const UpdateCardForm = ({onSubmitHandler, isLoading, question, answer,clo
         onSubmit: (values) => {
             onSubmitHandler(values.question, values.answer)
             formik.resetForm();
-            closeOnSubmit()
         },
     });
     return (
         <div className={s.container}>
             <h2>Card Info</h2>
+            <button onClick={onClose} className={s.closeBtn}>X</button>
             <form className={s.form} onSubmit={formik.handleSubmit}>
                 <label htmlFor='answer'>Question</label>
                 <SuperInputText  {...formik.getFieldProps('question')}

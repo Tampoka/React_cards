@@ -10,6 +10,7 @@ import {NavLink} from 'react-router-dom';
 import {ROUTES} from '../../../routes/routes';
 import {Sort} from '../../../common/components/Sort/Sort';
 import {LearnModal} from '../LearnModal/LearnModal';
+import {DeleteDeckModal} from '../DeleteDeckModal/DeleteDeckModal';
 
 type PropsType = {
     decks: CardsPackType[]
@@ -62,6 +63,7 @@ export const DecksTable = React.memo(({
                     const username = m.user_name.includes('@') ? m.user_name.substring(0, m.user_name.indexOf('@')) : m.user_name
                     // const dateCreated=m.created.toLocaleString().replace(/.\d+Z$/g, '')
                     const editCallback = (title: string) => updateDeckHandler(m._id, title);
+                    const deleteCallback=()=>deleteDeckHandler(m._id)
 
                     return <tr key={m._id}>
                         <td className={s.deckName}>
@@ -72,12 +74,10 @@ export const DecksTable = React.memo(({
                         <td>{moment(m.created).format(('L'))}</td>
                         <td>{moment(m.updated).format(('L'))}</td>
                         <td className={s.btnColumn}>
-                            {userId === m.user_id && <><SuperButton disabled={isLoading}
-                                                                    onClick={() => deleteDeckHandler(m._id)}
-                                                                    red>Delete</SuperButton>
+                            {userId === m.user_id && <>
+                                <DeleteDeckModal deckName={m.name} isLoading={isLoading} onSubmitHandler={deleteCallback}/>
                                 <UpdateDeckModal deckName={m.name} isLoading={isLoading}
-                                                 onSubmitHandler={editCallback}/>
-                            </>
+                                                 onSubmitHandler={editCallback}/></>
                             }
                             <LearnModal deckName={m.name} isLoading={isLoading} onSubmitHandler={editCallback}/>
                         </td>

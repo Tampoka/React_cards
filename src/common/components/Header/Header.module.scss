@@ -22,7 +22,7 @@
       border-radius: 4px;
       background-color: $bgSecondColor;
       &:hover{
-        border-bottom: 8px solid #fff;
+        border-bottom: 6px solid $accentColor;
       }
       &.active {
         color: #fff;
