@@ -22,7 +22,7 @@ export const Search = ({totalCount,searchCallback,label,showResults}:PropsType) 
 
     useEffect(() => {
         searchCallback(debouncedValue)
-    }, [debouncedValue,dispatch])
+    }, [debouncedValue])
 
     return (
         <div className={s.searchBlock}>

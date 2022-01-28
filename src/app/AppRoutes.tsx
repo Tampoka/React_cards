@@ -14,7 +14,6 @@ import {useAppSelector} from '../redux/store';
 import {useDispatch} from 'react-redux';
 import React, {useEffect} from 'react';
 import {initializeApp} from '../redux/app-reducer';
-import BgLoader from '../common/components/BgLoader/BgLoader';
 import {Cards} from '../pages/Cards/Cards';
 
 
@@ -27,10 +26,8 @@ function AppRoutes() {
         dispatch(initializeApp())
     }, [dispatch])
 
-    if (!isInitialized) return <BgLoader/>
     return (
         <div className={s.content}>
-            <Alert/>
             <Routes>
                 {/*<Route path='/' element={<Profile/>}/>*/}
                 <Route path={ROUTES.PROFILE} element={<Profile/>}/>

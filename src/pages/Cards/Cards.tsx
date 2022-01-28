@@ -15,16 +15,16 @@ import {
     setSortCardsMethod,
     updateCard
 } from '../../redux/cards-reducer';
-import {Navigate, NavLink, useParams} from 'react-router-dom';
+import {Navigate, NavLink, useNavigate, useParams} from 'react-router-dom';
 import s from './Cards.module.scss'
 import {CardsPackType} from '../../api/decks-api';
 import SuperButton from '../../common/components/SuperButton/SuperButton';
-import Spinner from '../../common/components/Spinner/Spinner';
 import {CardsTable} from './CardsTable/CardsTable';
 import {CardsPagination} from './CardsPagination/CardsPagination';
 import {CardsSearch} from './CardsSearch/CardsSearch';
 import {Modal} from '../../common/components/Modal/Modal';
 import {AddCardForm} from './AddCardForm/AddCardForm';
+import {Loader} from '../../common/components/Loader/Loader';
 
 export const Cards = React.memo(() => {
     const {cardsPackId} = useParams<{ cardsPackId: string }>()
@@ -36,6 +36,7 @@ export const Cards = React.memo(() => {
     const cardPacks = useAppSelector<CardsPackType[]>(state => state.decks.cardPacks)
     const currentCardsPack = cardPacks.find(d => d._id === cardsPackId)
     const paginationScrollTopRef = useRef<HTMLHeadingElement>(null)
+    const navigate = useNavigate()
 
     const changeCardsSortMethod = (sortMethod: string) => {
         dispatch(setSortCardsMethod(sortMethod))
@@ -79,7 +80,6 @@ export const Cards = React.memo(() => {
 
     useEffect(() => {
         dispatch(setCurrentCardsDeckID(cardsPackId))
-        // clearing cards
         return () => {
             dispatch(setCards(initialState))
         }
@@ -87,26 +87,25 @@ export const Cards = React.memo(() => {
 
     useEffect(() => {
         cardsPackId && dispatch(fetchCards())
-    }, [dispatch, cardsPackId, page, pageCount, sortCardsMethod, currentGrade, isLoggedIn, cardAnswer, cardQuestion])
+    }, [dispatch, cardsPackId, page, pageCount, sortCardsMethod, currentGrade ,cardAnswer, cardQuestion, cardsTotalCount])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
     }, [page, pageCount])
 
     if (!isLoggedIn) return <Navigate to='/login'/>
-    console.log(currentCardsPack)
     return (
         <div className={s.cardsContainer}>
             {currentCardsPack ? < >
-                    <SuperButton><NavLink to={'/decks'}>Back</NavLink></SuperButton>
-                    {currentCardsPack.cardsCount === 0
+                    <SuperButton onClick={() => navigate('/decks')}>Back</SuperButton>
+                    {cardsTotalCount === 0
                         ? <h1>There are no cards in this deck.
                             <span>Please <NavLink to={'/decks'}>choose another deck</NavLink></span></h1>
                         : <h1 ref={paginationScrollTopRef}>{currentCardsPack.name}</h1>}
+                    {isLoading && <Loader/>}
                     <CardsSearch isLoading={isLoading} onCardQuestionSearchCallback={onCardQuestionSearchCallback}
                                  onCardAnswerSearchCallback={onCardAnswerSearchCallback} totalCount={cardsTotalCount}
                                  onToggle={onToggle} isOwner={userId === packUserId}/>
-                    {isLoading && <Spinner/>}
                     <Modal visible={isOpen} setVisible={onToggle}>
                         <AddCardForm onSubmitHandler={addNewCardHandler} isLoading={isLoading} onClose={onToggle}/>
                     </Modal>

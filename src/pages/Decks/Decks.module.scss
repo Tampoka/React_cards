@@ -28,5 +28,18 @@
 
       }
     }
+
+    .innerSidebar {
+      .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+      }
+      p {
+        display: none;
+      }
+    }
   }
 }
+

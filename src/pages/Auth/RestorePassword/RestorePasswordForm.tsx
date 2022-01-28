@@ -1,13 +1,13 @@
 import React from 'react';
 
 import s from '../FormCommon.module.scss';
-import Spinner from '../../../common/components/Spinner/Spinner';
 import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import {Navigate, NavLink} from 'react-router-dom';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {useAppSelector} from '../../../redux/store';
+import {Loader} from '../../../common/components/Loader/Loader';
 
 type PropsType = {
     isLoading: boolean
@@ -33,7 +33,7 @@ export const RestorePasswordForm = ({isLoading, onSubmitHandler}: PropsType) => 
     return (
         <div className={s.authContainer}>
             <h2>Learning Cards</h2>
-            {isLoading && <Spinner/>}
+            {isLoading && <Loader/>}
             <p className={s.sectionTitle}>Forgot your password?</p>
             <div className={s.formContainer}>
                 <form onSubmit={formik.handleSubmit} className={s.form}>

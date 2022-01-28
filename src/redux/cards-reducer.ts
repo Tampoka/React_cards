@@ -95,7 +95,6 @@ export const fetchCards = (payload?: GetCardsQueryParams): ThunkType =>
             });
             dispatch(setCards(res.data));
             dispatch(setAppInfo('Cards are ready to study!'));
-            console.log(res.data)
         } catch (e: any) {
             dispatch(setAppError(true));
             dispatch(setAppInfo(e.response ? e.response.data.error : e));

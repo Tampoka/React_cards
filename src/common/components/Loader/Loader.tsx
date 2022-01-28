@@ -1,12 +1,10 @@
-import React from 'react';
 import s from './Loader.module.css'
 
-const Loader = () => {
+export const Loader = () => {
     return (
         <div className={s.loader}>
-            <span>Loading...</span>
+            <div className={s.loaderBar}></div>
         </div>
-    );
+    )
 };
 
-export default Loader;

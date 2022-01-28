@@ -5,6 +5,7 @@ import s from '../FormCommon.module.scss';
 import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import React from 'react';
+import {Loader} from '../../../common/components/Loader/Loader';
 
 type PropsType = {
     isLoading: boolean
@@ -41,7 +42,7 @@ export const NewPasswordForm = React.memo(({
     return (
         <div className={s.authContainer}>
             <h2>Learning Cards</h2>
-            {/*{isLoading && <Spinner/>}*/}
+            {isLoading && <Loader/>}
             <p className={s.sectionTitle}>Create new password</p>
             <div className={s.formContainer}>
                 <form onSubmit={formik.handleSubmit} className={s.form}>

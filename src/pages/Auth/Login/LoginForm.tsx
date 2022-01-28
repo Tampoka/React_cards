@@ -10,6 +10,7 @@ import {login} from '../../../redux/auth-reducer';
 import SuperCheckbox from '../../../common/components/SuperCheckbox/SuperCheckbox';
 import {useAppSelector} from '../../../redux/store';
 import Spinner from '../../../common/components/Spinner/Spinner';
+import {Loader} from '../../../common/components/Loader/Loader';
 
 
 type PropsType = {
@@ -55,7 +56,7 @@ export const LoginForm = React.memo(({
     return (
         <div className={s.authContainer}>
             <h2>Learning Cards</h2>
-            {isLoading && <Spinner/>}
+            {isLoading && <Loader/>}
             <p className={s.sectionTitle}>Sign In</p>
             <div className={s.formContainer}>
                 <form onSubmit={formik.handleSubmit} className={s.form}>

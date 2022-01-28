@@ -3,8 +3,8 @@ import s from '../FormCommon.module.scss';
 import {SignUpData} from '../../../api/auth-api';
 import SuperInputText from '../../../common/components/SuperInputText/SuperInputText';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
-import Spinner from '../../../common/components/Spinner/Spinner';
 import {Navigate, NavLink} from 'react-router-dom';
+import {Loader} from '../../../common/components/Loader/Loader';
 
 
 type PropsType = {
@@ -19,15 +19,15 @@ type PropsType = {
 };
 
 export const SignUpForm2 = React.memo(({
-                                          values,
-                                          setValues,
-                                          isLoading,
-                                          onSubmitHandler,
-                                          errorMsg,
-                                          registrationSuccess,
-                                          toggleShowPassword,
-                                          showPassword
-                                      }: PropsType) => {
+                                           values,
+                                           setValues,
+                                           isLoading,
+                                           onSubmitHandler,
+                                           errorMsg,
+                                           registrationSuccess,
+                                           toggleShowPassword,
+                                           showPassword
+                                       }: PropsType) => {
 
     if (registrationSuccess) {
         return <Navigate to='/login'/>;
@@ -35,7 +35,7 @@ export const SignUpForm2 = React.memo(({
     return (
         <div className={s.authContainer}>
             <h2>Learning Cards</h2>
-            {isLoading && <Spinner/>}
+            {isLoading && <Loader/>}
             <p className={s.sectionTitle}>Sign Up</p>
             <p className={s.errorMsg}>{errorMsg}</p>
             <div className={s.formContainer}>

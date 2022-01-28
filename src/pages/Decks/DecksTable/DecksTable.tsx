@@ -3,7 +3,6 @@ import {CardsPackType} from '../../../api/decks-api';
 import {AppRootStateType} from '../../../redux/store';
 import {useSelector} from 'react-redux';
 import s from './DecksTable.module.scss'
-import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import moment from 'moment';
 import {UpdateDeckModal} from '../UpdateDeckModal/UpdateDeckModal';
 import {NavLink} from 'react-router-dom';
@@ -63,11 +62,11 @@ export const DecksTable = React.memo(({
                     const username = m.user_name.includes('@') ? m.user_name.substring(0, m.user_name.indexOf('@')) : m.user_name
                     // const dateCreated=m.created.toLocaleString().replace(/.\d+Z$/g, '')
                     const editCallback = (title: string) => updateDeckHandler(m._id, title);
-                    const deleteCallback=()=>deleteDeckHandler(m._id)
+                    const deleteCallback = () => deleteDeckHandler(m._id)
 
                     return <tr key={m._id}>
                         <td className={s.deckName}>
-                            <NavLink to={`${ROUTES.CARDS}/${m._id}`}>{m.name}</NavLink>
+                            <NavLink to={ROUTES.CARDS + '/' + m._id}>{m.name}</NavLink>
                         </td>
                         <td>{m.cardsCount}</td>
                         <td>{username}</td>
@@ -75,11 +74,12 @@ export const DecksTable = React.memo(({
                         <td>{moment(m.updated).format(('L'))}</td>
                         <td className={s.btnColumn}>
                             {userId === m.user_id && <>
-                                <DeleteDeckModal deckName={m.name} isLoading={isLoading} onSubmitHandler={deleteCallback}/>
+                                <DeleteDeckModal deckName={m.name} isLoading={isLoading}
+                                                 onSubmitHandler={deleteCallback}/>
                                 <UpdateDeckModal deckName={m.name} isLoading={isLoading}
                                                  onSubmitHandler={editCallback}/></>
                             }
-                            <LearnModal deckName={m.name} isLoading={isLoading} onSubmitHandler={editCallback}/>
+                            <LearnModal deckName={m.name} isLoading={isLoading} id={m._id}/>
                         </td>
                     </tr>;
                 })}

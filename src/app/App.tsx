@@ -1,19 +1,15 @@
-import React from 'react';
 import Header from '../common/components/Header/Header';
 import Main from '../pages/Main/Main';
+import {Alert} from '../common/components/InfoAlert/Alert';
+import {ScrollToTop} from '../common/components/ScrollToTop/ScrollToTop';
 
 function App() {
-    // const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
-    // const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
-    // const navigate = useNavigate()
-
     return (
         <div>
+            <Alert/>
             <Header/>
-            {/*{isLoading*/}
-            {/*    ? <BgLoader/>*/}
-            {/*    : <Main/>}*/}
             <Main/>
+            <ScrollToTop/>
         </div>
     );
 }

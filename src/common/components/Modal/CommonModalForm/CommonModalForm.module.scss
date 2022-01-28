@@ -7,7 +7,10 @@
   min-height: 200px;
   min-width: 250px;
   justify-content: space-evenly;
-
+&.container.learnContainer {
+  min-height: 500px;
+  min-width: 400px;
+}
   .submitBtn {
     display: flex;
     justify-content: center;
@@ -18,18 +21,19 @@
     }
   }
 
-.closeBtn{
-  position: absolute;
-  top: -15px;
-  right: -10px;
-  border: none;
-  background-color: #c6c8ce;
-  font-size: 20px;
-  font-family: "Arial",sans-serif;
-  cursor: pointer;
-  color: #798071;
-  padding: 5px 10px;
-}
+  .closeBtn {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    border: none;
+    background-color: #c6c8ce;
+    font-size: 20px;
+    font-family: "Arial", sans-serif;
+    cursor: pointer;
+    color: #798071;
+    padding: 5px 10px;
+  }
+
   h2 {
     align-self: center;
     margin-bottom: 20px;
@@ -49,7 +53,5 @@
     .attach {
       margin: 10px 0;
     }
-
-
   }
 }

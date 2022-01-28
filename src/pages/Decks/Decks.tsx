@@ -15,7 +15,6 @@ import {
 import {DecksPagination} from './DecksPagination/DecksPagination';
 import s from './Decks.module.scss'
 import {DecksTable} from './DecksTable/DecksTable';
-import Spinner from '../../common/components/Spinner/Spinner';
 import {Search} from '../../common/components/Search/Search';
 import {Modal} from '../../common/components/Modal/Modal';
 import {AddDeckForm} from './AddDeckForm/AddDeckForm';
@@ -23,6 +22,10 @@ import {useModal} from '../../common/hooks/useModal';
 import {Sidebar} from './Sidebar/Sidebar';
 import {AddItem} from './Sidebar/AddItem/AddItem';
 import {updateProfile} from '../../redux/profile-reducer';
+import {Loader} from '../../common/components/Loader/Loader';
+import {useMatchMedia} from '../../common/hooks/useMatchMedia';
+import {BtnBlock} from './BtnBlock/BtnBlock';
+import {DecksRange} from './DecksRange/DecksRange';
 
 export const Decks = React.memo(() => {
     const {isOpen, onToggle} = useModal()
@@ -30,6 +33,8 @@ export const Decks = React.memo(() => {
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
     const userId = useAppSelector<string>(state => state.profile._id)
+    const isDesktopResolution = useMatchMedia('(min-width:1040px)', true)
+    const userDecksCount=useAppSelector(state=>state.profile.publicCardPacksCount)
 
     const sortDecksMethod = useAppSelector<string | undefined>(state => state.cards.sortCardsMethod)
     const changeDecksSortMethod = (sortMethod: string) => {
@@ -71,31 +76,32 @@ export const Decks = React.memo(() => {
 
     const onDeckSearchCallback = useCallback((value: string) => {
         dispatch(setPackName(value))
+        console.log('search decks')
     }, [dispatch])
 
     const updateUserProfile = useCallback((name: string, avatar: string) => {
         dispatch(updateProfile(({name, avatar})))
     }, [dispatch])
 
+
     useEffect(() => {
-        if (!!userId) {
-            dispatch(fetchCardsPacks())
-        }
-    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, isLoggedIn, packName, userId, sortDecksMethod])
+       dispatch(fetchCardsPacks())
+    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, packName, userId, sortDecksMethod, cardPacksTotalCount])
+
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
     }, [page, pageCount])
 
     if (!isLoggedIn) return <Navigate to={'/login'}/>
+
     return (
         <div className={s.decksWithSidebar}>
-            <Sidebar showPrivate={showPrivate} active={privatePacks} minCardsCount={minCardsCount}
-                     maxCardsCount={maxCardsCount} isLoading={isLoading} onSubmitHandler={updateUserProfile} totalCount={cardPacksTotalCount}/>
+            {isDesktopResolution&&<Sidebar showPrivate={showPrivate} active={privatePacks} minCardsCount={minCardsCount}
+                      maxCardsCount={maxCardsCount} isLoading={isLoading} onSubmitHandler={updateUserProfile}/>}
             <div className={s.decksContainer}>
                 <h1 ref={paginationScrollTopRef}>Decks List</h1>
-                {/*<DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount}/>*/}
-                {isLoading && <Spinner/>}
+                {isLoading && <Loader/>}
                 <Modal visible={isOpen} setVisible={onToggle}>
                     <AddDeckForm onSubmitHandler={addNewDeckHandler} isLoading={isLoading} onClose={onToggle}/>
                 </Modal>
@@ -103,6 +109,13 @@ export const Decks = React.memo(() => {
                     <Search totalCount={cardPacksTotalCount} searchCallback={onDeckSearchCallback}
                             label='Search for decks' showResults={true}/>
                     <AddItem title='Add deck' setModal={onToggle} isLoading={isLoading}/>
+                </div>
+                <div className={s.innerSidebar}>
+                    {!isDesktopResolution&& <div className={s.info}>
+                        <p>Decks created: <span>{userDecksCount}</span></p>
+                        <BtnBlock showPrivate={showPrivate} active={privatePacks}/>
+                        <DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount} isLoading={isLoading}/>
+                    </div>}
                 </div>
                 <DecksTable decks={cardPacks}
                             deleteDeckHandler={deleteDeckHandler}

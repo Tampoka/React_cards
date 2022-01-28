@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './Pagination.module.scss'
 import {useAppSelector} from '../../../redux/store';
 
@@ -10,7 +10,7 @@ type PropsType = {
     step?: number
 }
 
-export const Pagination = ({totalCount, countPerPage, currentPage, onChange, step = 10}: PropsType) => {
+export const Pagination =React.memo( ({totalCount, countPerPage, currentPage, onChange, step = 10}: PropsType) => {
     const [prevIsHidden, setPrevIsHidden] = useState(false)
     const [nextIsHidden, setNextIsHidden] = useState(false)
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
@@ -74,4 +74,4 @@ export const Pagination = ({totalCount, countPerPage, currentPage, onChange, ste
 
         </div>
     )
-}
+})

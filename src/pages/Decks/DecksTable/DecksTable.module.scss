@@ -32,6 +32,9 @@
     border: 1px solid rgba(229, 232, 234, 0.36);
     padding: 20px;
     min-width: 40px;
+    max-width: 1000px;
+    overflow: hidden;
+    text-align: center;
   }
 
   .tableHeading {
