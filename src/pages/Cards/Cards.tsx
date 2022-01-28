@@ -86,6 +86,7 @@ export const Cards = React.memo(() => {
     }, [dispatch, cardsPackId])
 
     useEffect(() => {
+        console.log("Cards effect")
         cardsPackId && dispatch(fetchCards())
     }, [dispatch, cardsPackId, page, pageCount, sortCardsMethod, currentGrade ,cardAnswer, cardQuestion, cardsTotalCount])
 

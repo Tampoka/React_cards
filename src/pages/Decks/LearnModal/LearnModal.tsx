@@ -11,6 +11,9 @@ type PropsType = {
 
 export const LearnModal = ({deckName, isLoading, id}: PropsType) => {
     const {isOpen, onToggle} = useModal()
+
+
+
     return (
         <>
             <SuperButton disabled={isLoading}

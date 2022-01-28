@@ -84,10 +84,14 @@ export const Decks = React.memo(() => {
     }, [dispatch])
 
 
-    useEffect(() => {
-       dispatch(fetchCardsPacks())
-    }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, packName, userId, sortDecksMethod, cardPacksTotalCount])
+    // useEffect(() => {
+    //    dispatch(fetchCardsPacks())
+    // }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, packName, userId, sortDecksMethod, cardPacksTotalCount])
 
+    useEffect(() => {
+        console.log("Inside effect")
+        dispatch(fetchCardsPacks())
+    }, [])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})

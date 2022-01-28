@@ -20,6 +20,7 @@ export const Learn = React.memo(({onClose, id}: PropsType) => {
     const [first, setFirst] = useState<boolean>(true);
     const cards = useAppSelector(state => state.cards.cards)
     const isLoading = useAppSelector(state => state.app.isLoading)
+    const isInitialized = useAppSelector(state => state.app.isInitialized)
 
     const initialState = {
         _id: 'fake',
@@ -43,16 +44,17 @@ export const Learn = React.memo(({onClose, id}: PropsType) => {
         if (cards.length > 0) setCard(getCard(cards));
     }
 
-    useEffect(() => {
-            if (first) {
-                dispatch(fetchCards({cardsPack_id: id}));
-                setFirst(false);
-            }
-        if (cards.length > 0) setCard(getCard(cards))
-        return () => {
-            dispatch(setCardsPerPage(10))
-        }
-    }, [dispatch, id, cards, first]);
+    // useEffect(() => {
+    //     // if(!isInitialized)return
+    //     if (first) {
+    //         dispatch(fetchCards({cardsPack_id: id}));
+    //         setFirst(false);
+    //     }
+    //     if (cards.length > 0) setCard(getCard(cards))
+    //     return () => {
+    //         setCard(initialState)
+    //     }
+    // }, [dispatch, id, cards, first]);
 
     const gradeHandler = (card_id: string, grade: number) => {
         dispatch(gradeAnswer({card_id, grade}))
@@ -81,8 +83,6 @@ export const Learn = React.memo(({onClose, id}: PropsType) => {
                     ))}
                 </div>
             </>}
-
-            {/*<div className={s.submitBtn}><SuperButton onClick={onNext}>Next</SuperButton></div>*/}
         </div>
     );
 })
