@@ -60,7 +60,6 @@ export const DecksTable = React.memo(({
                 <tbody>
                 {decks.map(m => {
                     const username = m.user_name.includes('@') ? m.user_name.substring(0, m.user_name.indexOf('@')) : m.user_name
-                    // const dateCreated=m.created.toLocaleString().replace(/.\d+Z$/g, '')
                     const editCallback = (title: string) => updateDeckHandler(m._id, title);
                     const deleteCallback = () => deleteDeckHandler(m._id)
 
@@ -79,7 +78,8 @@ export const DecksTable = React.memo(({
                                 <UpdateDeckModal deckName={m.name} isLoading={isLoading}
                                                  onSubmitHandler={editCallback}/></>
                             }
-                            <LearnModal deckName={m.name} isLoading={isLoading} id={m._id}/>
+                            {/*<LearnModal deckName={m.name} isLoading={isLoading} id={m._id}/>*/}
+                            <NavLink to={ROUTES.LEARN + '/' + m._id}>Learn</NavLink>
                         </td>
                     </tr>;
                 })}

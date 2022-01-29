@@ -82,14 +82,12 @@ export const fetchCards = (payload?: GetCardsQueryParams): ThunkType =>
         const cards = getState().cards
         try {
             dispatch(setAppIsLoading(true))
-            console.log("Inside thunk")
             const res = await cardsAPI.getCards({
                 cardsPack_id: cards.currentCardsPackID || payload?.cardsPack_id,
                 page: cards.page,
                 pageCount: payload?.pageCount || cards.pageCount,
                 min: cards.currentGrade[0],
                 max: cards.currentGrade[1],
-                // cardName: payload?.name || cards.cardName||undefined,
                 cardQuestion: payload?.cardQuestion || cards.cardQuestion || undefined,
                 cardAnswer: payload?.cardAnswer || cards.cardAnswer || undefined,
                 sortCards: cards.sortCardsMethod

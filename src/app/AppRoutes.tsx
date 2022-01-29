@@ -6,7 +6,6 @@ import RestorePassword from '../pages/Auth/RestorePassword/RestorePassword';
 import {SignUp2} from '../pages/Auth/SignUp/SignUp2';
 import {Login} from '../pages/Auth/Login/Login';
 import {Decks} from '../pages/Decks/Decks';
-import {Alert} from '../common/components/InfoAlert/Alert';
 import {CheckEmail} from '../pages/Auth/CheckEmail/CheckEmail';
 import {NewPassword} from '../pages/Auth/NewPassword/NewPassword';
 import {ROUTES} from '../routes/routes';
@@ -15,6 +14,7 @@ import {useDispatch} from 'react-redux';
 import React, {useEffect} from 'react';
 import {initializeApp} from '../redux/app-reducer';
 import {Cards} from '../pages/Cards/Cards';
+import {Learn} from '../pages/Main/Learn/Learn';
 
 
 function AppRoutes() {
@@ -31,8 +31,8 @@ function AppRoutes() {
             <Routes>
                 {/*<Route path='/' element={<Profile/>}/>*/}
                 <Route path={ROUTES.PROFILE} element={<Profile/>}/>
-                <Route path={`${ROUTES.CARDS}/:cardsPackId`} element={<Cards/>}/>
                 <Route path={ROUTES.CARDS} element={<Cards/>}/>
+                <Route path={`${ROUTES.CARDS}/:cardsPackId`} element={<Cards/>}/>
                 <Route path={ROUTES.DECKS} element={<Decks/>}/>
                 <Route path={ROUTES.LOGIN} element={<Login/>}/>
                 <Route path={ROUTES.REG} element={<SignUp2/>}/>
@@ -41,6 +41,8 @@ function AppRoutes() {
                 <Route path={`${ROUTES.NEW_PASS}/:token`} element={<NewPassword/>}/>
                 <Route path={ROUTES.CHECK_EMAIL} element={<CheckEmail/>}/>
                 <Route path={ROUTES.ERROR} element={<Error404/>}/>
+                <Route path={ROUTES.LEARN} element={<Learn/>}/>
+                <Route path={`${ROUTES.LEARN}/:cardsPackId`} element={<Learn/>}/>
                 <Route path='*' element={<Navigate to='/404' replace/>}/>
             </Routes>
         </div>

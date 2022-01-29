@@ -8,4 +8,5 @@ export enum ROUTES {
     DECKS = '/decks',
     CARDS = '/cards',
     ERROR = '/404',
+    LEARN='/learn'
 }
