@@ -19,7 +19,7 @@ export const Learn = React.memo(() => {
     const [first, setFirst] = useState<boolean>(true);
     const cards = useAppSelector(state => state.cards.cards)
     const cardsTotalCount = useAppSelector(state => state.cards.cardsTotalCount)
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
     const initialState = {
         _id: 'fake',
@@ -48,7 +48,7 @@ export const Learn = React.memo(() => {
             // dispatch(setCardsPerPage(10))
             setCard(initialState)
         }
-    }, [dispatch, cardsPackId, cards, first,cardsTotalCount]);
+    }, [dispatch, cardsPackId, cards, first, cardsTotalCount]);
 
     const gradeHandler = (card_id: string, grade: number) => {
         dispatch(gradeAnswer({card_id, grade}))
@@ -67,9 +67,9 @@ export const Learn = React.memo(() => {
             {!cards.length
                 ? <div className={s.empty}>
                     <h2>There are no cards in this deck.</h2>
-                        <p>Please choose another one.</p>
+                    <p>Please choose another one.</p>
                     <SuperButton onClick={() => navigate('/decks')}>Back</SuperButton>
-            </div>
+                </div>
                 : <div className={s.learnContainer}>
                     <h3>Total: {cards.length} questions</h3>
                     {isLoading && <Loader/>}
@@ -89,7 +89,7 @@ export const Learn = React.memo(() => {
                                              key={g}
                                              onClick={() => gradeHandler(card._id, i + 1)}
                                              disabled={isLoading}
-                                             style={{color: i <= (grades.length) ? '#d57689' : '#9a8f8f'}}><span>&#9733;</span>
+                                ><span>&#9733;</span>
 
                                 </SuperButton>
                             ))}

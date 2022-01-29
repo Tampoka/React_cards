@@ -21,6 +21,9 @@
 
     &:hover {
       background-color: #fff;
+      span{
+        color: #8630be;
+      }
     }
   }
 }
@@ -33,7 +36,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  //justify-content: center;
   color: $textColor;
   p{
     margin-top: 20px;
