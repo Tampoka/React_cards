@@ -1,12 +1,44 @@
 @import '../../../common/styles/saas/variables';
 
-.learnContainer{
+.learnContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  justify-content: space-between;
+  padding: 30px 20px 50px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   width: 500px;
   min-height: 600px;
   background-color: $bgLightColor;
+  color: $textColor;
+
+
+  button {
+    margin-left: 10px;
+  }
+.gradeButtons{
+  button{
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+}
+  .question, .answer {
+    color: #fff;
+  }
+}
+
+.empty{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+  color: $textColor;
+  p{
+    margin-top: 20px;
+  }
+  button{
+    margin-top: 30px;
+  }
 }

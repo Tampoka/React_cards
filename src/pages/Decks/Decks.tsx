@@ -34,7 +34,7 @@ export const Decks = React.memo(() => {
     const isLoading = useAppSelector<boolean>(state => state.app.isLoading)
     const userId = useAppSelector<string>(state => state.profile._id)
     const isDesktopResolution = useMatchMedia('(min-width:1040px)', true)
-    const userDecksCount=useAppSelector(state=>state.profile.publicCardPacksCount)
+    const userDecksCount = useAppSelector(state => state.profile.publicCardPacksCount)
 
     const sortDecksMethod = useAppSelector<string | undefined>(state => state.cards.sortCardsMethod)
     const changeDecksSortMethod = (sortMethod: string) => {
@@ -50,7 +50,6 @@ export const Decks = React.memo(() => {
         pageCount,
         privatePacks,
         sortBy,
-        currentCardsCount,
         countPerPage,
         packName
     } = useAppSelector<PacksInitialState>(state => state.decks)
@@ -66,7 +65,6 @@ export const Decks = React.memo(() => {
     }, [dispatch]);
 
     const showPrivate = useCallback((value: boolean) => {
-        console.log(value)
         dispatch(setPrivateDecks(value))
     }, [dispatch])
 
@@ -83,15 +81,9 @@ export const Decks = React.memo(() => {
         dispatch(updateProfile(({name, avatar})))
     }, [dispatch])
 
-
-    // useEffect(() => {
-    //    dispatch(fetchCardsPacks())
-    // }, [dispatch, page, pageCount, currentCardsCount, privatePacks, sortBy, packName, userId, sortDecksMethod, cardPacksTotalCount])
-
     useEffect(() => {
-        console.log("Inside effect")
-        dispatch(fetchCardsPacks())
-    }, [])
+        dispatch((fetchCardsPacks()))
+    }, [dispatch, page, pageCount, privatePacks, sortBy, packName, userId, sortDecksMethod, cardPacksTotalCount])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
@@ -101,8 +93,9 @@ export const Decks = React.memo(() => {
 
     return (
         <div className={s.decksWithSidebar}>
-            {isDesktopResolution&&<Sidebar showPrivate={showPrivate} active={privatePacks} minCardsCount={minCardsCount}
-                      maxCardsCount={maxCardsCount} isLoading={isLoading} onSubmitHandler={updateUserProfile}/>}
+            {isDesktopResolution &&
+            <Sidebar showPrivate={showPrivate} active={privatePacks} minCardsCount={minCardsCount}
+                     maxCardsCount={maxCardsCount} isLoading={isLoading} onSubmitHandler={updateUserProfile}/>}
             <div className={s.decksContainer}>
                 <h1 ref={paginationScrollTopRef}>Decks List</h1>
                 {isLoading && <Loader/>}
@@ -115,7 +108,7 @@ export const Decks = React.memo(() => {
                     <AddItem title='Add deck' setModal={onToggle} isLoading={isLoading}/>
                 </div>
                 <div className={s.innerSidebar}>
-                    {!isDesktopResolution&& <div className={s.info}>
+                    {!isDesktopResolution && <div className={s.info}>
                         <p>Decks created: <span>{userDecksCount}</span></p>
                         <BtnBlock showPrivate={showPrivate} active={privatePacks}/>
                         <DecksRange minCardsCount={minCardsCount} maxCardsCount={maxCardsCount} isLoading={isLoading}/>

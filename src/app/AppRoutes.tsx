@@ -29,7 +29,7 @@ function AppRoutes() {
     return (
         <div className={s.content}>
             <Routes>
-                {/*<Route path='/' element={<Profile/>}/>*/}
+                <Route path='/' element={<Profile/>}/>
                 <Route path={ROUTES.PROFILE} element={<Profile/>}/>
                 <Route path={ROUTES.CARDS} element={<Cards/>}/>
                 <Route path={`${ROUTES.CARDS}/:cardsPackId`} element={<Cards/>}/>

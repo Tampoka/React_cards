@@ -8,8 +8,8 @@ import {UpdateDeckModal} from '../UpdateDeckModal/UpdateDeckModal';
 import {NavLink} from 'react-router-dom';
 import {ROUTES} from '../../../routes/routes';
 import {Sort} from '../../../common/components/Sort/Sort';
-import {LearnModal} from '../LearnModal/LearnModal';
 import {DeleteDeckModal} from '../DeleteDeckModal/DeleteDeckModal';
+import SuperButton from '../../../common/components/SuperButton/SuperButton';
 
 type PropsType = {
     decks: CardsPackType[]
@@ -78,8 +78,7 @@ export const DecksTable = React.memo(({
                                 <UpdateDeckModal deckName={m.name} isLoading={isLoading}
                                                  onSubmitHandler={editCallback}/></>
                             }
-                            {/*<LearnModal deckName={m.name} isLoading={isLoading} id={m._id}/>*/}
-                            <NavLink to={ROUTES.LEARN + '/' + m._id}>Learn</NavLink>
+                            <SuperButton disabled={isLoading}><NavLink to={ROUTES.LEARN + '/' + m._id} className={s.link}>Learn</NavLink></SuperButton>
                         </td>
                     </tr>;
                 })}
@@ -89,4 +88,3 @@ export const DecksTable = React.memo(({
     )
 })
 
-//                            <SuperEditableSpan defaultValue={m.name} onBlurHandler={edit}></SuperEditableSpan>
