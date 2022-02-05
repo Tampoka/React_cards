@@ -13,12 +13,12 @@ export const initialState: PacksInitialState = {
     cardPacks: [],
     cardPacksTotalCount: 0,
     minCardsCount: 0,
-    maxCardsCount: 100,
-    page: 5,
+    maxCardsCount: 60,
+    page: 1,
     pageCount: 10,
     privatePacks: false,
     sortBy: undefined,
-    currentCardsCount: [0, 0],
+    currentCardsCount: [0, 100],
     countPerPage: [10, 25, 50],
     packName: ''
 }
@@ -43,8 +43,10 @@ export const decksReducer = (state: PacksInitialState = initialState, action: De
         case'DECKS/SET-PRIVATE-DECKS':
             return {...state, privatePacks: action.payload.value}
         case 'DECKS/SET-CURRENT-CARDS-COUNT':
-            return {...state, currentCardsCount: [...action.payload.values],
-            page:1}
+            return {
+                ...state, currentCardsCount: [...action.payload.values],
+                page: 1
+            }
         case 'DECKS/SET-DECK-NAME':
             return {...state, packName: action.payload.name}
         default:
