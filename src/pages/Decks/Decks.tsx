@@ -47,6 +47,7 @@ export const Decks = React.memo(() => {
         minCardsCount,
         maxCardsCount,
         page,
+        currentCardsCount,
         pageCount,
         privatePacks,
         sortBy,
@@ -74,7 +75,6 @@ export const Decks = React.memo(() => {
 
     const onDeckSearchCallback = useCallback((value: string) => {
         dispatch(setPackName(value))
-        console.log('search decks')
     }, [dispatch])
 
     const updateUserProfile = useCallback((name: string, avatar: string) => {
@@ -83,7 +83,7 @@ export const Decks = React.memo(() => {
 
     useEffect(() => {
         dispatch((fetchCardsPacks()))
-    }, [dispatch, page, pageCount, privatePacks, sortBy, packName, userId, sortDecksMethod, cardPacksTotalCount])
+    }, [dispatch, page, pageCount, privatePacks, sortBy, packName,  sortDecksMethod,currentCardsCount])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})

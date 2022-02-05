@@ -50,7 +50,6 @@ export const Cards = React.memo(() => {
         packUserId,
         minGrade,
         maxGrade,
-        currentCardsPackID,
         sortCardsMethod,
         currentGrade,
         countPerPage,
@@ -86,15 +85,15 @@ export const Cards = React.memo(() => {
     }, [dispatch, cardsPackId])
 
     useEffect(() => {
-        console.log("Cards effect")
         cardsPackId && dispatch(fetchCards())
-    }, [dispatch, cardsPackId, page, pageCount, sortCardsMethod, currentGrade ,cardAnswer, cardQuestion, cardsTotalCount])
+    }, [dispatch, cardsPackId, page, pageCount, sortCardsMethod, currentGrade, cardAnswer, cardQuestion])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
     }, [page, pageCount])
 
     if (!isLoggedIn) return <Navigate to='/login'/>
+    if (isLoading) return <Loader/>
     return (
         <div className={s.cardsContainer}>
             {currentCardsPack ? < >
