@@ -13,12 +13,15 @@ type PropsType = {
     isLoading: boolean
 }
 
-export const DecksRange = ({minCardsCount, maxCardsCount, isLoading}: PropsType) => {
+export const DecksRange = React.memo(({minCardsCount, maxCardsCount, isLoading}: PropsType) => {
         const dispatch = useDispatch()
 
         const [rangeValues, setRangeValues] = useState([minCardsCount, maxCardsCount])
+        const [firstRendering, setFirstRendering] = useState(true)
+
         const createSliderWithTooltip = Slider.createSliderWithTooltip;
         const Range = createSliderWithTooltip(Slider.Range);
+
         const rangeMarks = {
             [minCardsCount]: {style: {color: '#fff', fontSize: 16}, label: minCardsCount},
             [maxCardsCount]: {style: {color: '#fff', fontSize: 16}, label: maxCardsCount}
@@ -27,13 +30,18 @@ export const DecksRange = ({minCardsCount, maxCardsCount, isLoading}: PropsType)
 
         const onRangeChangeHandler = (values: number[]) => {
             setRangeValues(values)
+            setFirstRendering(false)
         }
 
         const resetRange = () => {
             setRangeValues([minCardsCount, maxCardsCount])
         }
         useEffect(() => {
-            dispatch(setCurrentCardsCount(debouncedRange))
+            if (!firstRendering) {
+                dispatch(setCurrentCardsCount(debouncedRange))
+            } else {
+                setFirstRendering(false)
+            }
         }, [debouncedRange, dispatch])
 
         return (<div className={s.range}>
@@ -53,8 +61,7 @@ export const DecksRange = ({minCardsCount, maxCardsCount, isLoading}: PropsType)
                         width: 20,
                         borderRadius: 0,
                         borderColor: '#d2d5dd'
-                    }, {backgroundColor: '#999ac6', height: 20, width: 20, borderRadius: 0,borderColor:'#d2d5dd'}]}
-                    // dotStyle={{backgroundColor:'red',width:20,height:20,top:-5}}
+                    }, {backgroundColor: '#999ac6', height: 20, width: 20, borderRadius: 0, borderColor: '#d2d5dd'}]}
                     dotStyle={{display: 'none'}}
                     tipFormatter={value => `${value}`}
                     tipProps={{
@@ -63,10 +70,10 @@ export const DecksRange = ({minCardsCount, maxCardsCount, isLoading}: PropsType)
                     }}
                 />
                 <SuperButton disabled={isLoading} onClick={resetRange}
-                className={s.submitBtn}>Reset</SuperButton>
+                             className={s.submitBtn}>Reset</SuperButton>
             </div>
         )
             ;
-    }
+    })
 ;
 
