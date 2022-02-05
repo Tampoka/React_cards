@@ -15,6 +15,7 @@ import React, {useEffect} from 'react';
 import {initializeApp} from '../redux/app-reducer';
 import {Cards} from '../pages/Cards/Cards';
 import {Learn} from '../pages/Main/Learn/Learn';
+import {Loader} from '../common/components/Loader/Loader';
 
 
 function AppRoutes() {
@@ -25,6 +26,8 @@ function AppRoutes() {
     useEffect(() => {
         dispatch(initializeApp())
     }, [dispatch])
+
+    if (!isInitialized) return <Loader/>
 
     return (
         <div className={s.content}>
