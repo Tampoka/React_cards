@@ -6,6 +6,7 @@ import {useDispatch} from 'react-redux';
 import {useDebounce} from '../../../common/hooks/useDebounce';
 import {setCurrentCardsCount} from '../../../redux/decks-reducer';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';
+import {useAppSelector} from '../../../redux/store';
 
 type PropsType = {
     minCardsCount: number
@@ -15,8 +16,9 @@ type PropsType = {
 
 export const DecksRange = React.memo(({minCardsCount, maxCardsCount, isLoading}: PropsType) => {
         const dispatch = useDispatch()
+        const currentCardsCount =useAppSelector(state=>state.decks.currentCardsCount)
 
-        const [rangeValues, setRangeValues] = useState([minCardsCount, maxCardsCount])
+        const [rangeValues, setRangeValues] = useState(currentCardsCount)
         const [firstRendering, setFirstRendering] = useState(true)
 
         const createSliderWithTooltip = Slider.createSliderWithTooltip;
