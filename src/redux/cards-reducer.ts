@@ -17,7 +17,7 @@ export const initialState: CardsInitialStateType = {
     cardsTotalCount: 0,
     packUserId: '',
     minGrade: 0,
-    maxGrade: 0,
+    maxGrade: 6,
     currentCardsPackID: '',
     sortCardsMethod: undefined,
     currentGrade: [0, 0],
