@@ -2,7 +2,7 @@
   "name": "react-cards",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Tampoka.github.io/react-cards",
+  "homepage": "https://Tampoka.github.io/React_cards",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
