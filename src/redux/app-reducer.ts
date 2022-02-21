@@ -41,11 +41,10 @@ export const initializeApp = (): ThunkType => async dispatch => {
         dispatch(setIsLoggedIn(true));
         dispatch(setAppInitialized(true));
     } catch (e:any) {
-        // dispatch(setAppInitialized(false));
         dispatch(setAppError(true))
         dispatch(setAppInfo(e.response ? e.response.data.error : e.error));
     } finally {
-        // dispatch(setAppInitialized(true));
+        dispatch(setAppInitialized(true));
         dispatch(setAppIsLoading(false))
     }
 };
