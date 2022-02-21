@@ -9,25 +9,12 @@ import {Decks} from '../pages/Decks/Decks';
 import {CheckEmail} from '../pages/Auth/CheckEmail/CheckEmail';
 import {NewPassword} from '../pages/Auth/NewPassword/NewPassword';
 import {ROUTES} from '../routes/routes';
-import {useAppSelector} from '../redux/store';
-import {useDispatch} from 'react-redux';
-import React, {useEffect} from 'react';
-import {initializeApp} from '../redux/app-reducer';
+import React from 'react';
 import {Cards} from '../pages/Cards/Cards';
 import {Learn} from '../pages/Main/Learn/Learn';
-import {Loader} from '../common/components/Loader/Loader';
 
 
 function AppRoutes() {
-    const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
-    const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(initializeApp())
-    }, [dispatch])
-
-    if (!isInitialized) return <Loader/>
 
     return (
         <div className={s.content}>
