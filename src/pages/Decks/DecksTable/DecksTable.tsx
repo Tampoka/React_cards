@@ -6,7 +6,7 @@ import s from './DecksTable.module.scss'
 import moment from 'moment';
 import {UpdateDeckModal} from '../UpdateDeckModal/UpdateDeckModal';
 import {NavLink} from 'react-router-dom';
-import {ROUTES} from '../../../routes/routes';
+import {ROUTES} from '../../../enums/routes/routes';
 import {Sort} from '../../../common/components/Sort/Sort';
 import {DeleteDeckModal} from '../DeleteDeckModal/DeleteDeckModal';
 import SuperButton from '../../../common/components/SuperButton/SuperButton';

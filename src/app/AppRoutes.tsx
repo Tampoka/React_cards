@@ -8,10 +8,10 @@ import {Login} from '../pages/Auth/Login/Login';
 import {Decks} from '../pages/Decks/Decks';
 import {CheckEmail} from '../pages/Auth/CheckEmail/CheckEmail';
 import {NewPassword} from '../pages/Auth/NewPassword/NewPassword';
-import {ROUTES} from '../routes/routes';
-import React from 'react';
+import {ROUTES} from '../enums/routes/routes';
 import {Cards} from '../pages/Cards/Cards';
-import {Learn} from '../pages/Main/Learn/Learn';
+import {Learn} from '../pages/Learn/Learn';
+import Home from '../pages/Home/Home';
 
 
 function AppRoutes() {
@@ -19,7 +19,7 @@ function AppRoutes() {
     return (
         <div className={s.content}>
             <Routes>
-                <Route path='/' element={<Profile/>}/>
+                <Route path={ROUTES.HOME} element={<Home/>}/>
                 <Route path={ROUTES.PROFILE} element={<Profile/>}/>
                 <Route path={ROUTES.CARDS} element={<Cards/>}/>
                 <Route path={`${ROUTES.CARDS}/:cardsPackId`} element={<Cards/>}/>
