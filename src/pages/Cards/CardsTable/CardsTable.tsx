@@ -3,7 +3,6 @@ import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../redux/store';
 import s from '../../Decks/DecksTable/DecksTable.module.scss';
 import moment from 'moment';
-import SuperButton from '../../../common/components/SuperButton/SuperButton';
 import {CardType} from '../../../api/cards-api';
 import {Sort} from '../../../common/components/Sort/Sort';
 import {Grade} from '../Grade/Grade';
@@ -61,7 +60,7 @@ export const CardsTable = React.memo(({
                 <tbody>
                 {cards.map(c => {
                     const editCallback = (question: string, answer: string) => updateCardHandler(c._id, question, answer);
-                    const deleteCallback=()=>deleteCardHandler(c._id)
+                    const deleteCallback = () => deleteCardHandler(c._id)
                     return <tr key={c._id}>
                         <td className={s.deckName}>
                             <div className={s.question}>{c.question}</div>

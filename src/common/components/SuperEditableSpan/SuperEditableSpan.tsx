@@ -1,6 +1,7 @@
 import React, {DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useState} from 'react'
 import SuperInputText from '../SuperInputText/SuperInputText'
 import s from './SuperEditableSpan.module.css'
+import {Nullable} from '../../../redux/types/Nullable';
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
@@ -14,8 +15,8 @@ type SuperEditableSpanType = DefaultInputPropsType & { // и + ещё пропс
     onBlurHandler?: (value: string) => void
     onEnter?: () => void
     error?: string
-    spanClassName?: string
-    defaultValue:string
+    spanClassName?: Nullable<string>
+    defaultValue: string
     spanProps?: DefaultSpanPropsType // пропсы для спана
 }
 
@@ -50,7 +51,7 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
         onDoubleClick && onDoubleClick(e)
     }
 
-    const setSpanClassName = `${s.editableSpan} ${spanClassName} ${className ? className : ''}`
+    const setSpanClassName = `${s.editableSpan} ${spanClassName && spanClassName} ${className ? className : ''}`
 
     return (
         <>

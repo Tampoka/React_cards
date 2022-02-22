@@ -10,9 +10,9 @@ type SuperRadioPropsType = DefaultRadioPropsType & {
 
 const SuperRadio: React.FC<SuperRadioPropsType> = (
     {
-        type, name,
+        name,
         options, value,
-        onChange, onChangeOption,
+        onChange, onChangeOption, type = "radio",
         ...restProps
     }
 ) => {
@@ -23,9 +23,9 @@ const SuperRadio: React.FC<SuperRadioPropsType> = (
 
     const mappedOptions: JSX.Element[] = options
         ? options.map((o, i) => (
-            <label key={name + '-' + i}>
+            <label key={`${name} - ${i}`}>
                 <input
-                    type={'radio'}
+                    type={type}
                     name={name}
                     value={o}
                     onChange={onChangeCallback}

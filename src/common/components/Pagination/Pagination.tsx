@@ -37,38 +37,38 @@ export const Pagination =React.memo( ({totalCount, countPerPage, currentPage, on
 
     return (
         <div className={s.container}>
-            <button className={`${prevIsHidden && s.hidden}`}
+            <button className={`${prevIsHidden?s.hidden:""}`}
                     onClick={() => onChange(currentPage - 1)} disabled={isLoading}>Prev
             </button>
 
-            <button className={`${prevIsHidden && s.hidden}`}
+            <button className={`${prevIsHidden?s.hidden:""}`}
                     onClick={() => onChange(1)} disabled={isLoading}>Start
             </button>
 
-            <button className={`${prevIsHidden && s.hidden}`}
+            <button className={`${prevIsHidden?s.hidden:""}`}
                     onClick={() => onChange(pagePreviousStep)} disabled={isLoading}>...
             </button>
 
-            <button className={`${prevIsHidden && s.hidden}`}
+            <button className={`${prevIsHidden?s.hidden:""}`}
                     onClick={() => onChange(previousPage)}
                     disabled={isLoading}>{previousPage !== currentPage && previousPage}</button>
 
             <button className={s.active} disabled={isLoading}>{currentPage}</button>
 
-            <button className={`${nextIsHidden && s.hidden}`}
+            <button className={`${nextIsHidden?s.hidden:""}`}
                     onClick={() => onChange(nextPage)}
                     disabled={isLoading}>{nextPage !== currentPage && nextPage}</button>
 
-            <button className={`${nextIsHidden && s.hidden}`}
+            <button className={`${nextIsHidden?s.hidden:""}`}
                     onClick={() => onChange(pageNextStep)} disabled={isLoading}>...
             </button>
 
 
-            <button className={`${nextIsHidden && s.hidden}`}
+            <button className={`${nextIsHidden?s.hidden:""}`}
                     onClick={() => onChange(currentPage + 1)} disabled={isLoading}>Next
             </button>
 
-            <button className={`${nextIsHidden && s.hidden}`}
+            <button className={`${nextIsHidden?s.hidden:""}`}
                     onClick={() => onChange(pageNumbers)} disabled={isLoading}>End
             </button>
 

@@ -5,7 +5,7 @@ export const useMatchMedia = (mediaQuery: string, initialValue: boolean) => {
     useEffect(() => {
         const watcher = window.matchMedia(mediaQuery)
         setIsMatching(watcher.matches)
-        const listener = (matches: { matches: any; }) => {
+        const listener = (matches: { matches: boolean; }) => {
             setIsMatching(matches.matches)
         }
         if (watcher.addEventListener) {

@@ -1,8 +1,8 @@
 import {CardType} from '../../../../api/cards-api';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useAppSelector} from '../../../../redux/store';
 import {useDispatch} from 'react-redux';
-import {fetchCards, gradeAnswer, setCardsPerPage} from '../../../../redux/cards-reducer';
+import {gradeAnswer} from '../../../../redux/cards-reducer';
 import s from '../../../../common/components/Modal/CommonModalForm/CommonModalForm.module.scss';
 import SuperButton from '../../../../common/components/SuperButton/SuperButton';
 import {getCard, grades} from '../../../../utils/grades';
@@ -17,10 +17,8 @@ type PropsType = {
 export const Learn = React.memo(({onClose, id}: PropsType) => {
     const dispatch = useDispatch();
     const [isChecked, setIsChecked] = useState<boolean>(false);
-    const [first, setFirst] = useState<boolean>(true);
     const cards = useAppSelector(state => state.cards.cards)
     const isLoading = useAppSelector(state => state.app.isLoading)
-    const isInitialized = useAppSelector(state => state.app.isInitialized)
 
     const initialState = {
         _id: 'fake',

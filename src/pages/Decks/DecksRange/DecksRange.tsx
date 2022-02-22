@@ -22,6 +22,7 @@ export const DecksRange = React.memo(({minCardsCount, maxCardsCount, isLoading}:
         const [firstRendering, setFirstRendering] = useState(true)
 
         const createSliderWithTooltip = Slider.createSliderWithTooltip;
+        //ts-ignore
         const Range = createSliderWithTooltip(Slider.Range);
 
         const rangeMarks = {

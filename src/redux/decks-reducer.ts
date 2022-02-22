@@ -8,6 +8,7 @@ import {
     UpdateCardsPackData
 } from '../api/decks-api';
 import {setAppError, setAppInfo, setAppIsLoading} from './app-reducer';
+import {AxiosError} from 'axios';
 
 export const initialState: PacksInitialState = {
     cardPacks: [],
@@ -92,9 +93,10 @@ export const fetchCardsPacks = (payload?: GetCardPacksQueryParams): ThunkType =>
             });
             dispatch(setDecks(res.data));
             // dispatch(setAppInfo('Cards are ready to study!'));
-        } catch (e: any) {
+        } catch (e:unknown) {
+            const error=e as AxiosError
             dispatch(setAppError(true));
-            dispatch(setAppInfo(e.response ? e.response.data.error : e));
+            dispatch(setAppInfo(error.response ? error.response.data.error : error));
         } finally {
             dispatch(setAppIsLoading(false))
         }

@@ -6,13 +6,11 @@ import {Learn} from './Learn/Learn';
 type PropsType = {
     deckName: string
     isLoading: boolean
-    id:string
+    id: string
 }
 
 export const LearnModal = ({deckName, isLoading, id}: PropsType) => {
     const {isOpen, onToggle} = useModal()
-
-
 
     return (
         <>

@@ -1,10 +1,11 @@
 import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react'
 import s from './SuperCheckbox.module.css'
+import {Nullable} from '../../../redux/types/Nullable';
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 type SuperCheckboxPropsType = DefaultInputPropsType & {
     onChangeChecked?: (checked: boolean) => void
-    spanClassName?: string
+    spanClassName?: Nullable<string>
 }
 const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
     {
@@ -30,7 +31,7 @@ const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
                 className={finalInputClassName}
                 {...restProps}
             />
-            {children && <span className={s.spanClassName}>{children}</span>}
+            {children && <span className={`s.${spanClassName?spanClassName:""}`}>{children}</span>}
         </label>
     )
 }

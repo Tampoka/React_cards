@@ -17,6 +17,7 @@ export const authApi = {
     },
     authMe() {
         return instance.post< {},AxiosResponse<ProfileType>>('/auth/me',{})
+        // return instance.post< AxiosResponse<ProfileType>>('/auth/me')
     },
     passwordRecovery(payload: PasswordRecoveryData) {
         return instance.post<PasswordRecoveryData, AxiosResponse<PasswordResponse>>('https://neko-back.herokuapp.com/2.0/auth/forgot', payload)

@@ -1,12 +1,13 @@
 import s from './StarRating.module.scss'
+import {Nullable} from '../../../../redux/types/Nullable';
 
 type PropsType = {
     grade: number
-    minGrade: number
+    minGrade?: Nullable<number>
     maxGrade: number
 }
 
-export const StarRating = ({grade, maxGrade, minGrade}: PropsType) => {
+export const StarRating = ({grade, maxGrade, minGrade = 0}: PropsType) => {
     return (
         <div className={s.starRating}>
             {[...Array(maxGrade)].map((star, index) => {

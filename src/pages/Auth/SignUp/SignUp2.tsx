@@ -1,4 +1,4 @@
-import {FormEvent,useState} from 'react';
+import {FormEvent, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {SignUpData} from '../../../api/auth-api';
 import {useAppSelector} from '../../../redux/store';
@@ -12,7 +12,6 @@ export const SignUp2 = () => {
 
         const dispatch = useDispatch();
 
-        const error = useAppSelector<boolean>(state => state.app.error);
         const info = useAppSelector<string>(state => state.app.appInfo);
         const isLoading = useAppSelector<boolean>(state => state.app.isLoading);
         const signUpSuccess = useAppSelector<boolean>(state => state.signUp.signUpSuccess);
@@ -22,7 +21,7 @@ export const SignUp2 = () => {
         }
 
         const validate = () => {
-            const regex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+            const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
             if (values.email === '' || values.password === '') {
                 dispatch(setAppError(true))
                 dispatch(setAppInfo('Please fill out all required fields and try again'))

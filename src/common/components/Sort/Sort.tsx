@@ -7,14 +7,9 @@ type PropsType = {
     sortMethod?: string
 }
 
-export const Sort = ({sortBy, sortCallback, sortMethod}: PropsType) => {
+export const Sort = ({sortBy, sortCallback}: PropsType) => {
     const [sort, setSort] = useState(false)
 
-    // const onSortHandler = () => {
-    //     setSortToggle(!sortToggle)
-    //     // setIsActive(true)
-    //     sortCallback(`${Number(sortToggle)}${sortBy}`)
-    // }
     const onSortHandler = (value:boolean) => {
         setSort(value)
         // setIsActive(true)
@@ -24,8 +19,8 @@ export const Sort = ({sortBy, sortCallback, sortMethod}: PropsType) => {
 
     return (
         <div className={s.sort}>
-            <span className={`${s.up} ${sort && s.active}`} onClick={()=>onSortHandler(true)}><i>▲</i></span>
-            <span className={`${s.down} ${!sort && s.active}`} onClick={()=>onSortHandler(false)}><i>▼</i></span>
+            <span className={`${s.up} ${sort?s.active:""}`} onClick={()=>onSortHandler(true)}><i>▲</i></span>
+            <span className={`${s.down} ${!sort?s.active:""}`} onClick={()=>onSortHandler(false)}><i>▼</i></span>
         </div>
     );
 };

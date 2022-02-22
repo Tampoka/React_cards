@@ -9,20 +9,17 @@ import {useDispatch} from 'react-redux';
 import {login} from '../../../redux/auth-reducer';
 import SuperCheckbox from '../../../common/components/SuperCheckbox/SuperCheckbox';
 import {useAppSelector} from '../../../redux/store';
-import Spinner from '../../../common/components/Spinner/Spinner';
 import {Loader} from '../../../common/components/Loader/Loader';
 
 
 type PropsType = {
     isLoading: boolean
-    errorMsg: string
     toggleShowPassword: () => void
     showPassword: boolean
 };
 
 export const LoginForm = React.memo(({
                                          isLoading,
-                                         errorMsg,
                                          toggleShowPassword,
                                          showPassword
                                      }: PropsType) => {
