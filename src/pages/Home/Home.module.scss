@@ -9,4 +9,37 @@
   width: 80vw;
   min-height: 700px;
   background-color: $bgLightColor;
+
+  .description {
+    padding: 20px 70px;
+    color: $textColorLight;
+    font-size: 28px;
+
+    p {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    span {
+      text-decoration: line-through 2px;
+    }
+  }
+  .instructions {
+    padding: 0 20px;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 24px;
+    color: $textColor;
+    line-height: 1.7;
+    span{
+      color: $textColorLight;
+    }
+    .rate{
+      font-size: 18px;
+    }
+    .test{
+      font-size: 22px;
+      margin-top: 50px;
+    }
+  }
 }
