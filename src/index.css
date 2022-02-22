@@ -10,7 +10,7 @@ body {
 
 body {
     margin: 0;
-    padding-bottom: 50px;
+    /*padding-bottom: 50px;*/
     font-family: "Roboto", sans-serif;
     /*background: rgb(2, 0, 36);*/
     /*background: linear-gradient(0deg, rgba(2, 0, 36, 0.9612219887955182) 0%, rgba(9, 9, 121, 0.7343312324929971) 35%, rgba(2, 156, 218, 0.7147233893557423) 82%, rgba(0, 212, 255, 0.5354516806722689) 100%);*/
