@@ -21,7 +21,7 @@
     }
 
     span {
-      text-decoration: line-through 2px;
+      text-decoration: line-through 3px $textColor;
     }
   }
   .instructions {
@@ -34,12 +34,18 @@
     span{
       color: $textColorLight;
     }
+    button{
+      margin-top: 20px;
+    }
     .rate{
       font-size: 18px;
     }
     .test{
       font-size: 22px;
       margin-top: 50px;
+      button{
+        padding: 5px 10px;
+      }
     }
   }
 }

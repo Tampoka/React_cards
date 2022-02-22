@@ -15,10 +15,14 @@ export const Home = () => {
     const isInitialized = useAppSelector(state => state.app.isInitialized)
 
     const setTestAccountLogin = () => {
-        const email = process.env.REACT_APP_TEST_EMAIL
-        const password = process.env.REACT_APP_TEST_PASSWORD
-        console.log(email,password)
-        if (!email || !password) return
+        const email = process.env.REACT_APP_EMAIL
+        const password = process.env.REACT_APP_PASSWORD
+
+        if (!email || !password) {
+            throw new Error("Environment variable is not set")
+        }
+
+        console.log(email, password)
         dispatch(login({email, password, rememberMe: true}))
     }
 
@@ -42,7 +46,8 @@ export const Home = () => {
                 <p className={s.rate}>✔ You can rate your answers so that answers with lower rate will display more
                     often to memorize things better.</p>
                 <p className={s.test}>Before <NavLink to={ROUTES.REG}>register</NavLink>, you can discover features
-                    with <SuperButton onClick={setTestAccountLogin}>test account</SuperButton>.</p>
+                    with test account:</p>
+                <SuperButton onClick={setTestAccountLogin}>Proceed with test account</SuperButton>.
             </div>
 
         </div>
