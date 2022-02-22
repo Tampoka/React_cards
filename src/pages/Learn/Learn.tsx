@@ -1,14 +1,14 @@
 import s from './Learn.module.scss'
 import React, {useEffect, useState} from 'react';
-import {useAppSelector} from '../../../redux/store';
+import {useAppSelector} from '../../redux/store';
 import {Navigate, useNavigate, useParams} from 'react-router-dom';
-import SuperButton from '../../../common/components/SuperButton/SuperButton';
-import {getCard, grades} from '../../../utils/grades';
+import SuperButton from '../../common/components/SuperButton/SuperButton';
+import {getCard, grades} from '../../utils/grades';
 import {useDispatch} from 'react-redux';
-import {CardType} from '../../../api/cards-api';
-import {fetchCards, gradeAnswer} from '../../../redux/cards-reducer';
-import {ROUTES} from '../../../routes/routes';
-import {Loader} from '../../../common/components/Loader/Loader';
+import {CardType} from '../../api/cards-api';
+import {fetchCards, gradeAnswer} from '../../redux/cards-reducer';
+import {ROUTES} from '../../enums/routes/routes';
+import {Loader} from '../../common/components/Loader/Loader';
 
 export const Learn = React.memo(() => {
     const isLoading = useAppSelector(state => state.app.isLoading)

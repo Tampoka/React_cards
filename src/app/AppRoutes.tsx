@@ -11,10 +11,10 @@ import {NewPassword} from '../pages/Auth/NewPassword/NewPassword';
 import {ROUTES} from '../enums/routes/routes';
 import {Cards} from '../pages/Cards/Cards';
 import {Learn} from '../pages/Learn/Learn';
-import Home from '../pages/Home/Home';
+import {Home} from '../pages/Home/Home';
 
 
-function AppRoutes() {
+export function AppRoutes() {
 
     return (
         <div className={s.content}>
@@ -39,4 +39,3 @@ function AppRoutes() {
     )
 }
 
-export default AppRoutes

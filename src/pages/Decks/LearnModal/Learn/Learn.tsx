@@ -7,7 +7,7 @@ import s from '../../../../common/components/Modal/CommonModalForm/CommonModalFo
 import SuperButton from '../../../../common/components/SuperButton/SuperButton';
 import {getCard, grades} from '../../../../utils/grades';
 import {Navigate} from 'react-router-dom';
-import {ROUTES} from '../../../../routes/routes';
+import {ROUTES} from '../../../../enums/routes/routes';
 
 type PropsType = {
     onClose: () => void

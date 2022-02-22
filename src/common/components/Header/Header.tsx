@@ -11,7 +11,7 @@ type NavListType = Array<{ title: string, to: string }>;
 const Header = React.memo(() => {
         const [showDevPages, setShowDevPages] = useState(false)
         const navList: NavListType = [
-            // {title: 'Home', to: '/'},
+            {title: 'Home', to: '/'},
             {title: 'Profile', to: '/profile'},
             {title: 'Decks', to: '/decks'},
         ]
