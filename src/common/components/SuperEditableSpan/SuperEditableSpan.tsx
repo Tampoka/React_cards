@@ -51,7 +51,7 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
         onDoubleClick && onDoubleClick(e)
     }
 
-    const setSpanClassName = `${s.editableSpan} ${spanClassName && spanClassName} ${className ? className : ''}`
+    const setSpanClassName = `${s.editableSpan} ${spanClassName?spanClassName:""} ${className ? className : ''}`
 
     return (
         <>

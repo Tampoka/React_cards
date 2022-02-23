@@ -61,14 +61,16 @@ export const CardsTable = React.memo(({
                 {cards.map(c => {
                     const editCallback = (question: string, answer: string) => updateCardHandler(c._id, question, answer);
                     const deleteCallback = () => deleteCardHandler(c._id)
+
                     return <tr key={c._id}>
                         <td className={s.deckName}>
                             <div className={s.question}>{c.question}</div>
                         </td>
                         <td>{c.answer}</td>
                         <td>{moment(c.updated).format(('L'))}</td>
-                        <td className={s.grade}>{c.grade}<Grade grade={c.grade} minGrade={minGrade}
-                                                                maxGrade={maxGrade}/></td>
+                        <td className={s.grade}>{c.grade}<Grade
+                            grade={c.grade}
+                            maxGrade={maxGrade}/></td>
                         <td className={s.btnColumn}>
                             {isOwner && <><DeleteCardModal isLoading={isLoading} onSubmitHandler={deleteCallback}/>
                                 {/*<SuperButton disabled={isLoading}*/}

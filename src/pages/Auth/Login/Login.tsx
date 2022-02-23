@@ -13,7 +13,6 @@ export const Login = () => {
         }
 
         return <LoginForm isLoading={isLoading}
-                          errorMsg={info}
                           showPassword={showPassword}
                           toggleShowPassword={toggleShowPassword}
         />;

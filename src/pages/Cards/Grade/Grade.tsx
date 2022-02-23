@@ -1,16 +1,14 @@
-import React from 'react';
 import {StarRating} from './StarRating/StarRating';
 
-type PropsType={
-    grade:number
-    minGrade:number
-    maxGrade:number
+type PropsType = {
+    grade: number
+    maxGrade: number
 }
 
-export const Grade = ({grade,minGrade,maxGrade}:PropsType) => {
+export const Grade = ({grade, maxGrade}: PropsType) => {
     return (
         <div>
-            <StarRating grade={grade} minGrade={minGrade} maxGrade={maxGrade}/>
+            <StarRating grade={grade} maxGrade={maxGrade}/>
         </div>
     );
 };

@@ -20,7 +20,7 @@ export const CardsPagination =React.memo( ({totalCount, pageCount, currentPage, 
     const onPageChangeHandler = (page: number) => {
         dispatch(setCardsCurrentPage(page));
     }
-    const onSelectChangeHandler = (option: string) => dispatch(setCardsPerPage(Number(option)));
+    const onSelectChangeHandler = (option: string|number) => dispatch(setCardsPerPage(Number(option)));
     return (
         <div className={s.paginationContainer}>
             <Pagination totalCount={totalCount}
