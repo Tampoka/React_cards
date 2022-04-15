@@ -21,8 +21,6 @@ export const Home = () => {
         if (!email || !password) {
             throw new Error("Environment variable is not set")
         }
-
-        console.log(email, password)
         dispatch(login({email, password, rememberMe: true}))
     }
 

@@ -83,7 +83,7 @@ export const Decks = React.memo(() => {
 
     useEffect(() => {
         dispatch((fetchCardsPacks()))
-    }, [dispatch, page, pageCount, privatePacks, sortBy, packName,  sortDecksMethod,currentCardsCount])
+    }, [dispatch, page, pageCount, privatePacks, sortBy, packName, currentCardsCount])
 
     useEffect(() => {
         paginationScrollTopRef.current?.scrollIntoView({behavior: 'smooth'})
