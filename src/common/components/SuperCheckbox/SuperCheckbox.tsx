@@ -1,11 +1,11 @@
 import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react'
 import s from './SuperCheckbox.module.css'
-import {Nullable} from '../../../redux/types/Nullable';
+import {Optional} from '../../../redux/types/Optional';
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 type SuperCheckboxPropsType = DefaultInputPropsType & {
     onChangeChecked?: (checked: boolean) => void
-    spanClassName?: Nullable<string>
+    spanClassName?: Optional<string>
 }
 const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
     {

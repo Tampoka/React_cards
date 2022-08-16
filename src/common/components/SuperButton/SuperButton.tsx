@@ -1,11 +1,11 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react'
 import s from './SuperButton.module.scss'
-import {Nullable} from '../../../redux/types/Nullable';
+import {Optional} from '../../../redux/types/Optional';
 
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 type SuperButtonPropsType = DefaultButtonPropsType & {
-    red?: Nullable<boolean>
-    classname?: Nullable<string>
+    red?: Optional<boolean>
+    classname?: Optional<string>
 }
 
 const SuperButton: React.FC<SuperButtonPropsType> = (
