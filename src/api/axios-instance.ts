@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const developmentMode = true
+export const developmentMode = false
 
 export const instance = axios.create({
     baseURL: developmentMode

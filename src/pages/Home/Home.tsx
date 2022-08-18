@@ -4,7 +4,7 @@ import {Loader} from '../../common/components/Loader/Loader';
 import {useDispatch} from 'react-redux';
 import {useAppSelector} from '../../redux/store';
 import s from './Home.module.scss'
-import {Navigate, NavLink, useNavigate} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 import {ROUTES} from '../../enums/routes/routes';
 import SuperButton from '../../common/components/SuperButton/SuperButton';
 import {login} from '../../redux/auth-reducer';
@@ -33,7 +33,7 @@ export const Home = () => {
 
     if (!isInitialized) return <Loader/>
     if (isLoggedIn) {
-        return <Navigate to={'/profile'}/>;
+        navigate(ROUTES.PROFILE, {replace: true})
     }
 
     return (
